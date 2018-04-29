@@ -32,6 +32,7 @@ public class CharacterMovement : MonoBehaviour {
 		GetSpriteRenderer ();
 		GetAnimator ();
 		StartCoroutine(PlayerControllerStates());
+		rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 	}
 	private IEnumerator PlayerControllerStates(){
 		alive = true;
