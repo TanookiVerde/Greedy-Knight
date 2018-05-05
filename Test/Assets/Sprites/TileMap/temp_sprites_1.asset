@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: temp_sprites_1
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: 21300000, guid: 1b6400870da1d6d4c9fcff78aa2c6647, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 0, a: 1}
   m_Transform:
     e00: 1
     e01: 0
