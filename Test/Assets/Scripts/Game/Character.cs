@@ -4,10 +4,11 @@ using UnityEngine;
 using DG.Tweening;
 
 public class Character : MonoBehaviour {
+	[SerializeField] private GameObject bloodPrefab;
+	[SerializeField] private GameOverPanel gameOverPanel;
 
-	private Rigidbody2D rb;
 	private CharacterMovement characterMovement;
-	public GameOverPanel gameOverPanel;
+	private Rigidbody2D rb;
 
 	private void Start(){
 		rb = GetComponent<Rigidbody2D>();
@@ -24,9 +25,11 @@ public class Character : MonoBehaviour {
 		}
 	}
 	private void DieAnimation(){
-		transform.DORotate(new Vector3(0,0,90), 0.2f);
-		transform.DOMoveY(transform.position.y - 1f, 0.2f);
-		GetComponent<Animator>().enabled = false;
-		GetComponent<SpriteRenderer>().DOColor(Color.grey,0.2f);
+		for(int i = 0; i < 10; i++){
+			var b = Instantiate(bloodPrefab,transform.position,Quaternion.identity);
+			b.GetComponent<Rigidbody2D>().AddForce(Vector2.up*Random.Range(1f,2f) + Vector2.right*Random.Range(-1f,1f)*2f);
+			b.transform.DOScale(0f,1f);
+		}
+		Destroy(this.gameObject);
 	}
 }
