@@ -13,6 +13,14 @@ public class ObstacleBat : MonoBehaviour {
     
 	void Start () {
         myRB = GetComponent<Rigidbody2D>();
-        myRB.velocity = new Vector2(movementSpeed, 0);
 	}
+    private void Update()
+    {
+        myRB.velocity = new Vector2(movementSpeed, 0);
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name == "Ground")
+            movementSpeed = -movementSpeed;
+    }
 }

@@ -12,6 +12,8 @@ public class CharacterMovement : MonoBehaviour {
 	public float jumpMaxTime;
 	public float jumpIncreaseTax;
 
+    private int currentJumps;
+
 	[Header("Grounded Preferences")]
 	public Transform groundPosition;
 	public Vector2 groundBoxCastSize;
@@ -25,18 +27,26 @@ public class CharacterMovement : MonoBehaviour {
 	private Animator anmt;
 
 	private bool alive = true;
+    private bool grounded = true;
 
 	private void Start()
 	{
+        currentJumps = jumpLimit;
+
 		GetRigidbody ();
 		GetSpriteRenderer ();
 		GetAnimator ();
 		StartCoroutine(PlayerControllerStates());
 		rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
 	}
-	private IEnumerator PlayerControllerStates(){
+    private void Update()
+    {
+        IsGrounded();
+    }
+    private IEnumerator PlayerControllerStates(){
 		alive = true;
 		yield return WaitForPlayerInitialInput();
+        yield return new WaitForEndOfFrame();
 		FindObjectOfType<StartText>().StopAnimation();
 		while(alive){
 			Move (Vector2.right*bias);
@@ -89,31 +99,43 @@ public class CharacterMovement : MonoBehaviour {
 	}
 	private void Jump()
 	{
-		if (Input.GetMouseButtonDown(0) && IsGrounded ()) {
+		if (Input.GetMouseButtonDown(0) && currentJumps < jumpLimit) {
+            currentJumps++;
 			animation_Jump ();
-			StartCoroutine (SpecialJump ());
+            animation_Land(false);
+            grounded = false;
+            rb.velocity = new Vector2(rb.velocity.x, jumpMin);
+            StartCoroutine(SpecialJump());
 		}
 	}
 	private IEnumerator SpecialJump()
 	{
 		float time = jumpMaxTime;
-		rb.velocity += Vector2.up * jumpMin;
 		while (Input.GetMouseButton(0) && time > 0) {
 			yield return new WaitForEndOfFrame ();
 			rb.velocity += Vector2.up * jumpIncreaseTax;
 			time -= Time.deltaTime;
 		}
 	}
-	private bool IsGrounded()
+	private void IsGrounded()
 	{
-		RaycastHit2D boxCast = Physics2D.BoxCast (groundPosition.position,
-			groundBoxCastSize,
-			0, 
-			Vector2.zero,
-			0,
-			1 << LayerMask.NameToLayer("Ground"));
-		return boxCast.collider != null;
-	}
+        if (rb.velocity.y < 0)
+        {
+            RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
+                groundBoxCastSize,
+                0,
+                Vector2.zero,
+                0,
+                1 << LayerMask.NameToLayer("Ground"));
+            if (boxCast.collider != null)
+            {
+                animation_Land(true);
+                grounded = true;
+                currentJumps = 0;
+                return;
+            }
+        }
+    }
 	private bool HasWall()
 	{
 		RaycastHit2D boxCast = Physics2D.BoxCast (transform.position,
@@ -122,8 +144,9 @@ public class CharacterMovement : MonoBehaviour {
 			Vector2.zero,
 			0,
 			1 << LayerMask.NameToLayer("Ground"));
-		return boxCast.collider != null;
-	}
+        
+        return boxCast.collider != null;
+    }
 	private void ChangeDirection(){
 		if(HasWall()){
 			InvertBias();
@@ -137,10 +160,14 @@ public class CharacterMovement : MonoBehaviour {
 			sr.flipX = false;
 		}
 	}
+    private void animation_Land(bool value)
+    {
+        anmt.SetBool("grounded", value);
+    }
 	private void animation_Jump()
 	{
 		anmt.SetTrigger ("jump");
-	}
+    }
 	private void animation_Move()
 	{
 		anmt.SetFloat ("velocity", Mathf.Abs(rb.velocity.x));
