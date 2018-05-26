@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 61636334078199122}
   - component: {fileID: 50125400298766860}
   - component: {fileID: 114699868407031630}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Bat
   m_TagString: Obstacles
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_Material: {fileID: 6200000, guid: 787ee7139a9dd6b4cb34ef1d99acf5bc, type: 2}
+  m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0

@@ -20,7 +20,7 @@ public class ObstacleBat : MonoBehaviour {
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name == "Ground")
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
             movementSpeed = -movementSpeed;
     }
 }
