@@ -28,6 +28,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	private bool alive = true;
     private bool grounded = true;
+	[HideInInspector] public static bool canStart = false;
 
 	private void Start()
 	{
@@ -45,6 +46,9 @@ public class CharacterMovement : MonoBehaviour {
     }
     private IEnumerator PlayerControllerStates(){
 		alive = true;
+		while(!canStart){
+			yield return new WaitForEndOfFrame();
+		}
 		yield return WaitForPlayerInitialInput();
         yield return new WaitForEndOfFrame();
 		FindObjectOfType<StartText>().StopAnimation();

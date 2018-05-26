@@ -14,18 +14,18 @@ public class StartText : MonoBehaviour {
 
 	private void Start(){
 		current_y = GetComponent<RectTransform>().anchoredPosition.y;
-		StartAnimation();
+		GetComponent<Text>().DOFade(0,0);
+		anim = StartCoroutine(UpAndDownLoop());
 	}
 	private IEnumerator UpAndDownLoop(){
+		while(!CharacterMovement.canStart){yield return new WaitForEndOfFrame();}
+		GetComponent<Text>().DOFade(1,0.5f);
 		while(true){
 			GetComponent<RectTransform>().DOAnchorPosY(current_y + amplitude, duration);
 			yield return new WaitForSeconds(duration/2);
 			GetComponent<RectTransform>().DOAnchorPosY(current_y - amplitude, duration);
 			yield return new WaitForSeconds(duration/2);
 		}
-	}
-	public void StartAnimation(){
-		anim = StartCoroutine(UpAndDownLoop());
 	}
 	public void StopAnimation(){
 		StopCoroutine(anim);
