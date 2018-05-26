@@ -139,7 +139,7 @@ BoxCollider2D:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.25, y: 1.06}
-    newSize: {x: 1, y: 1}
+    newSize: {x: 1.25, y: 1.06}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -184,6 +184,8 @@ MonoBehaviour:
   bloodCells: 5
   bloodPrefab: {fileID: 1891621326064040, guid: 5cf4e397ae1fd7545870dbe75f130064,
     type: 2}
+  gameOverPanel: {fileID: 0}
+  startText: {fileID: 0}
   currentJump: 0
 --- !u!212 &212821378450364956
 SpriteRenderer:
@@ -224,7 +226,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.25, y: 1.06}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

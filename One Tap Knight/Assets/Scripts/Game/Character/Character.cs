@@ -6,7 +6,7 @@ using DG.Tweening;
 public class Character : MonoBehaviour
 {
 	[Header("Run Preferences")]
-	[SerializeField] private float velocity;
+	[SerializeField] public float velocity;
 	[SerializeField] private float gravity;
 	[Header("Jump Preferences")]
 	[SerializeField] private float jumpForce;
@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private GameObject bloodPrefab;
 	[Header("UI")]
 	[SerializeField] private GameOverPanel gameOverPanel;
+	[SerializeField] private StartText startText;
 	
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
@@ -37,8 +38,11 @@ public class Character : MonoBehaviour
 	private IEnumerator MovementState()
 	{
 		alive = true;
+		canStart = false;
 		//Wait until player give the first input.
 		yield return WaitForPlayerInitialInput();
+		canStart = true;
+		startText.StopAnimation();
 		//Movement Loop
 		while(alive)
 		{

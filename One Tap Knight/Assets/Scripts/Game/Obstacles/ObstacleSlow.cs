@@ -9,7 +9,7 @@ public class ObstacleSlow : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            CharacterMovement cm = collision.gameObject.GetComponent<CharacterMovement>();
+            Character cm = collision.gameObject.GetComponent<Character>();
             velocity = cm.velocity;
             cm.velocity *= velocityModifier;
         }
@@ -18,7 +18,7 @@ public class ObstacleSlow : MonoBehaviour {
     {
         if (collision.gameObject.tag == "Player")
         {
-            CharacterMovement cm = collision.gameObject.GetComponent<CharacterMovement>();
+            Character cm = collision.gameObject.GetComponent<Character>();
             cm.velocity = velocity;
         }
     }

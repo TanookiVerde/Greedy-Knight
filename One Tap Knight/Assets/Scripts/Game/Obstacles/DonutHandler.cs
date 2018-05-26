@@ -8,24 +8,31 @@ public class DonutHandler : MonoBehaviour {
     private List<TileBase> validTiles;
     private List<Vector3> tilePositions;
 
-    private void Start(){
+    private void Start()
+    {
         GetTiles();
     }
-    private void OnTriggerEnter2D(Collider2D collision){
-        foreach (Vector3 position in tilePositions){
-            if((position - collision.transform.position).magnitude < 2){
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        foreach (Vector3 position in tilePositions)
+        {
+            if((position - collision.transform.position).magnitude < 2)
+            {
                 Portal(position);
                 break;
             }
         }
     }
-    private void GetTiles(){
+    private void GetTiles()
+    {
         tileMap = GetComponent<Tilemap>();
         validTiles = new List<TileBase>();
         tilePositions = new List<Vector3>();
 
-        for (int n = tileMap.cellBounds.xMin; n < tileMap.cellBounds.xMax; n++){
-            for (int p = tileMap.cellBounds.yMin; p < tileMap.cellBounds.yMax; p++){
+        for (int n = tileMap.cellBounds.xMin; n < tileMap.cellBounds.xMax; n++)
+        {
+            for (int p = tileMap.cellBounds.yMin; p < tileMap.cellBounds.yMax; p++)
+            {
                 Vector3Int localTilePosition = (new Vector3Int(n, p, (int)tileMap.transform.position.y));
                 Vector3 tilePosition = tileMap.CellToWorld(localTilePosition);
                 if (tileMap.HasTile(localTilePosition)){
@@ -35,10 +42,13 @@ public class DonutHandler : MonoBehaviour {
             }
         }
     }
-    private void Portal(Vector3 origin){
-        foreach(Vector3 position in tilePositions){
-            if(position != origin && position.x == origin.x){
-                GameObject character = FindObjectOfType<CharacterCentral>().gameObject;
+    private void Portal(Vector3 origin)
+    {
+        foreach(Vector3 position in tilePositions)
+        {
+            if(position != origin && position.x == origin.x)
+            {
+                GameObject character = FindObjectOfType<Character>().gameObject;
                 Vector3 targetPosition = new Vector3(
                     position.x, 
                     position.y, 
