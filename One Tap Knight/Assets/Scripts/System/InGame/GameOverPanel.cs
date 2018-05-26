@@ -15,8 +15,11 @@ public class GameOverPanel : MonoBehaviour {
 	[Header("Preferences")]
 	[SerializeField] private float duration = 0.3f;
 
+	public static GameOverPanel gameOverPanel;
+
 	private void Start(){
 		HideGameOverPanel(0);
+		GameOverPanel.gameOverPanel = this;
 	}
 	public void ShowGameOverPanel(){
 		StartCoroutine(ShowGameOverPanelAnimation());
@@ -26,7 +29,7 @@ public class GameOverPanel : MonoBehaviour {
 		header.DOFade(0,duration/2);
 		retryButtom.DOFade(0,duration/2);
 	}
-	private IEnumerator ShowGameOverPanelAnimation(){
+	public IEnumerator ShowGameOverPanelAnimation(){
 		frame.DOScaleY(1,duration);
 		yield return new WaitForSeconds(duration);
 		headerText.text = (PlayerPrefs.GetInt("deathCount",1)-1).ToString();
