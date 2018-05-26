@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class CharacterMovement : MonoBehaviour {
@@ -18,14 +19,13 @@ public class CharacterMovement : MonoBehaviour {
 	public Transform groundPosition;
 	public Vector2 groundBoxCastSize;
 
-	private float horDir;
-	private float bias = 1;
-
 	[Header("Components")]
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
 	private Animator anmt;
 
+	private float horDir;
+	private float bias = 1;
 	private bool alive = true;
     private bool grounded = true;
 	[HideInInspector] public static bool canStart = false;

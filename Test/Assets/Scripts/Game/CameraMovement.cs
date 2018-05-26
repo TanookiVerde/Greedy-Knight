@@ -9,14 +9,15 @@ public class CameraMovement : MonoBehaviour {
 	[SerializeField] private float cameraTax;
 	[SerializeField] private float cameraMaxVelocity;
 
-	[SerializeField] private float initialSize;
+	private float initialSize;
 	[SerializeField] private float size;
 	[SerializeField] private CharacterMovement character;
 
 	private bool canFollow = true;
 
 	private void Start(){
-		initialSize = Camera.main.orthographicSize;
+		//initialSize = Camera.main.orthographicSize;
+		initialSize = Camera.main.fieldOfView;
 		StartCoroutine(InitialAnimation());
 	}
 	private void Update(){
@@ -42,11 +43,13 @@ public class CameraMovement : MonoBehaviour {
 	}
 	public IEnumerator InitialAnimation(){
 		canFollow = false;
-		Camera.main.DOOrthoSize(size,0);
+		//Camera.main.DOOrthoSize(size,0);
+		Camera.main.DOFieldOfView(size,0);
 		this.transform.DOLocalMove(character.transform.position-Vector3.forward*10, 0f);
 		yield return new WaitForSeconds(1f);
 		this.transform.DOLocalMove(goToFollow.transform.position-Vector3.forward*10, 2f);
-		Camera.main.DOOrthoSize(initialSize,2f);
+		//Camera.main.DOOrthoSize(initialSize,2f);
+		Camera.main.DOFieldOfView(initialSize,2f);
 		yield return new WaitForSeconds(2f);
 		CharacterMovement.canStart = true;
 		canFollow = true;
