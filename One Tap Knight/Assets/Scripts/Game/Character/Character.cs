@@ -36,6 +36,8 @@ public class Character : MonoBehaviour
 	private SpriteRenderer sr;
 	private Animator anmt;
 
+	private MusicHandler mHandler;
+
 	public static bool canStart;
 	public static int coinInLevel;
 	public static Transform myTransform;
@@ -51,8 +53,10 @@ public class Character : MonoBehaviour
 		Character.myTransform = transform;
 		rb = GetComponent<Rigidbody2D>();
 		anmt = GetComponent<Animator>();
+		mHandler = GameObject.Find("MusicHandler").GetComponent<MusicHandler>();
 		StartCoroutine( MovementState() );
 		TurnOffEndPanel();
+		mHandler.PlayClip();
 	}
 	private IEnumerator MovementState()
 	{
@@ -139,6 +143,7 @@ public class Character : MonoBehaviour
 		int deathCount = PlayerPrefs.GetInt("deathCount",0);
 		PlayerPrefs.SetInt("deathCount",++deathCount);
 		gameOverPanel.ShowGameOverPanel();
+		mHandler.ChangePitch(0.8f);
 		//RESET VALUE
 		Coin.totalCoin = 0;
 		Character.coinInLevel = 0;
@@ -184,7 +189,7 @@ public class Character : MonoBehaviour
 		endGroup.interactable = true;
 		endGroup.blocksRaycasts = true;
 		endBackground.DOFillAmount(1,endDuration);
-		endGroup.DOFade(1,endDuration);
+		endGroup.DOFade(1,endDuration);		
 	}
 	private void TurnOffEndPanel()
 	{
