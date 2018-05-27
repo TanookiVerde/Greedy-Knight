@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-public class DonutHandler : MonoBehaviour {
+public class Donut : MonoBehaviour
+{
     private Tilemap tileMap;
     private List<TileBase> validTiles;
     private List<Vector3> tilePositions;
@@ -18,7 +19,7 @@ public class DonutHandler : MonoBehaviour {
         {
             if((position - collision.transform.position).magnitude < 2)
             {
-                Portal(position);
+                Portal(position,collision.gameObject);
                 break;
             }
         }
@@ -42,25 +43,27 @@ public class DonutHandler : MonoBehaviour {
             }
         }
     }
-    private void Portal(Vector3 origin)
+    private void Portal(Vector3 origin, GameObject go)
     {
         foreach(Vector3 position in tilePositions)
         {
             if(position != origin && position.x == origin.x)
             {
-                GameObject character = FindObjectOfType<Character>().gameObject;
                 Vector3 targetPosition = new Vector3(
                     position.x, 
                     position.y, 
                     Camera.main.transform.position.z
                     );
-                character.transform.position = position;
-                character.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-                Camera.main.GetComponent<CameraMovement>().ShowTarget(
-                    targetPosition - Vector3.up*7f,
-                    0.5f,
-                    0f
-                    );
+                go.transform.position = position + Vector3.right/2;
+                go.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                if(go.tag == "Player")
+                {
+                    Camera.main.GetComponent<CameraMovement>().ShowTarget(
+                        targetPosition - Vector3.up*7f,
+                        0.5f,
+                        0f
+                        );
+                }
                 break;
             }
         }
