@@ -20,9 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4285918829651182}
   - component: {fileID: 212375209609203762}
-  - component: {fileID: 61636334078199122}
   - component: {fileID: 50125400298766860}
   - component: {fileID: 114699868407031630}
+  - component: {fileID: 95986153697699986}
+  - component: {fileID: 58438050542889822}
   m_Layer: 9
   m_Name: Bat
   m_TagString: Obstacles
@@ -37,8 +38,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1945577445085110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 45.5071, y: 2.502, z: 1.2708701}
-  m_LocalScale: {x: 0.04414382, y: 0.04414382, z: 0.44143817}
+  m_LocalPosition: {x: -40.793, y: 8.413, z: 1.2708701}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.3}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -63,8 +64,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 6
---- !u!61 &61636334078199122
-BoxCollider2D:
+--- !u!58 &58438050542889822
+CircleCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
@@ -75,19 +76,26 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 1.0481625, y: -1.132144}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 18, y: 24}
-    newSize: {x: 18, y: 24}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.53, y: 0}
   serializedVersion: 2
-  m_Size: {x: 15.903675, y: 9.015566}
-  m_EdgeRadius: 0
+  m_Radius: 1.01
+--- !u!95 &95986153697699986
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1945577445085110}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ba6bd006cf3d3ee42b4f1d68f7b7ec12, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114699868407031630
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -134,7 +142,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 34
-  m_Sprite: {fileID: 21300000, guid: 9ba9da52cc84afd42b1faace2a46e08a, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1aa216bf38f0f6c4eabbbb6a01c97274, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

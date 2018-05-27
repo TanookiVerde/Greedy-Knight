@@ -21,6 +21,11 @@ public class ObstacleBat : MonoBehaviour {
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Ground"))
+        {
             movementSpeed = -movementSpeed;
+            Vector3 temp = transform.localScale;
+            temp = new Vector3(-temp.x, temp.y, temp.z);
+            transform.localScale = temp;
+        }
     }
 }
