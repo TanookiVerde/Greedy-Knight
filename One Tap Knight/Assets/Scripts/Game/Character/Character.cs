@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class Character : MonoBehaviour
@@ -24,6 +25,12 @@ public class Character : MonoBehaviour
 	[Header("UI")]
 	[SerializeField] private GameOverPanel gameOverPanel;
 	[SerializeField] private StartText startText;
+	[Header("Level Ending")]
+	[SerializeField] private float endDuration;
+	[SerializeField] private CanvasGroup endGroup;
+	[SerializeField] private Image endBackground;
+	[SerializeField] private Text coinStats;
+	[SerializeField] private Text deathStats;
 	
 	private Rigidbody2D rb;
 	private SpriteRenderer sr;
@@ -45,6 +52,7 @@ public class Character : MonoBehaviour
 		rb = GetComponent<Rigidbody2D>();
 		anmt = GetComponent<Animator>();
 		StartCoroutine( MovementState() );
+		TurnOffEndPanel();
 	}
 	private IEnumerator MovementState()
 	{
@@ -112,6 +120,13 @@ public class Character : MonoBehaviour
 			Die();
 		}
 	}
+	private void OnTriggerEnter2D(Collider2D obj)
+	{
+		if(obj.gameObject.tag == "End")
+		{
+			StartCoroutine( EndLevel() );
+		}
+	}
 	private void Die()
 	{
 		alive = false;
@@ -155,6 +170,28 @@ public class Character : MonoBehaviour
 			Destroy(slime,randomDuration);
 			yield return new WaitForSeconds(randomDuration/3);
 		}
+	}
+	private IEnumerator EndLevel()
+	{
+		while(velocity > 0.25f)
+		{
+			velocity -= velocity*Time.deltaTime;
+			yield return new WaitForEndOfFrame();
+		}
+		velocity = 0;
+		coinStats.text = coinInLevel+"/"+Coin.totalCoin;
+		deathStats.text = PlayerPrefs.GetInt("deathCount",0).ToString();
+		endGroup.interactable = true;
+		endGroup.blocksRaycasts = true;
+		endBackground.DOFillAmount(1,endDuration);
+		endGroup.DOFade(1,endDuration);
+	}
+	private void TurnOffEndPanel()
+	{
+		endBackground.DOFillAmount(0,0);
+		endGroup.DOFade(0,0);
+		endGroup.interactable = false;
+		endGroup.blocksRaycasts = false;
 	}
 	public void StopSlimeAnimation()
 	{

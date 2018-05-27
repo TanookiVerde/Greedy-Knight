@@ -6,8 +6,9 @@ using UnityEngine.UI;
 
 public class Coin : MonoBehaviour {
 	[SerializeField] private float timeToDestroy = 0.5f;
+	[SerializeField] private float rotationVelocity = 10;
 
-	[SerializeField] private Text coinText;
+	private Text coinText;
 
 	public static int totalCoin;
 
@@ -16,6 +17,10 @@ public class Coin : MonoBehaviour {
 		coinText = GameObject.Find("CoinText").GetComponent<Text>();
 		totalCoin++;
 		UpdateTextUI();
+	}
+	private void Update()
+	{
+		transform.Rotate(0,rotationVelocity*Time.deltaTime,0);
 	}
 	private void OnTriggerEnter2D(Collider2D collision)
     {

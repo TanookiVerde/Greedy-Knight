@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToDestroy: 0.5
+  rotationVelocity: 90
 --- !u!212 &212785524389873858
 SpriteRenderer:
   m_ObjectHideFlags: 1

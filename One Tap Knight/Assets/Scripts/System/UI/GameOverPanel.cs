@@ -53,4 +53,8 @@ public class GameOverPanel : MonoBehaviour {
 	{
 		SceneManager.LoadSceneAsync("MainScene");
 	}
+	public void BackToMenu()
+	{
+		SceneManager.LoadSceneAsync("MainMenu");
+	}
 }
