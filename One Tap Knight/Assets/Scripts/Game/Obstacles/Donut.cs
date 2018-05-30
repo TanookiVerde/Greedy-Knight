@@ -1,14 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
-public class Donut : MonoBehaviour
+public class Donut : TileHandler
 {
-    private Tilemap tileMap;
-    private List<TileBase> validTiles;
-    private List<Vector3> tilePositions;
-
     private void Start()
     {
         GetTiles();
@@ -21,25 +16,6 @@ public class Donut : MonoBehaviour
             {
                 Portal(position,collision.gameObject);
                 break;
-            }
-        }
-    }
-    private void GetTiles()
-    {
-        tileMap = GetComponent<Tilemap>();
-        validTiles = new List<TileBase>();
-        tilePositions = new List<Vector3>();
-
-        for (int n = tileMap.cellBounds.xMin; n < tileMap.cellBounds.xMax; n++)
-        {
-            for (int p = tileMap.cellBounds.yMin; p < tileMap.cellBounds.yMax; p++)
-            {
-                Vector3Int localTilePosition = (new Vector3Int(n, p, (int)tileMap.transform.position.y));
-                Vector3 tilePosition = tileMap.CellToWorld(localTilePosition);
-                if (tileMap.HasTile(localTilePosition)){
-                    validTiles.Add(tileMap.GetTile(localTilePosition));
-                    tilePositions.Add(tilePosition);
-                }
             }
         }
     }
