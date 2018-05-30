@@ -36,8 +36,8 @@ public class MovingPlatform : MonoBehaviour
         RaycastHit2D ray = Physics2D.Raycast(
             transform.position,
             Vector2.right,
-            size*bias,
-            1 << LayerMask.NameToLayer("Ground")
+            size * bias,
+            LayerMask.GetMask("Ground", "Obstacles")
             );
         Physics2D.queriesStartInColliders = true;
 		return ray.collider != null;

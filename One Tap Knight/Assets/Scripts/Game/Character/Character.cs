@@ -13,7 +13,8 @@ public class Character : MonoBehaviour
 	[Header("Jump Preferences")]
 	[SerializeField] private float jumpForce;
 	[SerializeField] private int jumpLimit;
-	[Header("Grounded Preferences")]
+    [SerializeField] private float groundpoundSwipeDistance;
+    [Header("Grounded Preferences")]
 	[SerializeField] private Transform groundPosition;
 	[SerializeField] private Vector2 groundBoxCastSize;
 	[Header("Death Animation")]
@@ -46,8 +47,12 @@ public class Character : MonoBehaviour
 
 	private bool alive;
 	[SerializeField] private int currentJump;
-	
-	private void Start()
+
+    private Vector3 mouseDownPosition;
+    private bool mouseDown;
+    private int bias = 1;
+
+    private void Start()
 	{
 		Character.idealVelocity = velocity;
 		Character.myTransform = transform;
@@ -62,7 +67,7 @@ public class Character : MonoBehaviour
 	{
 		alive = true;
 		canStart = false;
-		//Wait until player give the first input.
+		//Wait until player gives the first input.
 		yield return WaitForPlayerInitialInput();
 		canStart = true;
 		startText.StopAnimation();
@@ -71,7 +76,8 @@ public class Character : MonoBehaviour
 		{
 			bool isGrounded = IsGrounded();
 			Move();
-			Jump(isGrounded);
+            Jump(isGrounded);
+            //GroundPound(isGrounded);
 			Gravity();
 			yield return null;
 		}
@@ -79,7 +85,7 @@ public class Character : MonoBehaviour
 	private void Move()
 	{
 		animation_Move();
-		float vel = rb.velocity.x;
+		//float vel = rb.velocity.x;
 		rb.velocity = new Vector2(velocity,	rb.velocity.y);
 	}
 	private void Jump(bool isGrounded)
@@ -95,7 +101,47 @@ public class Character : MonoBehaviour
 			}
 		}
 	}
-	private void Gravity()
+    private void GroundPound(bool isGrounded)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            mouseDownPosition = Input.mousePosition;
+            mouseDown = true;
+        }
+        if (mouseDown)
+        {
+            GetMoveDirection();
+        }
+        //Jump
+        if (Input.GetMouseButtonUp(0) && mouseDown)
+        {
+            if(currentJump < jumpLimit)
+            {
+                if (currentJump == 0 && isGrounded || currentJump > 0)
+                {
+                    currentJump++;
+                    animation_Jump();
+                    animation_Land(false);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                }
+            }
+            mouseDown = false;
+        }
+    }
+    private void GetMoveDirection()
+    {
+        Vector3 initP = mouseDownPosition;
+        Vector3 finalP = Input.mousePosition;
+        finalP.z = initP.z;
+        Vector3 d = finalP - initP;
+
+        if (d.x < -groundpoundSwipeDistance)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, -jumpForce);
+            mouseDown = false;
+        }
+    }
+    private void Gravity()
 	{
 		rb.velocity += Vector2.down * gravity * Time.deltaTime;
 	}
@@ -105,7 +151,7 @@ public class Character : MonoBehaviour
 		RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
                 groundBoxCastSize,
                 0,
-                Vector2.zero,
+                Vector2.up * bias,
                 0,
                 1 << LayerMask.NameToLayer("Ground")
 				);
@@ -198,7 +244,16 @@ public class Character : MonoBehaviour
 		endGroup.interactable = false;
 		endGroup.blocksRaycasts = false;
 	}
-	public void StopSlimeAnimation()
+    public void InvertGravity()
+    {
+        bias = -bias;
+        float gtemp = gravity;
+        GetComponent<SpriteRenderer>().flipY = !GetComponent<SpriteRenderer>().flipY;
+        groundPosition.transform.localPosition = new Vector3(groundPosition.localPosition.x, -groundPosition.localPosition.y, groundPosition.localPosition.z);
+        gravity = 0;
+        DOTween.To(() => gravity, x => gravity = x, -gtemp, 1);
+    }
+    public void StopSlimeAnimation()
 	{
 		StopCoroutine(slimeCoroutine);
 	}
