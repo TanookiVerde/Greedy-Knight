@@ -3,81 +3,92 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ObstacleHandler : TileHandler {
+    private const int SEGMENT_AMOUNT                =   7;
+    private const float SEGMENT_LENGTH              =  30;
+    private const float INITIAL_TILE                = -50;
+    private const float LINE_VERTICAL_BOUND_MIN     = -20;
+    private const float LINE_VERTICAL_BOUND_MAX     =  20;
 
-    [Header("Segment Settings")]
-    public int segmentAmount = 3;
-
-    private Dictionary<int, List<GameObject>> obstacles;
-    private float levelLength;
-    private float segmentLength;
+    private Dictionary<int, List<GameObject>> obstaclesPerSegment;
     private int currentSegment = 1;
-    private float initialPos;
 
     private GameObject player;
 
 	private void Start ()
     {
         GetTiles();
-        levelLength = tilePositions[tilePositions.Count - 1].x - tilePositions[0].x;
-        segmentLength = levelLength / segmentAmount;
-        initialPos = tilePositions[0].x;
-
+        SeparateObstaclesInSegments();
         player = GameObject.FindGameObjectWithTag("Player");
-
-        GetObstacles();
     }	
 	private void Update ()
     {
         if (player != null)
         {
-            if (player.transform.position.x > initialPos + (segmentLength * (currentSegment - 1)) && currentSegment <= segmentAmount - 1)
+            if (player.transform.position.x > INITIAL_TILE + (SEGMENT_LENGTH * (currentSegment - 1)) && currentSegment <= SEGMENT_AMOUNT - 1)
             {
-                ActivateSegment(currentSegment + 1);
+                SetSegmentActive(true, currentSegment + 1);
                 if (currentSegment >= 3)
-                    DeactivateSegment(currentSegment - 2);
+                {
+                    SetSegmentActive(false, currentSegment - 2);
+                }
                 currentSegment++;
             }
         }
 	}
-    private void GetObstacles()
+    private void SeparateObstaclesInSegments()
     {
-        obstacles = new Dictionary<int, List<GameObject>>();
-        List<GameObject> temp = new List<GameObject>();
+        List<GameObject> obstacles = GetAllObstacles();
+        obstaclesPerSegment = InitializeDictionaryWithIndex();
+
+        foreach (GameObject obstacle in obstacles)
+        {
+            for(int currentSegment = 1; currentSegment < SEGMENT_AMOUNT; currentSegment++)
+            {
+                if (obstacle.transform.position.x < INITIAL_TILE + (SEGMENT_LENGTH * currentSegment))
+                {
+                    obstaclesPerSegment[currentSegment].Add(obstacle);
+                    obstacle.SetActive(false);
+                    break;
+                }
+            }
+        }
+        SetSegmentActive(true,1);
+    }
+    private List<GameObject> GetAllObstacles()
+    {
+        List<GameObject> obstacles = new List<GameObject>();
+
         foreach (Transform child in transform)
         {
-            temp.Add(child.gameObject);
+            obstacles.Add(child.gameObject);
         }
-        temp.Remove(gameObject);
-        for (int i = 1; i <= segmentAmount; i++)
-            obstacles.Add(i, new List<GameObject>());
-
-        int segment;
-        foreach (GameObject g in temp)
-        {
-            for(segment = 1; segment < segmentAmount; segment++)
-            {
-                if (g.transform.position.x < initialPos + (segmentLength * segment))
-                    break;
-            }
-            obstacles[segment].Add(g);
-            g.SetActive(false);
-        }
-        ActivateSegment(1);
+        obstacles.Remove(gameObject);
+        return obstacles;
     }
-    private void ActivateSegment(int seg)
+    private Dictionary<int, List<GameObject>> InitializeDictionaryWithIndex()
     {
-        foreach(GameObject g in obstacles[seg])
+        Dictionary<int, List<GameObject>> obstaclesDictionary = new Dictionary<int, List<GameObject>>();
+        for (int i = 1; i <= SEGMENT_AMOUNT; i++)
         {
-            if(g != null)
-                g.SetActive(true);
+            obstaclesDictionary.Add(i, new List<GameObject>());
+        }
+        return obstaclesDictionary;
+    }
+    private void SetSegmentActive(bool active, int segment)
+    {
+        foreach (GameObject obstacle in obstaclesPerSegment[segment])
+        {
+            if (obstacle != null)
+                obstacle.SetActive(active);
         }
     }
-    private void DeactivateSegment(int seg)
+    private void OnDrawGizmos()
     {
-        foreach (GameObject g in obstacles[seg])
+        for(int i = 0; i < SEGMENT_AMOUNT; i++)
         {
-            if(g != null)
-                g.SetActive(false);
+            Vector3 init = new Vector3(INITIAL_TILE + i * SEGMENT_LENGTH, LINE_VERTICAL_BOUND_MIN);
+            Vector3 final = new Vector3(INITIAL_TILE + i * SEGMENT_LENGTH, LINE_VERTICAL_BOUND_MAX);
+            Gizmos.DrawLine(init,final);
         }
     }
 }

@@ -43,6 +43,10 @@ public class Coin : MonoBehaviour {
 			);
 		Destroy(this.gameObject,timeToDestroy);
 	}
+    public static void ResetTotalCoin()
+    {
+        Coin.totalCoin = 0;
+    }
 	private void UpdateTextUI()
 	{
 		coinText.text = "COINS: " + Character.coinInLevel + "/" + totalCoin;

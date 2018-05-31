@@ -39,4 +39,12 @@ public class Bat : MonoBehaviour {
         Physics2D.queriesStartInColliders = true;
 		return ray.collider != null;
     }
+    private void OnDrawGizmos()
+    {
+        //HasWall Ray
+        Gizmos.DrawLine(transform.position, transform.position + Vector3.right * bias * size);
+        //Collider
+        Vector3 center = transform.position + (Vector3) GetComponent<CircleCollider2D>().offset * transform.localScale.x;
+        Gizmos.DrawWireSphere(center, GetComponent<CircleCollider2D>().radius*transform.localScale.x);
+    }
 }

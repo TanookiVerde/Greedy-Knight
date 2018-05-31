@@ -17,7 +17,7 @@ public class VelocityModifier : MonoBehaviour
         if(collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Character>().velocity = Character.idealVelocity*velocityModifier;
-            character.StartSlimeAnimation(type);
+            collision.gameObject.GetComponent<CharacterAnimation>().Slime(type,true);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -25,7 +25,7 @@ public class VelocityModifier : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             collision.gameObject.GetComponent<Character>().velocity = Character.idealVelocity;
-            character.StopSlimeAnimation();
+            collision.gameObject.GetComponent<CharacterAnimation>().Slime(type, false);
         }
     }
 }

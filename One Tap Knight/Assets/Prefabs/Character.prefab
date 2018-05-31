@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 95330688032916498}
   - component: {fileID: 61086401056070892}
   - component: {fileID: 114691211837171284}
+  - component: {fileID: 114742256512031722}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -68,7 +69,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1770320055626478}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.63, y: 0, z: 0}
+  m_LocalPosition: {x: 5.36, y: 0.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4950445750847306}
@@ -81,7 +82,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1158090116232610}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.57, z: 0}
+  m_LocalPosition: {x: -0.073, y: -0.531, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4950445750847306}
@@ -94,7 +95,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1808435128321934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.16, y: 9.1156025, z: 0}
+  m_LocalPosition: {x: -43.12, y: 8.54, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4441380565576166}
@@ -130,22 +131,22 @@ BoxCollider2D:
   m_GameObject: {fileID: 1808435128321934}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 002b769b7538fc843b46c849a369f7c5, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06713399, y: -0.07229805}
+  m_Offset: {x: -0.06713399, y: -0.04515779}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1.25, y: 1.06}
-    newSize: {x: 1.25, y: 1.06}
+    newSize: {x: 1.2525, y: 1.065}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7645696, y: 0.91540384}
+  m_Size: {x: 0.7645696, y: 0.8611233}
   m_EdgeRadius: 0
 --- !u!95 &95330688032916498
 Animator:
@@ -176,17 +177,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 5
-  gravity: 40
-  jumpForce: 12
+  gravity: 50
+  currentJump: 0
   jumpLimit: 2
+  jumpForce: 12
+  groundpoundSwipeDistance: 50
   groundPosition: {fileID: 4441380565576166}
-  groundBoxCastSize: {x: 0.5, y: 1}
+  groundBoxCastSize: {x: 0.75, y: 0.39}
+--- !u!114 &114742256512031722
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1808435128321934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84936f2fbfe9fb043b331450f1f700e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slimePrefab:
+  - {fileID: 1337487191996392, guid: 22693e5dcb7faff459966ffbf7f06fb6, type: 2}
+  - {fileID: 1797655301842356, guid: 763e64817ded483418ca4fb1d4a088aa, type: 2}
+  slimePosition: {fileID: 4441380565576166}
   bloodCells: 5
   bloodPrefab: {fileID: 1891621326064040, guid: 5cf4e397ae1fd7545870dbe75f130064,
     type: 2}
-  gameOverPanel: {fileID: 0}
-  startText: {fileID: 0}
-  currentJump: 0
+  bloodPosition: {fileID: 4441380565576166}
 --- !u!212 &212821378450364956
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -226,7 +242,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1.25, y: 1.06}
+  m_Size: {x: 1.2525, y: 1.065}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
