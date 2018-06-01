@@ -51,7 +51,7 @@ public class CharacterAnimation : MonoBehaviour
         }
         else
         {
-            StopCoroutine(slimeCoroutine);
+            if(slimeCoroutine != null) StopCoroutine(slimeCoroutine);
         }
     }
     private IEnumerator SlimeAnimation(SlimeType type)

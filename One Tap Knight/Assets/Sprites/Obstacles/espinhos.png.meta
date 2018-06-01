@@ -49,7 +49,7 @@ TextureImporter:
   spritePixelsToUnits: 400
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   maxTextureSizeSet: 0
@@ -89,8 +89,17 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
-    physicsShape: []
+    outline:
+    - - {x: -159, y: 71.5}
+      - {x: -164, y: 8.5}
+      - {x: -164, y: -71.5}
+      - {x: 164, y: -71.5}
+      - {x: 164, y: 71.5}
+    physicsShape:
+    - - {x: 123.18292, y: 35.722435}
+      - {x: -108.41931, y: 36.22576}
+      - {x: -144.71495, y: -69.47299}
+      - {x: 142.0022, y: -69.97258}
   spritePackingTag: 
   userData: 
   assetBundleName: 
