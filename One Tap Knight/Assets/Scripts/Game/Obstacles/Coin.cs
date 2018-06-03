@@ -8,6 +8,8 @@ public class Coin : MonoBehaviour {
 	[SerializeField] private float timeToDestroy = 0.5f;
 	[SerializeField] private float rotationVelocity = 10;
 
+    private bool collected;
+
 	private Text coinText;
 
 	public static int totalCoin;
@@ -26,7 +28,8 @@ public class Coin : MonoBehaviour {
     {
         if(collision.gameObject.tag == "Player")
         {
-            Character.coinInLevel++;
+            if(!collected) LevelManager.collectedCoins++;
+            collected = true;
 			DestroyCoin();
 			UpdateTextUI();
         }
@@ -49,6 +52,6 @@ public class Coin : MonoBehaviour {
     }
 	private void UpdateTextUI()
 	{
-		coinText.text = "COINS: " + Character.coinInLevel + "/" + totalCoin;
+		coinText.text = "COINS: " + LevelManager.collectedCoins + "/" + totalCoin;
 	}
 }

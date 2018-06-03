@@ -6,7 +6,7 @@ using DG.Tweening;
 
 public class LevelManager : MonoBehaviour {
     [Header("Stats")]
-    [SerializeField] private int collectedCoins;
+    [SerializeField] public static int collectedCoins;
 
     [Header("Panels")]
     [SerializeField] private StartPanel startTextPanel;

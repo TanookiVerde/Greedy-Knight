@@ -21,6 +21,7 @@ public class EndLevelPanel : MonoBehaviour {
     {
         if (active)
         {
+            SetInformation();
             background.DOFillAmount(1, duration);
             elements.DOFade(1, duration);
             elements.interactable = true;
@@ -34,15 +35,16 @@ public class EndLevelPanel : MonoBehaviour {
             elements.blocksRaycasts = false;
         }
     }
-    public void SetInformation(int death, int coin)
+    public void SetInformation()
     {
-        deathsStats.text = death.ToString();
-        coinsStats.text = coin.ToString();
+        deathsStats.text = PlayerPrefs.GetInt("deathCount", 0).ToString();
+        coinsStats.text = LevelManager.collectedCoins + "/" + Coin.totalCoin;
     }
     private void SetActiveInstant(bool active)
     {
         if (active)
         {
+            SetInformation();
             background.DOFillAmount(1, 0);
             elements.DOFade(1, 0);
             elements.interactable = true;
