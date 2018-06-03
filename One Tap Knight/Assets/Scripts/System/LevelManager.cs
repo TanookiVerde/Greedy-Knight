@@ -25,16 +25,22 @@ public class LevelManager : MonoBehaviour {
         startTextPanel.SetActive(true);
         yield return WaitForPlayerInitialInput();
         startTextPanel.SetActive(false);
-        while (player != null && !player.FinishedLevel())
+        while (IsPlayerAlive() && !IsLevelFinished())
         {
             player.Action();
             yield return null;
         }
-        if (player.FinishedLevel())
-            endLevelPanel.SetActive(true);
-        else if (player == null)
+        if (!IsPlayerAlive())
+        {
             gameOverPanel.SetActive(true);
+        } else if (IsLevelFinished())
+        {
+            player.Finish();
+            yield return new WaitForSeconds(player.timeToFinish);
+            endLevelPanel.SetActive(true);
+        }
         Coin.ResetTotalCoin();
+        collectedCoins = 0;
     }
     private IEnumerator WaitForPlayerInitialInput()
     {
@@ -43,5 +49,13 @@ public class LevelManager : MonoBehaviour {
     private void GetPlayer()
     {
         player = GameObject.FindObjectOfType<Character>();
+    }
+    private bool IsPlayerAlive()
+    {
+        return player != null;
+    }
+    private bool IsLevelFinished()
+    {
+        return player.FinishedLevel();
     }
 }

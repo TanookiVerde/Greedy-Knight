@@ -7,7 +7,8 @@ public class Character : MonoBehaviour
 	[Header("Run")]
 	[SerializeField] public float velocity;
 	[SerializeField] private float gravity;
-	[SerializeField] public static float idealVelocity;
+    [SerializeField] public float timeToFinish = 0.5f;
+    [SerializeField] public static float idealVelocity;
 	[Header("Jump")]
 	[SerializeField] private int jumpLimit;
 	[SerializeField] private float jumpForce;
@@ -27,7 +28,6 @@ public class Character : MonoBehaviour
 	public static int coinInLevel;
 	public static Transform myTransform;
 
-	private bool alive;
     private bool finished;
 
     private void OnDrawGizmos()
@@ -120,6 +120,10 @@ public class Character : MonoBehaviour
 	{
 		rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
 	}
+    public void Finish()
+    {
+        DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0,0), timeToFinish);
+    }
     private void GetMoveDirection()
     {
         Vector3 initP = mouseDownPosition;
@@ -155,6 +159,5 @@ public class Character : MonoBehaviour
     {
         transform.DOScaleY(-1*transform.localScale.y, 0.2f);
         gravityBias = -gravityBias;
-        //DOTween.To(() => gravity, x => gravity = x, -gtemp, 1);
     }
 }
