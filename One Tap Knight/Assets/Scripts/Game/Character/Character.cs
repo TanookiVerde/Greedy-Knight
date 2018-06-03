@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using DG.Tweening;
+using System.Collections;
 
 public class Character : MonoBehaviour
 {
@@ -18,8 +19,8 @@ public class Character : MonoBehaviour
 	[SerializeField] private Transform groundPosition;
 	[SerializeField] private Vector2 groundBoxCastSize;
     [Header("Ground Pound")]
-    private Vector3 mouseDownPosition;
-    private bool mouseDown;
+    public float groundPoundDelay = 0;
+    private bool pounding = false;
     [Header("Components")]
     private Rigidbody2D rb;
 	private SpriteRenderer sr;
@@ -55,6 +56,18 @@ public class Character : MonoBehaviour
             finished = true;
 		}
 	}
+    public void Bounce()
+    {
+        if (pounding)
+            pounding = false;
+        rb.velocity = new Vector2(rb.velocity.x, -jumpForce * gravityBias);
+    }
+    public void Bounce(float bounceForce)
+    {
+        if (pounding)
+            pounding = false;
+        rb.velocity = new Vector2(rb.velocity.x, -bounceForce * gravityBias);
+    }
 	public void Action()
     { 
 		Move();
@@ -67,48 +80,38 @@ public class Character : MonoBehaviour
     }
 	private void Move()
 	{
-        cAnim.Move();
-		rb.velocity = new Vector2(velocity,	rb.velocity.y);
+        if (!pounding)
+        {
+            cAnim.Move();
+            rb.velocity = new Vector2(velocity, rb.velocity.y);
+        }
 	}
 	private void Jump(bool isGrounded)
 	{
-		if(Input.GetMouseButtonDown(0) && currentJump < jumpLimit)
+		if(Input.GetMouseButtonDown(0))
 		{
-			if((currentJump == 0 && isGrounded) || currentJump > 0)
-			{
-				currentJump++;
-                cAnim.Jump();
-                cAnim.Land(false);
-				rb.velocity = new Vector2(rb.velocity.x, jumpForce*gravityBias);
-            }
-		}
-	}
-    private void GroundPound(bool isGrounded)
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            mouseDownPosition = Input.mousePosition;
-            mouseDown = true;
-        }
-        if (mouseDown)
-        {
-            GetMoveDirection();
-        }
-        //Jump
-        if (Input.GetMouseButtonUp(0) && mouseDown)
-        {
-            if(currentJump < jumpLimit)
+            if (currentJump < jumpLimit)
             {
-                if (currentJump == 0 && isGrounded || currentJump > 0)
+                if ((currentJump == 0 && isGrounded) || currentJump > 0)
                 {
                     currentJump++;
                     cAnim.Jump();
                     cAnim.Land(false);
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                    rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
                 }
             }
-            mouseDown = false;
-        }
+            else if (!pounding)
+            {
+                StartCoroutine(GroundPound());
+            }
+		}
+	}
+    private IEnumerator GroundPound()
+    {
+        pounding = true;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(groundPoundDelay);
+        rb.velocity = new Vector2(rb.velocity.x, -jumpForce);
     }
 	private void Die()
 	{
@@ -118,24 +121,14 @@ public class Character : MonoBehaviour
 	}
     private void Gravity()
 	{
-		rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
+        if (!pounding)
+        {
+            rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
+        }
 	}
     public void Finish()
     {
         DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0,0), timeToFinish);
-    }
-    private void GetMoveDirection()
-    {
-        Vector3 initP = mouseDownPosition;
-        Vector3 finalP = Input.mousePosition;
-        finalP.z = initP.z;
-        Vector3 d = finalP - initP;
-
-        if (d.x < -groundpPoundSwipeDistance)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, -jumpForce);
-            mouseDown = false;
-        }
     }
 	private bool IsGrounded()
 	{
@@ -151,6 +144,10 @@ public class Character : MonoBehaviour
 		{
             cAnim.Land(true);
 			currentJump = 0;
+
+            if (pounding)
+                pounding = false;
+
 			return true;
 		}
         return false;

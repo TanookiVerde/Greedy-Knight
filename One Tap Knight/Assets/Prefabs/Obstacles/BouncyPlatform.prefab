@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212152052825016058}
   - component: {fileID: 61380011973214856}
   - component: {fileID: 50938401684261722}
-  - component: {fileID: 114034119036843200}
+  - component: {fileID: 114027733757759878}
   m_Layer: 8
   m_Name: BouncyPlatform
   m_TagString: Untagged
@@ -88,7 +88,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &114034119036843200
+--- !u!114 &114027733757759878
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -96,10 +96,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1998109532567898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b27ef0d861cf33b4b8ce8196eec2f2d0, type: 3}
+  m_Script: {fileID: 11500000, guid: 7967936478941a0418c0be43d0bbbd8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 1.5
   size: 0.55
   bias: -1
 --- !u!212 &212152052825016058
