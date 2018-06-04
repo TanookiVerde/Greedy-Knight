@@ -13,13 +13,13 @@ public class Character : MonoBehaviour
 	[Header("Jump")]
 	[SerializeField] private int jumpLimit;
 	[SerializeField] private float jumpForce;
-    [SerializeField] private float groundpPoundSwipeDistance;
 	private int currentJump;
     [Header("Grounded")]
 	[SerializeField] private Transform groundPosition;
 	[SerializeField] private Vector2 groundBoxCastSize;
     [Header("Ground Pound")]
     public float groundPoundDelay = 0;
+    public bool canPlayerPound = false;
     private bool pounding = false;
     [Header("Components")]
     private Rigidbody2D rb;
@@ -100,7 +100,7 @@ public class Character : MonoBehaviour
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
                 }
             }
-            else if (!pounding)
+            else if (!pounding && canPlayerPound)
             {
                 StartCoroutine(GroundPound());
             }
