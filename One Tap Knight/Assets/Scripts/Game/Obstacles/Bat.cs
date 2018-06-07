@@ -8,15 +8,19 @@ public class Bat : MonoBehaviour {
     [Header("Movement Parameters")]
     public float speed;
     public float size;
-    public int bias = -1;
+    public Direction startDirection;
+    private int bias;
 
     private Rigidbody2D myRB;
     private SpriteRenderer mySR;
     
-	void Start () {
+	void Start ()
+    {
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
-        mySR.flipX = bias == 1;
+
+        bias = startDirection == Direction.RIGHT ? 1 : -1;
+        mySR.flipX = startDirection == Direction.RIGHT ? true : false;
 	}
     private void FixedUpdate()
     {

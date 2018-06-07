@@ -35,13 +35,14 @@ public class LevelManager : MonoBehaviour {
             gameOverPanel.SetActive(true);
         } else if (IsLevelFinished())
         {
-            player.Finish();
+            player.Stop();
             yield return new WaitForSeconds(player.timeToFinish);
             endLevelPanel.SetActive(true);
         }
         Coin.ResetTotalCoin();
         collectedCoins = 0;
     }
+    #region QoL Functions
     private IEnumerator WaitForPlayerInitialInput()
     {
         while (!Input.GetMouseButton(0)) yield return null;
@@ -58,4 +59,5 @@ public class LevelManager : MonoBehaviour {
     {
         return player.FinishedLevel();
     }
+    #endregion
 }

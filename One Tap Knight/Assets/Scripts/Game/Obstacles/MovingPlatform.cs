@@ -2,18 +2,26 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Direction
+{
+    RIGHT, LEFT
+}
+
 public class MovingPlatform : MonoBehaviour
 {
 	[Header("Movement Parameters")]
     public float speed;
     public float size;
-    public int bias = -1;
+    public Direction startDirection;
+    private int bias;
     
     private Rigidbody2D myRB;
     private SpriteRenderer mySR;
     
 	private void Start ()
 	{
+        bias = startDirection == Direction.RIGHT ? 1 : -1;
+
         myRB = GetComponent<Rigidbody2D>();
         mySR = GetComponent<SpriteRenderer>();
         InitializeSpriteFlip();

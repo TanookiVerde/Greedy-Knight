@@ -19,6 +19,7 @@ public class Character : MonoBehaviour
 	[SerializeField] private Vector2 groundBoxCastSize;
     [Header("Ground Pound")]
     public float groundPoundDelay = 0;
+    public float poundForce = 24;
     public bool canPlayerPound = false;
     private bool pounding = false;
     [Header("Components")]
@@ -30,6 +31,11 @@ public class Character : MonoBehaviour
 	public static Transform myTransform;
 
     private bool finished;
+
+    private bool stopped = false;
+    private Transform followTransform;
+    private float followXOffset;
+    private bool following = false;
 
     private void OnDrawGizmos()
     {
@@ -80,23 +86,32 @@ public class Character : MonoBehaviour
     }
 	private void Move()
 	{
-        if (!pounding)
+        Debug.Log(stopped);
+        cAnim.Move();
+        if (!pounding && !stopped)
         {
-            cAnim.Move();
             rb.velocity = new Vector2(velocity, rb.velocity.y);
+        }
+        else if (following)
+        {
+            transform.position = new Vector3(followTransform.position.x - followXOffset, transform.position.y, transform.position.z);
         }
 	}
 	private void Jump(bool isGrounded)
 	{
 		if(Input.GetMouseButtonDown(0))
 		{
+            if (following)
+            {
+                following = false;
+                stopped = false;
+            }
             if (currentJump < jumpLimit)
             {
                 if ((currentJump == 0 && isGrounded) || currentJump > 0)
                 {
                     currentJump++;
                     cAnim.Jump();
-                    cAnim.Land(false);
                     rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
                 }
             }
@@ -111,7 +126,7 @@ public class Character : MonoBehaviour
         pounding = true;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(groundPoundDelay);
-        rb.velocity = new Vector2(rb.velocity.x, -jumpForce);
+        rb.velocity = new Vector2(rb.velocity.x, -poundForce);
     }
 	private void Die()
 	{
@@ -126,30 +141,71 @@ public class Character : MonoBehaviour
             rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
         }
 	}
-    public void Finish()
+    public void Stop()
     {
+        Debug.Log("stop");
+        stopped = true;
         DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0,0), timeToFinish);
     }
-	private bool IsGrounded()
+    public void Stop(float time)
+    {
+        Debug.Log("stop");
+        stopped = true;
+        DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0, 0), time);
+    }
+    public void FollowX(Transform t)
+    {
+        followTransform = t;
+        followXOffset = followTransform.position.x - transform.position.x;
+        rb.velocity = Vector2.zero;
+        following = true;
+    }
+    public void Restart()
+    {
+        Debug.Log("start");
+        DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(velocity, 0), timeToFinish);
+        stopped = false;
+    }
+    public void Restart(float time)
+    {
+        Debug.Log("start");
+        DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(velocity, 0), time);
+        stopped = false;
+    }
+    private bool IsGrounded()
 	{
         if (rb.velocity.y*gravityBias > 0) return false;
-		RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
+        RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
                 groundBoxCastSize,
                 0,
                 Vector2.up,
                 0,
-                1 << LayerMask.NameToLayer("Ground")
+                LayerMask.GetMask("Ground", "Stop")
 				);
+
 		if (boxCast.collider != null)
 		{
-            cAnim.Land(true);
-			currentJump = 0;
+            if (boxCast.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
+            {
+                cAnim.Land();
+                currentJump = 0;
 
-            if (pounding)
-                pounding = false;
+                if (pounding)
+                    pounding = false;
+            }
+            if(boxCast.collider.gameObject.layer == LayerMask.NameToLayer("Stop") && !stopped)
+            {
+                cAnim.Land();
+                currentJump = 0;
 
-			return true;
-		}
+                if (pounding)
+                    pounding = false;
+
+                FollowX(boxCast.collider.transform);
+                Stop(0);
+            }
+            return true;
+        }
         return false;
 	}
     public void InvertGravity()

@@ -16,19 +16,26 @@ public class CharacterAnimation : MonoBehaviour
     [Header("Components")]
     private Animator anmt;
     private Rigidbody2D rb;
+    private bool jumping = false;
 
     private void Start()
     {
         anmt = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
     }
-    public void Land(bool value)
+    public void Land()
     {
-        anmt.SetBool("grounded", value);
+        anmt.SetBool("grounded", true);
+        jumping = false;
     }
     public void Jump()
     {
-        anmt.SetTrigger("jump");
+        if (!jumping)
+        {
+            anmt.SetTrigger("jump");
+            anmt.SetBool("grounded", false);
+            jumping = true;
+        }
     }
     public void Move()
     {
