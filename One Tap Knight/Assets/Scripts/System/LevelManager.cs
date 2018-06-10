@@ -14,10 +14,12 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private EndLevelPanel endLevelPanel;
 
     private Character player;
+    private PausePanel pause;
 
     private void Start()
     {
         GetPlayer();
+        GetPause();
         StartCoroutine(LevelState());
     }
     private IEnumerator LevelState()
@@ -27,7 +29,8 @@ public class LevelManager : MonoBehaviour {
         startTextPanel.SetActive(false);
         while (IsPlayerAlive() && !IsLevelFinished())
         {
-            player.Action();
+            if(!IsGamePaused())
+                player.Action();
             yield return null;
         }
         if (!IsPlayerAlive())
@@ -51,6 +54,9 @@ public class LevelManager : MonoBehaviour {
     {
         player = GameObject.FindObjectOfType<Character>();
     }
+    private void GetPause(){
+        pause = FindObjectOfType<PausePanel>();
+    }
     private bool IsPlayerAlive()
     {
         return player != null;
@@ -58,6 +64,9 @@ public class LevelManager : MonoBehaviour {
     private bool IsLevelFinished()
     {
         return player.FinishedLevel();
+    }
+    private bool IsGamePaused(){
+        return pause.paused;
     }
     #endregion
 }

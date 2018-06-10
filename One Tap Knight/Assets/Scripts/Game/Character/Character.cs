@@ -4,6 +4,7 @@ using System.Collections;
 
 public class Character : MonoBehaviour
 {
+    #region Variables
     private float gravityBias = 1;
 	[Header("Run")]
 	[SerializeField] public float velocity;
@@ -36,6 +37,8 @@ public class Character : MonoBehaviour
     private Transform followTransform;
     private float followXOffset;
     private bool following = false;
+    private bool isOverPauseButton = false;
+    #endregion
 
     private void OnDrawGizmos()
     {
@@ -77,7 +80,7 @@ public class Character : MonoBehaviour
 	public void Action()
     { 
 		Move();
-        Jump(IsGrounded());
+        SplitScreenJump(IsGrounded());
 		Gravity();
 	}
     public bool FinishedLevel()
@@ -86,7 +89,6 @@ public class Character : MonoBehaviour
     }
 	private void Move()
 	{
-        Debug.Log(stopped);
         cAnim.Move();
         if (!pounding && !stopped)
         {
@@ -121,6 +123,39 @@ public class Character : MonoBehaviour
             }
 		}
 	}
+    private void SplitScreenJump(bool isGrounded)
+    {
+        if(Input.GetMouseButtonDown(0) && !isOverPauseButton)
+        {
+            if (following)
+            {
+                following = false;
+                stopped = false;
+            }
+            Vector3 mousePosition = Input.mousePosition;
+            float screenHeight = Camera.main.scaledPixelHeight;
+            if(mousePosition.y > screenHeight/2)
+            {
+                if (currentJump < jumpLimit)
+                {
+                    if ((currentJump == 0 && isGrounded) || currentJump > 0)
+                    {
+                        currentJump++;
+                        cAnim.Jump();
+                        rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
+                    }
+                }
+            }
+            else if (!pounding && canPlayerPound && !isGrounded)
+            {
+                StartCoroutine(GroundPound());
+            }
+        }   
+    }
+    public void SetOverPause(bool value)
+    {
+        isOverPauseButton = value;
+    }
     private IEnumerator GroundPound()
     {
         pounding = true;
@@ -128,7 +163,7 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(groundPoundDelay);
         rb.velocity = new Vector2(rb.velocity.x, -poundForce);
     }
-	private void Die()
+	public void Die()
 	{
         cAnim.Die();
 		PlayerPrefs.SetInt("deathCount", PlayerPrefs.GetInt("deathCount", 0)+1);
