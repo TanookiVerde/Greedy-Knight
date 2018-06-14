@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class Level : MonoBehaviour {
     [Header("Level Information")]
@@ -10,6 +11,9 @@ public class Level : MonoBehaviour {
     [SerializeField] private int coinsAcquired;
     [SerializeField] private bool gotAllCoins;
     [SerializeField] private bool gotNoCoins;
+    [Header("Preferences")]
+    [SerializeField] private string levelName = "new Level";
+    [SerializeField] private float unlockAnimationDuration = 0.2f;
 
     public bool IsLocked()
     {
@@ -42,5 +46,17 @@ public class Level : MonoBehaviour {
         this.gotAllCoins = data.gotAllCoins;
         this.gotNoCoins = data.gotNoCoins;
         this.coinsAcquired = data.coinsAcquired;
+    }
+    public void UnlockAnimation()
+    {
+        float initialScale = transform.localScale.x;
+        Sequence s = DOTween.Sequence();
+        s.Append(transform.DOScale(initialScale * 1.4f, unlockAnimationDuration));
+        s.Append(transform.DOScale(initialScale, unlockAnimationDuration));
+        s.Play();
+    }
+    public void ShowInfoPanel()
+    {
+
     }
 }
