@@ -4,48 +4,18 @@ using UnityEngine;
 using DG.Tweening;
 
 public class Level : MonoBehaviour {
-    [Header("Level Information")]
-    [SerializeField] private bool isLocked;
-    [SerializeField] private int coinsAmount;
-    [Header("Player Information")]
-    [SerializeField] private int coinsAcquired;
-    [SerializeField] private bool gotAllCoins;
-    [SerializeField] private bool gotNoCoins;
-    [Header("Preferences")]
-    [SerializeField] private string levelName = "new Level";
-    [SerializeField] private float unlockAnimationDuration = 0.2f;
 
-    public bool IsLocked()
-    {
-        return isLocked;
+    [SerializeField] private float unlockAnimationDuration = 0.2f;
+    [SerializeField] private GameObject infoPanel;
+
+    public static float initialScale = 1;
+
+    public void Start(){
+        initialScale = transform.localScale.x;
     }
     public Vector3 GetPointPosition()
     {
         return transform.position;
-    }
-    public void UnlockLevel()
-    {
-        isLocked = false;
-    }
-    public void GotAllCoins()
-    {
-        gotAllCoins = false;
-    }
-    public void GotNoCoins()
-    {
-        gotNoCoins = true;
-    }
-    public string SerializeLevelData()
-    {
-        return JsonUtility.ToJson(this);
-    }
-    public void DeserializeLevelDataToThisObject(string levelData)
-    {
-        Level data = JsonUtility.FromJson<Level>(levelData);
-        this.isLocked = data.isLocked;
-        this.gotAllCoins = data.gotAllCoins;
-        this.gotNoCoins = data.gotNoCoins;
-        this.coinsAcquired = data.coinsAcquired;
     }
     public void UnlockAnimation()
     {
@@ -55,8 +25,10 @@ public class Level : MonoBehaviour {
         s.Append(transform.DOScale(initialScale, unlockAnimationDuration));
         s.Play();
     }
-    public void ShowInfoPanel()
-    {
-
+    public Tweener GrowAnimation(){
+        return transform.DOScale(initialScale * 1.4f, unlockAnimationDuration);
+    }
+    public Tweener ShortenAnimation(){
+        return transform.DOScale(initialScale, unlockAnimationDuration);
     }
 }
