@@ -16,4 +16,9 @@ public class LevelSelectionCamera : MonoBehaviour {
     {
         return World.selectedLevel/3;
     }
+    public IEnumerator SetCameraHeight(float height, float duration)
+    {
+         transform.DOMoveY(height, duration);
+         yield return new WaitForSeconds(duration);
+    }
 }

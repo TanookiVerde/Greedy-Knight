@@ -11,7 +11,7 @@ public class LevelSelectionHUD : MonoBehaviour {
 
     public void UpdateInfo(int number, int area, bool[,] levelData)
     {
-        levelNumberText.text = "Level " + number;
+        levelNumberText.text = "Level " + (number+1);
         levelAreaText.text = "Area " + area;
         for(int i = 0; i < World.STARS_PER_LEVEL; i++){
             starGrid.GetChild(i).GetChild(0).gameObject.SetActive(levelData[number,i]);

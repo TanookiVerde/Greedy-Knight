@@ -38,6 +38,9 @@ public class World : MonoBehaviour {
         FinishLevel(JsonUtility.ToJson(lfd));
         FinishLevel(JsonUtility.ToJson(lfd));
         FinishLevel(JsonUtility.ToJson(lfd));
+        FinishLevel(JsonUtility.ToJson(lfd));
+        FinishLevel(JsonUtility.ToJson(lfd));
+        FinishLevel(JsonUtility.ToJson(lfd));
         //FIM PARTE DE TESTES
         UpdateSelectorPosition(0,true);
         cam.MoveCamera();
