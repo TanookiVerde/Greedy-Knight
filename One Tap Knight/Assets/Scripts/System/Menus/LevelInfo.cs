@@ -3,20 +3,44 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class LevelInfo : MonoBehaviour {
 
 	[SerializeField] private Text levelName;
 	[SerializeField] private Image levelImg;
 	[SerializeField] private List<Image> levelStars;
+	[SerializeField] private Image locked;
+	[SerializeField] private GameObject playButton;
+	[SerializeField] private GameObject prevButton;
+	[SerializeField] private GameObject nextButton;
 
-	public void ChangeInfo(string name, Sprite img, int[] stars)
+	private Level lastLevel;
+
+	public void ChangeInfo(Level level, int[] stars, bool unlocked, bool prev, bool next)
 	{
-		levelName.text = name;
-		levelImg.sprite = img;
+		lastLevel = level;
+		playButton.SetActive(unlocked);
+		prevButton.SetActive(prev);
+		nextButton.SetActive(next);
+		levelName.text = level.title;
+		levelImg.sprite = level.img;
+		locked.DOFade(unlocked ? 0 : 1,0);
 		for(int i = 0; i < 3; i++)
 		{
 			levelStars[i].gameObject.SetActive(stars[i] > 0);
 		}
+	}
+	public IEnumerator Unlock()
+	{
+		locked.DOFade(1,0);
+		yield return new WaitForSeconds(0.5f);
+		locked.DOFade(0,0.5f);
+		yield return new WaitForSeconds(0.5f);
+		playButton.SetActive(true);
+	}
+	public void LoadLevel()
+	{
+		SceneManager.LoadScene(lastLevel.sceneName);
 	}
 }

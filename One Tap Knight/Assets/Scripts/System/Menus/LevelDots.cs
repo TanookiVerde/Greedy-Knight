@@ -13,8 +13,12 @@ public class LevelDots : MonoBehaviour {
 
 	public void ChangeSelectedLevel(int current)
 	{
-		transform.GetChild(lastSelected).transform.DOScale(1,scaleChangeDuration*2);
-		transform.GetChild(current).transform.DOScale(maxScale,scaleChangeDuration);
-		lastSelected = current;
+		if(lastSelected != current){
+			transform.GetChild(lastSelected).transform.DOScale(1,scaleChangeDuration*2);
+			transform.GetChild(current).transform.DOScale(maxScale,scaleChangeDuration);
+			lastSelected = current;
+		}else{
+			transform.GetChild(current).transform.DOScale(maxScale,scaleChangeDuration);
+		}
 	}
 }
