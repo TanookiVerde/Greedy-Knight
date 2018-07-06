@@ -24,6 +24,7 @@ public class ScreenManager : MonoBehaviour {
 		screens[currentScreen].DOFade(0,fadeDuration);
 		screens[currentScreen].interactable = false;
 		screens[currentScreen].blocksRaycasts = false;
+		screens[currentScreen].GetComponent<IScreen>().Close();
 		currentScreen = newScreen;
 		screens[currentScreen].DOFade(1,fadeDuration);
 		screens[currentScreen].interactable = true;
