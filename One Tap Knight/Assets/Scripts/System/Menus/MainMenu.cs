@@ -14,4 +14,8 @@ public class MainMenu : MonoBehaviour, IScreen {
     {
         
     }
+    public void ResetSave()
+    {
+        SaveAndLoad.ResetSave();
+    }
 }

@@ -57,7 +57,7 @@ public class LevelManager : MonoBehaviour {
     }
     private void CreateAndGetPlayer()
     {
-        player = Instantiate(playerPrefab, playerInitialPosition, true).GetComponent<Character>();
+        player = Instantiate(playerPrefab, playerInitialPosition.position, Quaternion.identity).GetComponent<Character>();
         Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
         Camera.main.GetComponent<CameraMovement>().goToFollow = player.gameObject;
     }

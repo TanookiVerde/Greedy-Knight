@@ -18,10 +18,10 @@ public class ObstacleHandler : TileHandler {
     {
         GetTiles();
         SeparateObstaclesInSegments();
-        player = GameObject.FindGameObjectWithTag("Player");
     }	
 	private void Update ()
     {
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
         if (player != null)
         {
             if (player.transform.position.x > INITIAL_TILE + (SEGMENT_LENGTH * (currentSegment - 1)) && currentSegment <= SEGMENT_AMOUNT - 1)

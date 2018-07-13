@@ -53,6 +53,13 @@ public class SaveAndLoad : MonoBehaviour {
         save.noCoins[index] = noCoins ? 1 : 0;
         SaveAndLoad.SaveLevelData(save);
         SaveAndLoad.SetFinishedLevel(true);
+        print("SAVED SUCESSFULLY");
+    }
+    public static void ResetSave()
+    {
+        SaveData s = LoadLevelData();
+        s = new SaveData();
+        SaveLevelData(s);
     }
 }
 [System.Serializable]
