@@ -13,12 +13,12 @@ public class LevelSelection : MonoBehaviour, IScreen {
 	[SerializeField] private RectTransform levelHUD;
 	[SerializeField] private LevelDots dots;
 
-	private int[,] levelProgression = new int[LEVEL_QUANTITY,STARS_PER_LEVEL];
+	[SerializeField] private SaveData save;
 	private int currentLevel = 0;
 
 	public void Prepare()
 	{
-		levelProgression = SaveAndLoad.LoadLevelData();
+		save = SaveAndLoad.LoadLevelData();
 		if(SaveAndLoad.GetFinishedLevel()){
 			SaveAndLoad.SetFinishedLevel(false);
 			StartCoroutine(UnlockLevelAnimation());
@@ -53,6 +53,7 @@ public class LevelSelection : MonoBehaviour, IScreen {
 		levelHUD.DOAnchorPosX(-changeDirection*CANVAS_SIZE,levelInfoSpeed);
 		yield return new WaitForSeconds(levelInfoSpeed);
 		currentLevel += changeDirection;
+        SaveAndLoad.SetLastOpenedLevel(currentLevel);
 
 		dots.ChangeSelectedLevel(currentLevel);
 		SetLevelInfo();
@@ -65,16 +66,14 @@ public class LevelSelection : MonoBehaviour, IScreen {
 	}
 	private int[] CreateStarArray(int currentLevel)
 	{
-		int[] ret = {levelProgression[currentLevel,0],
-			levelProgression[currentLevel,1],
-			levelProgression[currentLevel,2]};
+		int[] ret = { save.levelCompleted[currentLevel], save.allCoins[currentLevel], save.noCoins[currentLevel] };
 		return ret;
 	}
-	private int LastCompletedLevel()
+	private int LastCompletedLevel()//nome ruim: first uncompleted level é melhor
 	{
 		for(int level = 0; level < LEVEL_QUANTITY; level++)
 		{
-			if(levelProgression[level,0] == 0)
+			if(save.levelCompleted[level] == 0)
 			{
 				return level;
 			}
@@ -85,17 +84,17 @@ public class LevelSelection : MonoBehaviour, IScreen {
 	{
 		for(int i = 0; i < amount; i++)
 		{
-			levelProgression[i,0] = 1;
+            save.levelCompleted[i] = 1;
 		}
 	}
 	private bool IsCompletedOrUnlocked(int level)
 	{
-		return levelProgression[level,0] == 1 || level == 0 || levelProgression[level-1,0] == 1;
+		return save.levelCompleted[level] == 1 || level == 0 || save.levelCompleted[level-1] == 1;
 	}
 	private IEnumerator UnlockLevelAnimation()
 	{
 		currentLevel = LastCompletedLevel();
-		SetLevelInfo();
+        SetLevelInfo();
 		dots.ChangeSelectedLevel(currentLevel);
 		yield return levelHUD.GetComponent<LevelInfo>().Unlock();
 		yield return new WaitForEndOfFrame();

@@ -53,6 +53,6 @@ public class GameOverPanel : MonoBehaviour {
     }
     public void RestartLevel()
     {
-        SceneManager.LoadSceneAsync("MainScene");
+        SceneManager.LoadSceneAsync("Level 1"); //mudar para o level correto
     }
 }

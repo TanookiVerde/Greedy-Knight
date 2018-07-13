@@ -5,7 +5,7 @@ using DG.Tweening;
 
 public class CameraMovement : MonoBehaviour {
 	[Header("Preferences")]
-	[SerializeField] private GameObject goToFollow;
+	public GameObject goToFollow;
 	[SerializeField] private float smoothSpeed = 0.125f;
 	[SerializeField] private float cameraMaxVelocity;
 	[SerializeField] private float cameraTax;

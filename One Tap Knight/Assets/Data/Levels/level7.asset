@@ -13,4 +13,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: The ultimate Castle
   img: {fileID: 21300000, guid: a273072b0de9ef34c8e516421d93c059, type: 3}
-  sceneName: MainScene
+  sceneName: Level 7

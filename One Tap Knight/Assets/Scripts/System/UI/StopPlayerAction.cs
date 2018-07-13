@@ -4,23 +4,23 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class StopPlayerAction : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
-    
-    private Character player;
 
-	void Start()
-	{		
-        player = FindObjectOfType<Character>();
-	}
     public void OnPointerEnter(PointerEventData eventData)
     {
-        player.SetOverPause(true);
+        var character = FindObjectOfType<Character>();
+        if (character != null)
+            FindObjectOfType<Character>().SetOverPause(true);
     }
     public void OnPointerExit(PointerEventData eventData)
     {
-        player.SetOverPause(false);
+        var character = FindObjectOfType<Character>();
+        if (character != null)
+            FindObjectOfType<Character>().SetOverPause(false);
     }
 	void OnDisable()
 	{
-        player.SetOverPause(false);		
+        var character = FindObjectOfType<Character>();
+        if(character != null)
+            FindObjectOfType<Character>().SetOverPause(false);		
 	}
 }

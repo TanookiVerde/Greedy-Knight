@@ -13,12 +13,16 @@ public class LevelManager : MonoBehaviour {
     [SerializeField] private GameOverPanel gameOverPanel;
     [SerializeField] private EndLevelPanel endLevelPanel;
 
+    [Header("Player")]
+    [SerializeField] private Transform playerInitialPosition;
+    [SerializeField] private GameObject playerPrefab;
+
     private Character player;
     private PausePanel pause;
 
     private void Start()
     {
-        GetPlayer();
+        CreateAndGetPlayer();
         GetPause();
         StartCoroutine(LevelState());
     }
@@ -38,6 +42,7 @@ public class LevelManager : MonoBehaviour {
             gameOverPanel.SetActive(true);
         } else if (IsLevelFinished())
         {
+            SaveAndLoad.FinishAndSaveLevel(collectedCoins == Coin.totalCoin, collectedCoins == 0);
             player.Stop();
             yield return new WaitForSeconds(player.timeToFinish);
             endLevelPanel.SetActive(true);
@@ -50,9 +55,11 @@ public class LevelManager : MonoBehaviour {
     {
         while (!Input.GetMouseButton(0)) yield return null;
     }
-    private void GetPlayer()
+    private void CreateAndGetPlayer()
     {
-        player = GameObject.FindObjectOfType<Character>();
+        player = Instantiate(playerPrefab, playerInitialPosition, true).GetComponent<Character>();
+        Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
+        Camera.main.GetComponent<CameraMovement>().goToFollow = player.gameObject;
     }
     private void GetPause(){
         pause = FindObjectOfType<PausePanel>();
