@@ -1,8 +1,9 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/Pichau.DESKTOP-32G110N.000/Desktop/OTK/OTK32/OTK32.exe
+C:/Users/pedro/Desktop/Desktop.exe
 SceneListBegin?
-Assets/Scenes/MainScene.unity
+Assets/Scenes/MainMenu.unity
+Assets/Scenes/Levels/MainScene.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -82,6 +83,7 @@ c63db43c730fa2cbb8ca07de15898cb6 UnityEngine.UI.dll:UnityEngine.UI.Toggle
 f61c0793411f10cf5fbfa1473fef5ef2 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 86d36c43c53541d667100dc90b89cfba UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 1b8c02d0aa82fbf036a2b9b2d713eec3 UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
+74694ee797f02b285bd5ee3a986340f2 Assembly-CSharp.dll:.LevelSelection
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
 13bdb7c23815c33a33b37b0ba8dd39be UnityEngine.Timeline.dll:UnityEngine.Timeline.AnimationPlayableAsset
@@ -122,14 +124,14 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 0dac00454e5addd4941fd9f9a42a7fc0 Assembly-CSharp.dll:.BallFactory
 a331202c84aedd6c5daa0bfd49ab987b Assembly-CSharp.dll:.Coin
-b14f88d1ffafb87b6d1469bf31d514b4 Assembly-CSharp.dll:.Level
+44c43387603c635097da29cf1c2e4c20 Assembly-CSharp.dll:.ScreenManager
 7d41d8149b784052e67a0ba81d999889 Assembly-CSharp.dll:.GameOverPanel
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ObstacleHandler
-05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.LevelInfoWindow
 9b9b62230820624fcdc7d35e1703a2dc Assembly-CSharp.dll:.MusicHandler
 3a4a8ce17164d78cb379f9c07abc87fc Assembly-CSharp.dll:.PausePanel
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Donut
 84a1507c42c0c35a53536a3ecade9cf1 Assembly-CSharp.dll:.MovingPlatform
+9c2120e668724ff17d2eb0fab194e611 Assembly-CSharp.dll:.LevelInfo
 03badf3318f9fdd2222e569688a3f514 Assembly-CSharp.dll:.Character
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
@@ -159,6 +161,7 @@ e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEng
 e0f7ffd5d5c2abe4b2e16569a21163da UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 67a5f2c97205d2e41a8ed7c7ce898f6e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.SaveAndLoad
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.Gravity
 f266a453cd4bfbe81533762a3e3589f4 DOTween.dll:DG.Tweening.Core.DOTweenComponent
 0869883b6445f616fc171fe47d5fa3a0 DOTween.dll:DG.Tweening.Core.DOTweenSettings
@@ -169,9 +172,10 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.TileHandler
-c82acbe5787e9af95163c29fafe720cf Assembly-CSharp.dll:.World
+6531bf1e8a4083ddef8748e9334cd535 Assembly-CSharp.dll:.Level
+fbfa9b2cf01c2bef7297c7038e3f0632 Assembly-CSharp.dll:.LevelDots
 9ffb7dc95b2a4b07111a51e35c16fdd3 Assembly-CSharp.dll:.StartPanel
 c9b55646a9672292d73a2971a5439807 Assembly-CSharp.dll:.CharacterAnimation
-5739d5f91d40c81b100d59b620dedf57 Assembly-CSharp.dll:.MainMenu
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.MainMenu
 04140e1444aa94c482b2b78925342c2b Assembly-CSharp.dll:.Ball
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StopPlayerAction

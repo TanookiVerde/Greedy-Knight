@@ -6,18 +6,19 @@ public class Character : MonoBehaviour
 {
     #region Variables
     private float gravityBias = 1;
-	[Header("Run")]
-	[SerializeField] public float velocity;
-	[SerializeField] private float gravity;
+    [Header("Run")]
+    [SerializeField]
+    public float velocity;
+    [SerializeField] private float gravity;
     [SerializeField] public float timeToFinish = 0.5f;
     [SerializeField] public static float idealVelocity;
-	[Header("Jump")]
-	[SerializeField] private int jumpLimit;
-	[SerializeField] private float jumpForce;
-	private int currentJump;
+    [Header("Jump")]
+    [SerializeField] private int jumpLimit;
+    [SerializeField] private float jumpForce;
+    private int currentJump;
     [Header("Grounded")]
-	[SerializeField] private Transform groundPosition;
-	[SerializeField] private Vector2 groundBoxCastSize;
+    [SerializeField] private Transform groundPosition;
+    [SerializeField] private Vector2 groundBoxCastSize;
     [Header("Ground Pound")]
     public float groundPoundDelay = 0;
     public float poundForce = 24;
@@ -25,11 +26,11 @@ public class Character : MonoBehaviour
     private bool pounding = false;
     [Header("Components")]
     private Rigidbody2D rb;
-	private SpriteRenderer sr;
+    private SpriteRenderer sr;
     private CharacterAnimation cAnim;
 
-	public static int coinInLevel;
-	public static Transform myTransform;
+    public static int coinInLevel;
+    public static Transform myTransform;
 
     private bool finished;
 
@@ -45,26 +46,26 @@ public class Character : MonoBehaviour
         Gizmos.DrawWireCube(groundPosition.position, groundBoxCastSize);
     }
     private void Start()
-	{
+    {
         cAnim = GetComponent<CharacterAnimation>();
-		Character.idealVelocity = velocity;
-		Character.myTransform = transform;
-		rb = GetComponent<Rigidbody2D>();
-	}
+        Character.idealVelocity = velocity;
+        Character.myTransform = transform;
+        rb = GetComponent<Rigidbody2D>();
+    }
     private void OnCollisionEnter2D(Collision2D obj)
-	{
-		if(obj.gameObject.tag == "Obstacles")
-		{
-			Die();
-		}
-	}
-	private void OnTriggerExit2D(Collider2D obj)
-	{
-		if(obj.gameObject.tag == "End")
-		{
+    {
+        if (obj.gameObject.tag == "Obstacles")
+        {
+            Die();
+        }
+    }
+    private void OnTriggerExit2D(Collider2D obj)
+    {
+        if (obj.gameObject.tag == "End")
+        {
             finished = true;
-		}
-	}
+        }
+    }
     public void Bounce()
     {
         if (pounding)
@@ -77,18 +78,18 @@ public class Character : MonoBehaviour
             pounding = false;
         rb.velocity = new Vector2(rb.velocity.x, -bounceForce * gravityBias);
     }
-	public void Action()
-    { 
-		Move();
+    public void Action()
+    {
+        Move();
         SplitScreenJump(IsGrounded());
-		Gravity();
-	}
+        Gravity();
+    }
     public bool FinishedLevel()
     {
         return finished;
     }
-	private void Move()
-	{
+    private void Move()
+    {
         cAnim.Move();
         if (!pounding && !stopped)
         {
@@ -98,11 +99,11 @@ public class Character : MonoBehaviour
         {
             transform.position = new Vector3(followTransform.position.x - followXOffset, transform.position.y, transform.position.z);
         }
-	}
-	private void Jump(bool isGrounded)
-	{
-		if(Input.GetMouseButtonDown(0))
-		{
+    }
+    private void Jump(bool isGrounded)
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
             if (following)
             {
                 following = false;
@@ -121,11 +122,11 @@ public class Character : MonoBehaviour
             {
                 StartCoroutine(GroundPound());
             }
-		}
-	}
+        }
+    }
     private void SplitScreenJump(bool isGrounded)
     {
-        if(Input.GetMouseButtonDown(0) && !isOverPauseButton)
+        if (Input.GetMouseButtonDown(0) && !isOverPauseButton)
         {
             if (following)
             {
@@ -134,7 +135,7 @@ public class Character : MonoBehaviour
             }
             Vector3 mousePosition = Input.mousePosition;
             float screenHeight = Camera.main.scaledPixelHeight;
-            if(mousePosition.y > screenHeight/2)
+            if (mousePosition.y > screenHeight / 2)
             {
                 if (currentJump < jumpLimit)
                 {
@@ -150,7 +151,7 @@ public class Character : MonoBehaviour
             {
                 StartCoroutine(GroundPound());
             }
-        }   
+        }
     }
     public void SetOverPause(bool value)
     {
@@ -163,24 +164,24 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(groundPoundDelay);
         rb.velocity = new Vector2(rb.velocity.x, -poundForce);
     }
-	public void Die()
-	{
+    public void Die()
+    {
         cAnim.Die();
-		PlayerPrefs.SetInt("deathCount", PlayerPrefs.GetInt("deathCount", 0)+1);
-		Destroy(this.gameObject);
-	}
+        PlayerPrefs.SetInt("deathCount", PlayerPrefs.GetInt("deathCount", 0) + 1);
+        Destroy(this.gameObject);
+    }
     private void Gravity()
-	{
+    {
         if (!pounding)
         {
             rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
         }
-	}
+    }
     public void Stop()
     {
         Debug.Log("stop");
         stopped = true;
-        DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0,0), timeToFinish);
+        DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0, 0), timeToFinish);
     }
     public void Stop(float time)
     {
@@ -208,18 +209,13 @@ public class Character : MonoBehaviour
         stopped = false;
     }
     private bool IsGrounded()
-	{
-        if (rb.velocity.y*gravityBias > 0) return false;
+    {
+        if (rb.velocity.y * gravityBias > 0) return false;
         RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
-                groundBoxCastSize,
-                0,
-                Vector2.up,
-                0,
-                LayerMask.GetMask("Ground", "Stop")
-				);
+                groundBoxCastSize, 0, Vector2.up, 0, LayerMask.GetMask("Ground", "Stop"));
 
-		if (boxCast.collider != null)
-		{
+        if (boxCast.collider != null)
+        {
             if (boxCast.collider.gameObject.layer == LayerMask.NameToLayer("Ground"))
             {
                 cAnim.Land();
@@ -228,7 +224,7 @@ public class Character : MonoBehaviour
                 if (pounding)
                     pounding = false;
             }
-            if(boxCast.collider.gameObject.layer == LayerMask.NameToLayer("Stop") && !stopped)
+            if (boxCast.collider.gameObject.layer == LayerMask.NameToLayer("Stop") && !stopped)
             {
                 cAnim.Land();
                 currentJump = 0;
@@ -242,10 +238,10 @@ public class Character : MonoBehaviour
             return true;
         }
         return false;
-	}
+    }
     public void InvertGravity()
     {
-        transform.DOScaleY(-1*transform.localScale.y, 0.2f);
+        transform.DOScaleY(-1 * transform.localScale.y, 0.2f);
         gravityBias = -gravityBias;
     }
 }
