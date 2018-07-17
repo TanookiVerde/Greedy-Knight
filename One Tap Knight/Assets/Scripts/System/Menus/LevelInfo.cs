@@ -44,6 +44,12 @@ public class LevelInfo : MonoBehaviour {
 	}
 	public void LoadLevel()
 	{
-		SceneManager.LoadScene(lastLevel.sceneName);
+        StartCoroutine(LoadLevelAnimation());
 	}
+    private IEnumerator LoadLevelAnimation()
+    {
+        var transition = GameObject.Find("_TRANSITION").GetComponent<Transition>();
+        yield return transition.Transite(true);
+        SceneManager.LoadScene(lastLevel.sceneName);
+    }
 }

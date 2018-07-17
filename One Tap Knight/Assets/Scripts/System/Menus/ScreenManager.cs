@@ -32,7 +32,7 @@ public class ScreenManager : MonoBehaviour {
         screens[currentScreen].blocksRaycasts = false;
         screens[currentScreen].GetComponent<IScreen>().Close();
 
-        float duration = Transite();
+        float duration = Transite(newScreen != currentScreen);
         yield return new WaitForSeconds(duration/2);
 
         currentScreen = newScreen;
@@ -46,10 +46,10 @@ public class ScreenManager : MonoBehaviour {
         yield return screens[currentScreen].GetComponent<IScreen>().BeginningAnimation();
 
     }
-    private float Transite()
+    private float Transite(bool hasFirstHalf)
     {
         var transition = GameObject.Find("_TRANSITION").GetComponent<Transition>();
-        transition.ToggleTransition();
+        transition.ToggleTransition(hasFirstHalf);
         return transition.TRANSITION_DURATION;
     }
 }

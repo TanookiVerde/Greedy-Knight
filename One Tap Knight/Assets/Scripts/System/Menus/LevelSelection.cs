@@ -85,7 +85,7 @@ public class LevelSelection : MonoBehaviour, IScreen {
 		return ret;
 	}
 
-	private int LastCompletedLevel()//nome ruim: first uncompleted level é melhor
+	private int LastCompletedLevel()
 	{
 		for(int level = 0; level < LEVEL_QUANTITY; level++)
 		{
