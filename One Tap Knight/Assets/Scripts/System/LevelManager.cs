@@ -59,7 +59,7 @@ public class LevelManager : MonoBehaviour {
     {
         player = Instantiate(playerPrefab, playerInitialPosition.position, Quaternion.identity).GetComponent<Character>();
         Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
-        Camera.main.GetComponent<CameraMovement>().goToFollow = player.gameObject;
+        Camera.main.GetComponent<CameraMovement>().goToFollow = player.transform.GetChild(1).gameObject;
     }
     private void GetPause(){
         pause = FindObjectOfType<PausePanel>();
