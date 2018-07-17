@@ -20,8 +20,11 @@ public class LevelInfo : MonoBehaviour {
 	public void ChangeInfo(Level level, int[] stars, bool unlocked, bool prev, bool next)
 	{
 		lastLevel = level;
+
 		playButton.SetActive(unlocked);
-		prevButton.SetActive(prev);
+        playButton.transform.DOScale(1, 0.5f);
+
+        prevButton.SetActive(prev);
 		nextButton.SetActive(next);
 		levelName.text = level.title;
 		levelImg.sprite = level.img;

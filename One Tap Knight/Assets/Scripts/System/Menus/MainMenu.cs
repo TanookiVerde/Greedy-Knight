@@ -6,16 +6,24 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class MainMenu : MonoBehaviour, IScreen {
-	public void Prepare()
-    {
+    [SerializeField] private List<GameObject> objectsToAnimate;
 
-    }
-    public void Close()
+    private const float MAX_SCALE = 1.1f;
+    private const float ANIM_DURATION = 0.5f;
+    private const float OBJ_DELAY = 0.25f;
+
+    public void Prepare() { }
+
+    public void Close() { }
+
+    public IEnumerator BeginningAnimation()
     {
-        
-    }
-    public void ResetSave()
-    {
-        SaveAndLoad.ResetSave();
+        foreach(GameObject go in objectsToAnimate)
+        {
+            Sequence s = DOTween.Sequence();
+            s.Append(go.transform.DOScale(MAX_SCALE, ANIM_DURATION / 2));
+            s.Append(go.transform.DOScale(1, ANIM_DURATION / 2));
+            yield return new WaitForSeconds(OBJ_DELAY);
+        }
     }
 }

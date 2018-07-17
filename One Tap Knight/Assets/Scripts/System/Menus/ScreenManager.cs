@@ -10,6 +10,8 @@ public class ScreenManager : MonoBehaviour {
 	[SerializeField] private float fadeDuration;
 	private int currentScreen;
 
+    private const float TIME_BETWEEN_SCREENS = 0.25f;
+
 	public void Start()
 	{
 		if(SaveAndLoad.GetFinishedLevel())
@@ -21,16 +23,35 @@ public class ScreenManager : MonoBehaviour {
 	}
 	public void OpenScreen(int newScreen)
 	{
-		screens[currentScreen].DOFade(0,fadeDuration);
-		screens[currentScreen].interactable = false;
-		screens[currentScreen].blocksRaycasts = false;
-		screens[currentScreen].GetComponent<IScreen>().Close();
-		currentScreen = newScreen;
-		screens[currentScreen].DOFade(1,fadeDuration);
-		screens[currentScreen].interactable = true;
-		screens[currentScreen].blocksRaycasts = true;
-		screens[currentScreen].GetComponent<IScreen>().Prepare();
+        StartCoroutine(IEOpenScreen(newScreen));
 	}
+    public IEnumerator IEOpenScreen(int newScreen)
+    {
+        screens[currentScreen].DOFade(0, fadeDuration);
+        screens[currentScreen].interactable = false;
+        screens[currentScreen].blocksRaycasts = false;
+        screens[currentScreen].GetComponent<IScreen>().Close();
+
+        float duration = Transite();
+        yield return new WaitForSeconds(duration/2);
+
+        currentScreen = newScreen;
+        screens[currentScreen].DOFade(1, fadeDuration);
+        screens[currentScreen].interactable = true;
+        screens[currentScreen].blocksRaycasts = true;
+        screens[currentScreen].GetComponent<IScreen>().Prepare();
+
+        yield return new WaitForSeconds(duration);
+
+        yield return screens[currentScreen].GetComponent<IScreen>().BeginningAnimation();
+
+    }
+    private float Transite()
+    {
+        var transition = GameObject.Find("_TRANSITION").GetComponent<Transition>();
+        transition.ToggleTransition();
+        return transition.TRANSITION_DURATION;
+    }
 }
 public enum Screen{
 	MAIN = 0,LEVEL_SELECTION = 1,CREDITS = 2
