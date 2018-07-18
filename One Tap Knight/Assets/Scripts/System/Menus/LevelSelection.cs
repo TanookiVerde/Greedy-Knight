@@ -63,8 +63,9 @@ public class LevelSelection : MonoBehaviour, IScreen {
 		yield return new WaitForSeconds(levelInfoSpeed);
 		currentLevel += changeDirection;
         SaveAndLoad.SetLastOpenedLevel(currentLevel);
+        SaveAndLoad.SetLastOpenedLevelName(levelData[currentLevel].sceneName);
 
-		dots.ChangeSelectedLevel(currentLevel);
+        dots.ChangeSelectedLevel(currentLevel);
 		SetLevelInfo();
 		levelHUD.DOAnchorPosX(changeDirection*CANVAS_SIZE, 0.00000001f);
 		levelHUD.DOAnchorPosX(0,levelInfoSpeed);

@@ -5,6 +5,7 @@ using DG.Tweening;
 
 public class Transition : MonoBehaviour {
     [SerializeField] private GameObject transitionImg;
+    [SerializeField] private LoadingPanel loadingPanel;
 
     public float TRANSITION_DURATION = 0.5f;
     private const float MAX_SCALE = 35; 
@@ -13,7 +14,7 @@ public class Transition : MonoBehaviour {
     {
         StartCoroutine(Transite(hasFirstHalf));
     }
-    public IEnumerator Transite(bool firstHalf)
+    public IEnumerator Transite(bool firstHalf,bool loading = false)
     {
         if (firstHalf)
         {
@@ -24,6 +25,7 @@ public class Transition : MonoBehaviour {
         {
             transitionImg.transform.DOScale(MAX_SCALE, 0);
         }
+        if (loading) loadingPanel.Appear();
         yield return new WaitForSeconds(TRANSITION_DURATION);
         transitionImg.transform.DOScale(0, TRANSITION_DURATION);
     }

@@ -6,53 +6,57 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 
 public class GameOverPanel : MonoBehaviour {
+    private const float TIME_TO_SHOW_BG = 0.5f;
+    private const float TIME_TO_SHOW_TITLE = 0.5f;
+    private const float TIME_TO_SHOW_BUTTONS = 0.5f;
+    private const float TIME_TO_SHOW_FLASH = 1f;
+    private const float DELAY_TO_START_ANIMATION = 1f;
+    private const float DELAY_BETWEEN_BUTTONS = 0.25f;
 
-    [SerializeField] private CanvasGroup elements;
-    [SerializeField] private Text deathsStats;
-    [SerializeField] private float duration;
+    [SerializeField] private Image background;
+    [SerializeField] private CanvasGroup flash;
+    [SerializeField] private Text title;
+    [SerializeField] private CanvasGroup retryButton;
+    [SerializeField] private CanvasGroup menuButton;
 
-    private void Start()
+    public IEnumerator Appear()
     {
-        SetActiveInstant(false);
+        yield return new WaitForSeconds(DELAY_TO_START_ANIMATION);
+        background.DOFillAmount(1, TIME_TO_SHOW_BG);
+        yield return new WaitForSeconds(TIME_TO_SHOW_BG);
+        title.transform.DOScale(1, TIME_TO_SHOW_TITLE);
+        flash.DOFade(1, TIME_TO_SHOW_TITLE);
+        yield return new WaitForSeconds(TIME_TO_SHOW_FLASH);
+        retryButton.interactable = true;
+        menuButton.interactable = true;
+        retryButton.blocksRaycasts = true;
+        menuButton.blocksRaycasts = true;
+        retryButton.transform.DOScale(new Vector3(1f, 1f, 1f), TIME_TO_SHOW_BUTTONS);
+        yield return new WaitForSeconds(DELAY_BETWEEN_BUTTONS);
+        menuButton.transform.DOScale(new Vector3(1f, 1f, 1f), TIME_TO_SHOW_BUTTONS);
+        yield return new WaitForSeconds(TIME_TO_SHOW_BUTTONS);
     }
-    public void SetActive(bool active)
+    public void DisableGameOverPanel()
     {
-        if (active)
-        {
-            GetInformation();
-            elements.DOFade(1, duration);
-            elements.interactable = true;
-            elements.blocksRaycasts = true;
-        }
-        else
-        {
-            elements.DOFade(0, duration);
-            elements.interactable = false;
-            elements.blocksRaycasts = false;
-        }
+        background.DOFillAmount(0, 0);
+        title.transform.DOScale(0, 0);
+        flash.DOFade(0, 0);
+        retryButton.transform.DOScale(0, 0);
+        menuButton.transform.DOScale(0, 0);
+        retryButton.interactable = false;
+        menuButton.interactable = false;
+        retryButton.blocksRaycasts = false;
+        menuButton.blocksRaycasts = false;
     }
-    private void GetInformation()
+    public void RetryLevel()
     {
-        deathsStats.text = PlayerPrefs.GetInt("deathCount", 0).ToString();
+        string level = SaveAndLoad.GetLastOpenedLevelName();
+        SceneManager.LoadScene(level);
     }
-    private void SetActiveInstant(bool active)
+    public void BackToMenu()
     {
-        if (active)
-        {
-            GetInformation();
-            elements.DOFade(1, duration);
-            elements.interactable = true;
-            elements.blocksRaycasts = true;
-        }
-        else
-        {
-            elements.DOFade(0, duration);
-            elements.interactable = false;
-            elements.blocksRaycasts = false;
-        }
-    }
-    public void RestartLevel()
-    {
-        SceneManager.LoadSceneAsync("Level 1"); //mudar para o level correto
+        SaveAndLoad.SetFinishedLevel(false);
+        SaveAndLoad.SetLastOpenedLevel(-1);
+        SceneManager.LoadScene("MainMenu");
     }
 }

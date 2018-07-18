@@ -48,8 +48,9 @@ public class LevelInfo : MonoBehaviour {
 	}
     private IEnumerator LoadLevelAnimation()
     {
-        var transition = GameObject.Find("_TRANSITION").GetComponent<Transition>();
-        yield return transition.Transite(true);
-        SceneManager.LoadScene(lastLevel.sceneName);
+        yield return null;
+        var transition = GameObject.Find("_LOADING_SCREEN").GetComponent<LoadingPanel>();
+        transition.Appear();
+        SceneManager.LoadSceneAsync(lastLevel.sceneName);
     }
 }

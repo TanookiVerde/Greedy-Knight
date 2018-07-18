@@ -28,6 +28,7 @@ public class LevelManager : MonoBehaviour {
     }
     private IEnumerator LevelState()
     {
+        gameOverPanel.DisableGameOverPanel();
         startTextPanel.SetActive(true);
         yield return WaitForPlayerInitialInput();
         startTextPanel.SetActive(false);
@@ -39,7 +40,7 @@ public class LevelManager : MonoBehaviour {
         }
         if (!IsPlayerAlive())
         {
-            gameOverPanel.SetActive(true);
+            StartCoroutine( gameOverPanel.Appear() );
         } else if (IsLevelFinished())
         {
             SaveAndLoad.FinishAndSaveLevel(collectedCoins == Coin.totalCoin, collectedCoins == 0);

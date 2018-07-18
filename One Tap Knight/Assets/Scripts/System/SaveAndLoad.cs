@@ -7,6 +7,7 @@ public class SaveAndLoad : MonoBehaviour {
 	private const string FINISHED_LEVEL = "finishedLevel";
 	private const string ERROR = "error";
     private const string LAST_OPENED_LEVEL = "lastLevel";
+    private const string LAST_OPENED_LEVEL_NAME = "lastLevelName";
 
     public static SaveData LoadLevelData()
 	{
@@ -37,6 +38,14 @@ public class SaveAndLoad : MonoBehaviour {
     public static void SetLastOpenedLevel(int levelIndex)
     {
         PlayerPrefs.SetInt(LAST_OPENED_LEVEL, levelIndex);
+    }
+    public static string GetLastOpenedLevelName()
+    {
+        return PlayerPrefs.GetString(LAST_OPENED_LEVEL_NAME, "MainScene");
+    }
+    public static void SetLastOpenedLevelName(string levelName)
+    {
+        PlayerPrefs.SetString(LAST_OPENED_LEVEL_NAME, levelName);
     }
     private static SaveData GetSampleData()
     {
