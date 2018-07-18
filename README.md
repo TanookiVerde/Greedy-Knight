@@ -7,6 +7,12 @@ Rundon está sempre correndo para direita, o jogador pode fazê-lo pular ou dar 
 
 O jogo é dividido em fases, nove no total. Cada fase permite ao jogador três estrelas: completá-la, completá-la pegando todas as moedas e completá-la sem coletar moedas.
 
+## Imagens
+![s](https://i.imgur.com/owQ3r4x.jpg)
+![s](https://i.imgur.com/ZjYp9X7.jpg)
+![s](https://i.imgur.com/5Ia8HKb.png)
+![s](https://i.imgur.com/34YizxD.png)
+
 ## Como jogar
 No celular utilize a metade superior da tela para pular e a inferior para o Groundpound.
 
