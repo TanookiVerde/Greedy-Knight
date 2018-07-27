@@ -18,6 +18,7 @@ No celular utilize a metade superior da tela para pular e a inferior para o Grou
 O jogo foi feito por três membros da GDP, grupo de desenvolvimento de jogos da UFRJ.
 
 * Vinicius Cardoso - Artista 2D
+* Hiromi Kameyama - Artista 2D
 * Matheus Vinicius - Programador de Mecânicas
 * Pedro Nascimento - Game Designer e Programador de UI
 
