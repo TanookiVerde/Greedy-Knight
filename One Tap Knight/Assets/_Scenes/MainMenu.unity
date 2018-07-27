@@ -852,7 +852,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: VOLTAR
+  m_Text: BACK
 --- !u!222 &406811686
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1871,7 +1871,7 @@ CanvasGroup:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 824944353}
   m_Enabled: 1
-  m_Alpha: 0.97
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 0
   m_IgnoreParentGroups: 0
@@ -2112,7 +2112,9 @@ MonoBehaviour:
 
     2D Artist
 
-    Vinicius Cardoso'
+    Vinicius Cardoso
+
+    Hiromi Kameyama'
 --- !u!222 &933412719
 CanvasRenderer:
   m_ObjectHideFlags: 0

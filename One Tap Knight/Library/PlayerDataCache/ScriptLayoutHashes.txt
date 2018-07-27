@@ -122,6 +122,7 @@ e9bdabf9265d758d56f01bb188916fa8 UnityEngine.Networking.dll:UnityEngine.Networki
 528ea1fd7c01796fc60c4e2f172ea229 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 18db1083eb2680d1f179915512bcd1b4 Assembly-CSharp.dll:.LevelManager
 80c286907d1c92c3442f70aa02a033ad Assembly-CSharp.dll:.StopPlatform
+86adc10d44fc99327b07abfd217858cc Assembly-CSharp.dll:.CoinPanel
 9de3a22eca9aefadba2d10d5987cefe3 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 339b93a81ec9fa967d69b9a3dd9857d0 Assembly-CSharp.dll:.Bouncy
 322cb40e1e282f28af980cbef7922a90 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
@@ -135,7 +136,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 0dac00454e5addd4941fd9f9a42a7fc0 Assembly-CSharp.dll:.BallFactory
 bea2fd67ab02258ecf19429f18c67a0d Assembly-CSharp.dll:.Coin
 44c43387603c635097da29cf1c2e4c20 Assembly-CSharp.dll:.ScreenManager
-fa9caca198b198ae52c96269154b6341 Assembly-CSharp.dll:.GameOverPanel
+656bafca7c9fe6726af6e7801df715f1 Assembly-CSharp.dll:.GameOverPanel
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ObstacleHandler
 9b9b62230820624fcdc7d35e1703a2dc Assembly-CSharp.dll:.MusicHandler
 c9f7e3391a40e6d253c7a17c97c23d83 Assembly-CSharp.dll:.Credits
@@ -191,4 +192,3 @@ c9b55646a9672292d73a2971a5439807 Assembly-CSharp.dll:.CharacterAnimation
 c9f7e3391a40e6d253c7a17c97c23d83 Assembly-CSharp.dll:.MainMenu
 04140e1444aa94c482b2b78925342c2b Assembly-CSharp.dll:.Ball
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StopPlayerAction
-86adc10d44fc99327b07abfd217858cc Assembly-CSharp.dll:.CoinPanel
