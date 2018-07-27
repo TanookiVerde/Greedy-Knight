@@ -5,6 +5,10 @@ using UnityEngine.UI;
 using DG.Tweening;
 
 public class LevelManager : MonoBehaviour {
+    [Header("Music Preferences")]
+    [SerializeField] private float gameOverPitch;
+    [SerializeField] private MusicHandler musicHandler;
+
     [Header("Stats")]
     [SerializeField] public static int collectedCoins;
 
@@ -22,6 +26,7 @@ public class LevelManager : MonoBehaviour {
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         CreateAndGetPlayer();
         GetPause();
         StartCoroutine(LevelState());
@@ -40,6 +45,7 @@ public class LevelManager : MonoBehaviour {
         }
         if (!IsPlayerAlive())
         {
+            musicHandler.ChangePitch(gameOverPitch);
             StartCoroutine( gameOverPanel.Appear() );
         } else if (IsLevelFinished())
         {
@@ -51,7 +57,6 @@ public class LevelManager : MonoBehaviour {
         Coin.ResetTotalCoin();
         collectedCoins = 0;
     }
-    #region QoL Functions
     private IEnumerator WaitForPlayerInitialInput()
     {
         while (!Input.GetMouseButton(0)) yield return null;
@@ -59,8 +64,8 @@ public class LevelManager : MonoBehaviour {
     private void CreateAndGetPlayer()
     {
         player = Instantiate(playerPrefab, playerInitialPosition.position, Quaternion.identity).GetComponent<Character>();
-        Camera.main.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, Camera.main.transform.position.z);
-        Camera.main.GetComponent<CameraMovement>().goToFollow = player.transform.GetChild(1).gameObject;
+        Camera.main.transform.position = new Vector3(player.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+        Camera.main.GetComponent<CameraMovement>().SetTarget(player.transform.GetChild(1).gameObject);
     }
     private void GetPause(){
         pause = FindObjectOfType<PausePanel>();
@@ -76,5 +81,4 @@ public class LevelManager : MonoBehaviour {
     private bool IsGamePaused(){
         return pause.paused;
     }
-    #endregion
 }

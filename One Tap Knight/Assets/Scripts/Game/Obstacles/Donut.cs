@@ -34,11 +34,7 @@ public class Donut : TileHandler
                 go.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 if(go.tag == "Player")
                 {
-                    Camera.main.GetComponent<CameraMovement>().ShowTarget(
-                        targetPosition - Vector3.up*7f,
-                        0.5f,
-                        0f
-                        );
+                    //Transicao suave
                 }
                 break;
             }

@@ -185,7 +185,6 @@ public class Character : MonoBehaviour
     }
     public void Stop(float time)
     {
-        Debug.Log("stop");
         stopped = true;
         DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0, 0), time);
     }

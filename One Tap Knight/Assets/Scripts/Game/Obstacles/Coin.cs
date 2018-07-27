@@ -8,17 +8,16 @@ public class Coin : MonoBehaviour {
 	[SerializeField] private float timeToDestroy = 0.5f;
 	[SerializeField] private float rotationVelocity = 10;
 
-    private bool collected;
+    [SerializeField] private CoinPanel coinPanel;
 
-	private Text coinText;
+    private bool collected;
 
 	public static int totalCoin;
 
 	private void Start()
 	{
-		coinText = GameObject.Find("CoinText").GetComponent<Text>();
+        coinPanel = GameObject.Find("CoinPanel").GetComponent<CoinPanel>();
 		totalCoin++;
-		UpdateTextUI();
 	}
 	private void Update()
 	{
@@ -30,8 +29,8 @@ public class Coin : MonoBehaviour {
         {
             if(!collected) LevelManager.collectedCoins++;
             collected = true;
+            coinPanel.CoinCollected();
 			DestroyCoin();
-			UpdateTextUI();
         }
     }
 	private void DestroyCoin()
@@ -50,8 +49,4 @@ public class Coin : MonoBehaviour {
     {
         Coin.totalCoin = 0;
     }
-	private void UpdateTextUI()
-	{
-		coinText.text = "COINS: " + LevelManager.collectedCoins + "/" + totalCoin;
-	}
 }

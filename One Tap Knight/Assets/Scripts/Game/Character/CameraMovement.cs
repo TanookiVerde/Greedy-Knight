@@ -5,42 +5,22 @@ using DG.Tweening;
 
 public class CameraMovement : MonoBehaviour {
 	[Header("Preferences")]
-	public GameObject goToFollow;
-	[SerializeField] private float smoothSpeed = 0.125f;
-	[SerializeField] private float cameraMaxVelocity;
-	[SerializeField] private float cameraTax;
+	private GameObject target;
+    [SerializeField] private float cameraVerticalOffset;
 
 	private bool canFollow = true;
 
 	private void FixedUpdate()
 	{
-		if(goToFollow != null && canFollow) Follow();
+		if(target != null && canFollow) Follow();
 	}
-	private void FollowByLerp()
+    public void SetTarget(GameObject target)
+    {
+        this.target = target;
+    }
+	private void Follow()
 	{
-		var targetPosition = goToFollow.transform.position + Vector3.forward*(-10);
-		var smoothedPosition = Vector3.Lerp(transform.position,targetPosition,smoothSpeed*Time.deltaTime);
-		transform.position = smoothedPosition;
-	}
-	private bool Follow()
-	{
-		Vector3 go_position = goToFollow.transform.position;
-		go_position.z = transform.position.z;
-		float velocity = (go_position - transform.position).magnitude/cameraTax;
-		transform.position = Vector3.MoveTowards(transform.position, 
-			go_position, 
-			Mathf.Clamp(velocity,-cameraMaxVelocity,cameraMaxVelocity));
-		return transform.position == goToFollow.transform.position;
-}
-	public IEnumerator ShowTarget(Vector3 target_position, float going_duration, float staying_duration)
-	{
-		canFollow = false;
-		this.transform.DOLocalMove(target_position, going_duration);
-		yield return new WaitForSeconds(staying_duration);
-		canFollow = true;
-	}
-	public void InstantMovement(Vector3 target_position)
-	{
-		this.transform.DOLocalMove(target_position,0);
-	}
+		Vector3 targetPosition = target.transform.position;
+        transform.position = new Vector3(targetPosition.x, transform.position.y, transform.position.z);
+    }
 }

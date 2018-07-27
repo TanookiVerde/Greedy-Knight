@@ -6,7 +6,7 @@ using DG.Tweening;
 using UnityEngine.SceneManagement;
 
 public class GameOverPanel : MonoBehaviour {
-    private const float TIME_TO_SHOW_BG = 0.5f;
+    private const float TIME_TO_SHOW_BG = 0.3f;
     private const float TIME_TO_SHOW_TITLE = 0.5f;
     private const float TIME_TO_SHOW_BUTTONS = 0.5f;
     private const float TIME_TO_SHOW_FLASH = 1f;
@@ -19,10 +19,19 @@ public class GameOverPanel : MonoBehaviour {
     [SerializeField] private CanvasGroup retryButton;
     [SerializeField] private CanvasGroup menuButton;
 
+    [SerializeField] private CanvasGroup skipAnimation;
+
+    private void Start()
+    {
+        skipAnimation.interactable = false;
+        skipAnimation.blocksRaycasts = false;
+    }
     public IEnumerator Appear()
     {
         yield return new WaitForSeconds(DELAY_TO_START_ANIMATION);
         background.DOFillAmount(1, TIME_TO_SHOW_BG);
+        skipAnimation.interactable = true;
+        skipAnimation.blocksRaycasts = true;
         yield return new WaitForSeconds(TIME_TO_SHOW_BG);
         title.transform.DOScale(1, TIME_TO_SHOW_TITLE);
         flash.DOFade(1, TIME_TO_SHOW_TITLE);
@@ -33,8 +42,24 @@ public class GameOverPanel : MonoBehaviour {
         menuButton.blocksRaycasts = true;
         retryButton.transform.DOScale(new Vector3(1f, 1f, 1f), TIME_TO_SHOW_BUTTONS);
         yield return new WaitForSeconds(DELAY_BETWEEN_BUTTONS);
+        skipAnimation.interactable = false;
+        skipAnimation.blocksRaycasts = false;
         menuButton.transform.DOScale(new Vector3(1f, 1f, 1f), TIME_TO_SHOW_BUTTONS);
         yield return new WaitForSeconds(TIME_TO_SHOW_BUTTONS);
+    }
+    public void JumpGameOverAnimation()
+    {
+        skipAnimation.interactable = false;
+        skipAnimation.blocksRaycasts = false;
+        background.DOFillAmount(1, 0);
+        title.transform.DOScale(1, 0);
+        flash.DOFade(1, 0);
+        retryButton.interactable = true;
+        menuButton.interactable = true;
+        retryButton.blocksRaycasts = true;
+        menuButton.blocksRaycasts = true;
+        retryButton.transform.DOScale(new Vector3(1f, 1f, 1f), 0);
+        menuButton.transform.DOScale(new Vector3(1f, 1f, 1f), 0);
     }
     public void DisableGameOverPanel()
     {
