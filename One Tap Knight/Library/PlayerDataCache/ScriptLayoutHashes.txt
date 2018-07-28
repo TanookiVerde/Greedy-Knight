@@ -188,7 +188,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 6531bf1e8a4083ddef8748e9334cd535 Assembly-CSharp.dll:.Level
 fbfa9b2cf01c2bef7297c7038e3f0632 Assembly-CSharp.dll:.LevelDots
 9ffb7dc95b2a4b07111a51e35c16fdd3 Assembly-CSharp.dll:.StartPanel
-c9b55646a9672292d73a2971a5439807 Assembly-CSharp.dll:.CharacterAnimation
+05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DustCloud
+f46f50091f3462ecea02c992e4a64426 Assembly-CSharp.dll:.CharacterAnimation
 c9f7e3391a40e6d253c7a17c97c23d83 Assembly-CSharp.dll:.MainMenu
 04140e1444aa94c482b2b78925342c2b Assembly-CSharp.dll:.Ball
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.StopPlayerAction

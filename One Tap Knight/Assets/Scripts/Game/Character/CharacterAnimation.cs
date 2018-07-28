@@ -29,10 +29,6 @@ public class CharacterAnimation : MonoBehaviour
     }
     public void Land()
     {
-        if(jumping == true)
-        {
-            //Instantiate(dustParticlePrefab, dustPosition.position, Quaternion.identity);
-        }
         anmt.SetBool("grounded", true);
         jumping = false;
     }

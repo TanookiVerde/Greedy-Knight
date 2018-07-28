@@ -4,42 +4,41 @@ using System.Collections;
 
 public class Character : MonoBehaviour
 {
-    #region Variables
-    private float gravityBias = 1;
     [Header("Run")]
-    [SerializeField]
-    public float velocity;
+    [SerializeField] public float velocity;
     [SerializeField] private float gravity;
     [SerializeField] public float timeToFinish = 0.5f;
     [SerializeField] public static float idealVelocity;
+
     [Header("Jump")]
     [SerializeField] private int jumpLimit;
     [SerializeField] private float jumpForce;
     private int currentJump;
+
     [Header("Grounded")]
     [SerializeField] private Transform groundPosition;
     [SerializeField] private Vector2 groundBoxCastSize;
+
     [Header("Ground Pound")]
     public float groundPoundDelay = 0;
     public float poundForce = 24;
     public bool canPlayerPound = false;
     private bool pounding = false;
+
     [Header("Components")]
     private Rigidbody2D rb;
     private SpriteRenderer sr;
     private CharacterAnimation cAnim;
 
+    private float gravityBias = 1;
     public static int coinInLevel;
     public static Transform myTransform;
-
     private bool finished;
-
     private bool stopped = false;
     private Transform followTransform;
     private float followXOffset;
     private bool following = false;
     private bool isOverPauseButton = false;
-    #endregion
 
     private void OnDrawGizmos()
     {
@@ -81,88 +80,16 @@ public class Character : MonoBehaviour
     public void Action()
     {
         Move();
-        SplitScreenJump(IsGrounded());
+        JumpController(IsGrounded());
         Gravity();
     }
     public bool FinishedLevel()
     {
         return finished;
     }
-    private void Move()
-    {
-        cAnim.Move();
-        if (!pounding && !stopped)
-        {
-            rb.velocity = new Vector2(velocity, rb.velocity.y);
-        }
-        else if (following)
-        {
-            transform.position = new Vector3(followTransform.position.x - followXOffset, transform.position.y, transform.position.z);
-        }
-    }
-    private void Jump(bool isGrounded)
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            if (following)
-            {
-                following = false;
-                stopped = false;
-            }
-            if (currentJump < jumpLimit)
-            {
-                if ((currentJump == 0 && isGrounded) || currentJump > 0)
-                {
-                    currentJump++;
-                    cAnim.Jump();
-                    rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
-                }
-            }
-            else if (!pounding && canPlayerPound)
-            {
-                StartCoroutine(GroundPound());
-            }
-        }
-    }
-    private void SplitScreenJump(bool isGrounded)
-    {
-        if (Input.GetMouseButtonDown(0) && !isOverPauseButton)
-        {
-            if (following)
-            {
-                following = false;
-                stopped = false;
-            }
-            Vector3 mousePosition = Input.mousePosition;
-            float screenHeight = Camera.main.scaledPixelHeight;
-            if (mousePosition.y > screenHeight / 2)
-            {
-                if (currentJump < jumpLimit)
-                {
-                    if ((currentJump == 0 && isGrounded) || currentJump > 0)
-                    {
-                        currentJump++;
-                        cAnim.Jump();
-                        rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
-                    }
-                }
-            }
-            else if (!pounding && canPlayerPound && !isGrounded)
-            {
-                StartCoroutine(GroundPound());
-            }
-        }
-    }
     public void SetOverPause(bool value)
     {
         isOverPauseButton = value;
-    }
-    private IEnumerator GroundPound()
-    {
-        pounding = true;
-        rb.velocity = Vector2.zero;
-        yield return new WaitForSeconds(groundPoundDelay);
-        rb.velocity = new Vector2(rb.velocity.x, -poundForce);
     }
     public void Die()
     {
@@ -170,16 +97,8 @@ public class Character : MonoBehaviour
         PlayerPrefs.SetInt("deathCount", PlayerPrefs.GetInt("deathCount", 0) + 1);
         Destroy(this.gameObject);
     }
-    private void Gravity()
-    {
-        if (!pounding)
-        {
-            rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
-        }
-    }
     public void Stop()
     {
-        Debug.Log("stop");
         stopped = true;
         DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(0, 0), timeToFinish);
     }
@@ -197,15 +116,61 @@ public class Character : MonoBehaviour
     }
     public void Restart()
     {
-        Debug.Log("start");
         DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(velocity, 0), timeToFinish);
         stopped = false;
     }
     public void Restart(float time)
     {
-        Debug.Log("start");
         DOTween.To(() => rb.velocity, x => rb.velocity = x, new Vector2(velocity, 0), time);
         stopped = false;
+    }
+    public void InvertGravity()
+    {
+        transform.DOScaleY(-1 * transform.localScale.y, 0.2f);
+        gravityBias = -gravityBias;
+    }
+    private void Move()
+    {
+        cAnim.Move();
+        if (!pounding && !stopped)
+        {
+            rb.velocity = new Vector2(velocity, rb.velocity.y);
+        }
+        else if (following)
+        {
+            transform.position = new Vector3(followTransform.position.x - followXOffset, transform.position.y, transform.position.z);
+        }
+    }
+    private void JumpController(bool isGrounded)
+    {
+        if( (Input.GetMouseButtonDown(0) && ClickedOnTopOfScreen() && !isOverPauseButton) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            Jump(isGrounded);
+        }
+        else if ( (Input.GetMouseButtonDown(0) && ClickedOnBottomOfScreen()) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            if (!pounding && canPlayerPound && !isGrounded)
+                StartCoroutine(GroundPound());
+        }
+    }
+    private void Jump(bool isGrounded)
+    {
+        if (currentJump < jumpLimit)
+        {
+            if ((currentJump == 0 && isGrounded) || currentJump > 0)
+            {
+                currentJump++;
+                cAnim.Jump();
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce * gravityBias);
+            }
+        }
+    }
+    private void Gravity()
+    {
+        if (!pounding)
+        {
+            rb.velocity += Vector2.down * gravity * gravityBias * Time.deltaTime;
+        }
     }
     private bool IsGrounded()
     {
@@ -238,9 +203,19 @@ public class Character : MonoBehaviour
         }
         return false;
     }
-    public void InvertGravity()
+    private bool ClickedOnBottomOfScreen()
     {
-        transform.DOScaleY(-1 * transform.localScale.y, 0.2f);
-        gravityBias = -gravityBias;
+        return Input.mousePosition.y < Camera.main.scaledPixelHeight / 2;
+    }
+    private bool ClickedOnTopOfScreen()
+    {
+        return Input.mousePosition.y > Camera.main.scaledPixelHeight / 2;
+    }
+    private IEnumerator GroundPound()
+    {
+        pounding = true;
+        rb.velocity = Vector2.zero;
+        yield return new WaitForSeconds(groundPoundDelay);
+        rb.velocity = new Vector2(rb.velocity.x, -poundForce);
     }
 }
