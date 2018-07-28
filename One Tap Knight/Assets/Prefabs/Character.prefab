@@ -22,7 +22,22 @@ GameObject:
   m_Layer: 0
   m_Name: GroundPosition
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 3306451490063965843, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1228755974217892
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4001362153446684}
+  m_Layer: 0
+  m_Name: DustPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 7148428337604731935, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -62,6 +77,19 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &4001362153446684
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228755974217892}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.598, y: -0.577, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4950445750847306}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4346383262599714
 Transform:
   m_ObjectHideFlags: 1
@@ -95,11 +123,12 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1808435128321934}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -42.618874, y: 9.229333, z: 0}
+  m_LocalPosition: {x: -40.35593, y: 0.60436034, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4441380565576166}
   - {fileID: 4346383262599714}
+  - {fileID: 4001362153446684}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -135,7 +164,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.05270958, y: -0.07192695}
+  m_Offset: {x: -0.05270958, y: -0.042043805}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -146,7 +175,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6151085, y: 0.91466165}
+  m_Size: {x: 0.6151085, y: 0.85489535}
   m_EdgeRadius: 0
 --- !u!95 &95330688032916498
 Animator:
@@ -198,6 +227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84936f2fbfe9fb043b331450f1f700e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dustParticlePrefab: {fileID: 1924979266258534, guid: d5fd666d274c35046becba0e8506e617,
+    type: 2}
+  dustPosition: {fileID: 4001362153446684}
   slimePrefab:
   - {fileID: 1337487191996392, guid: 22693e5dcb7faff459966ffbf7f06fb6, type: 2}
   - {fileID: 1797655301842356, guid: 763e64817ded483418ca4fb1d4a088aa, type: 2}
@@ -206,6 +238,8 @@ MonoBehaviour:
   bloodPrefab: {fileID: 1891621326064040, guid: 5cf4e397ae1fd7545870dbe75f130064,
     type: 2}
   bloodPosition: {fileID: 4441380565576166}
+  helmetPrefab: {fileID: 1866361298845836, guid: 34a08b59ff43eb743b34d162c7484227,
+    type: 2}
 --- !u!212 &212821378450364956
 SpriteRenderer:
   m_ObjectHideFlags: 1

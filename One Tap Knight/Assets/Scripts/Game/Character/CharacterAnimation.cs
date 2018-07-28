@@ -5,6 +5,9 @@ using DG.Tweening;
 
 public class CharacterAnimation : MonoBehaviour
 {
+    [Header("Ground Effect")]
+    [SerializeField] private GameObject dustParticlePrefab;
+    [SerializeField] private Transform dustPosition;
     [Header("Slime Effect")]
     [SerializeField] private List<GameObject> slimePrefab;
     [SerializeField] private Transform slimePosition;
@@ -13,6 +16,7 @@ public class CharacterAnimation : MonoBehaviour
     [SerializeField] private int bloodCells;
     [SerializeField] private GameObject bloodPrefab;
     [SerializeField] private Transform bloodPosition;
+    [SerializeField] private GameObject helmetPrefab;
     [Header("Components")]
     private Animator anmt;
     private Rigidbody2D rb;
@@ -25,6 +29,10 @@ public class CharacterAnimation : MonoBehaviour
     }
     public void Land()
     {
+        if(jumping == true)
+        {
+            //Instantiate(dustParticlePrefab, dustPosition.position, Quaternion.identity);
+        }
         anmt.SetBool("grounded", true);
         jumping = false;
     }
@@ -32,6 +40,7 @@ public class CharacterAnimation : MonoBehaviour
     {
         if (!jumping)
         {
+            Instantiate(dustParticlePrefab, dustPosition.position, Quaternion.identity);
             anmt.SetTrigger("jump");
             anmt.SetBool("grounded", false);
             jumping = true;
@@ -43,6 +52,8 @@ public class CharacterAnimation : MonoBehaviour
     }
     public void Die()
     {
+        var helmet = Instantiate(helmetPrefab, transform.position, Quaternion.identity);
+        helmet.GetComponent<Rigidbody2D>().AddForceAtPosition(Vector2.up * Random.Range(0.5f, 1f),transform.position + Vector3.right);
         for (int i = 0; i < bloodCells; i++)
         {
             var bloodCell = Instantiate(bloodPrefab, transform.position, Quaternion.identity);
