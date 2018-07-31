@@ -1,0 +1,52 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(Collider2D))]
+public class Stalactite : MonoBehaviour {
+
+	public float dropPerFrame = 0.01f;
+
+	[Header("Grounded")]
+    [SerializeField] private Transform groundPosition;
+    [SerializeField] private Vector2 groundBoxCastSize;
+    
+	public void StartActions()
+	{
+		StartCoroutine(Shake());		
+	}
+	IEnumerator Shake()
+	{
+		Vector3 startPosition = transform.position;
+		Vector2 circlePosition;
+		for(int i = 0; i < 100; i ++)
+		{
+			circlePosition = Random.insideUnitCircle/20;
+			transform.position = startPosition + (Vector3)circlePosition;
+			yield return new WaitForSeconds(0.01f);
+		}
+		StartCoroutine(Fall());
+	}
+	IEnumerator Fall()
+	{
+		while(!IsGrounded())
+		{
+			transform.position -= new Vector3(0, dropPerFrame);
+			yield return new WaitForEndOfFrame();
+		}
+		gameObject.layer = LayerMask.NameToLayer("Ground");
+		gameObject.tag = "Untagged";
+		this.enabled = false;
+	}
+	private bool IsGrounded()
+    {
+        RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
+                groundBoxCastSize, 0, Vector2.up, 0, LayerMask.GetMask("Ground", "Stop"));
+
+        if (boxCast.collider != null)
+        {
+			return true;
+        }
+        return false;
+    }
+}
