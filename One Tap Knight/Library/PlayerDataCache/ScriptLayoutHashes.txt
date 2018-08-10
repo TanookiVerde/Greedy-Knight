@@ -1,6 +1,6 @@
-WindowsStandalone
+Android
 PlayerPath?
-C:/Users/pedro/Desktop/OTK/OTK.exe
+C:/Users/pedro/Desktop/otk-3.apk
 SceneListBegin?
 Assets/_Scenes/MainMenu.unity
 Assets/_Scenes/Levels/Level 1.unity
@@ -12,7 +12,7 @@ Assets/_Scenes/Levels/Level 6.unity
 Assets/_Scenes/Levels/Level 7.unity
 Assets/_Scenes/Levels/Level 8.unity
 Assets/_Scenes/Levels/Level 9.unity
-Assets/_Scenes/TestLevel.unity
+Assets/_Scenes/TestLevel1.unity
 SceneListEnd?
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
 cf455f7a806648c6ed4c7d3e3f8a0e03 UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationTrack
@@ -106,6 +106,7 @@ ff05dcdf90651c3d98a9cad3df5e471e UnityEngine.Timeline.dll:UnityEngine.Timeline.C
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.GroupTrack
 30afa8783a8bbee2e465ec9ce1efaee2 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 607d64d2c4bc76ac9876e6f7b9cc7edf UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
+42d86d852176a14e2f0b0dca67f9ae96 Assembly-CSharp.dll:.PlayerDetector
 fc1e0f4d8439d9928083474691511a13 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 05524b8f659e7bfe5756d1335fec24ba UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 60b2bb652410a5867a5ab9a01cd38461 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -135,6 +136,8 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 45f3431f0103c41611e8d4eec3d439df UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 0dac00454e5addd4941fd9f9a42a7fc0 Assembly-CSharp.dll:.BallFactory
 bea2fd67ab02258ecf19429f18c67a0d Assembly-CSharp.dll:.Coin
+a6346178c1ba2b9cd3b29dec32c81312 Assembly-CSharp.dll:.BlazeH
+677eb1969a68be17ff24fec60b2a4825 Assembly-CSharp.dll:.Stalactite
 44c43387603c635097da29cf1c2e4c20 Assembly-CSharp.dll:.ScreenManager
 656bafca7c9fe6726af6e7801df715f1 Assembly-CSharp.dll:.GameOverPanel
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.ObstacleHandler
@@ -189,6 +192,7 @@ c2275a8bfbb9f9942cad75ecdfded41d UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.Spa
 fbfa9b2cf01c2bef7297c7038e3f0632 Assembly-CSharp.dll:.LevelDots
 9ffb7dc95b2a4b07111a51e35c16fdd3 Assembly-CSharp.dll:.StartPanel
 05524b8f659e7bfe5756d1335fec24ba Assembly-CSharp.dll:.DustCloud
+c61326c51919e59665a26a133f5a0cfb Assembly-CSharp.dll:.BlazeV
 f46f50091f3462ecea02c992e4a64426 Assembly-CSharp.dll:.CharacterAnimation
 c9f7e3391a40e6d253c7a17c97c23d83 Assembly-CSharp.dll:.MainMenu
 04140e1444aa94c482b2b78925342c2b Assembly-CSharp.dll:.Ball
