@@ -218,4 +218,8 @@ public class Character : MonoBehaviour
         yield return new WaitForSeconds(groundPoundDelay);
         rb.velocity = new Vector2(rb.velocity.x, -poundForce);
     }
+    public bool IsPounding()
+    {
+        return pounding;
+    }
 }
