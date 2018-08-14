@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61a919d36e75d144bd722dd0dd434ab, type: 3}
   m_Name: level3
   m_EditorClassIdentifier: 
-  title: A calm bonfire
+  title: Level 3
   img: {fileID: 21300000, guid: 5601d4431a8e7d245b088ae76bcb8ddb, type: 3}
   sceneName: Level 3

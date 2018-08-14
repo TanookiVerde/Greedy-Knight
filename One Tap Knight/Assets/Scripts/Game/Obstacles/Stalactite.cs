@@ -6,6 +6,8 @@ using UnityEngine;
 public class Stalactite : MonoBehaviour {
 
 	public float dropPerFrame = 0.01f;
+    public int frameDuration = 50;
+    public float timeBetweenFrames = 0.05f;
 
 	[Header("Grounded")]
     [SerializeField] private Transform groundPosition;
@@ -19,11 +21,11 @@ public class Stalactite : MonoBehaviour {
 	{
 		Vector3 startPosition = transform.position;
 		Vector2 circlePosition;
-		for(int i = 0; i < 100; i ++)
+		for(int i = 0; i < frameDuration; i ++)
 		{
 			circlePosition = Random.insideUnitCircle/20;
 			transform.position = startPosition + (Vector3)circlePosition;
-			yield return new WaitForSeconds(0.01f);
+			yield return new WaitForSeconds(timeBetweenFrames);
 		}
 		StartCoroutine(Fall());
 	}

@@ -33,7 +33,9 @@ public class LevelSelection : MonoBehaviour, IScreen {
 			SetLevelInfo();
 			dots.ChangeSelectedLevel(currentLevel);
 		}
-	}
+        SaveAndLoad.SetLastOpenedLevel(currentLevel);
+        SaveAndLoad.SetLastOpenedLevelName(levelData[currentLevel].sceneName);
+    }
 
     public void Close()
     {
@@ -55,6 +57,7 @@ public class LevelSelection : MonoBehaviour, IScreen {
 		if(!IsLevelInBounds(changeDirection)) 
 			return;
         StartCoroutine(ChangeLevelAnimation(changeDirection));
+        print(levelData[currentLevel].sceneName);
 	}
 
 	private IEnumerator ChangeLevelAnimation(int changeDirection)

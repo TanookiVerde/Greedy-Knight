@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
 
     private void Start()
     {
-        Application.targetFrameRate = 60;
+        //Application.targetFrameRate = 30;
         CreateAndGetPlayer();
         GetPause();
         StartCoroutine(LevelState());

@@ -11,6 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c61a919d36e75d144bd722dd0dd434ab, type: 3}
   m_Name: level8
   m_EditorClassIdentifier: 
-  title: Lava Land
+  title: Level 8
   img: {fileID: 21300000, guid: b8aa54912c6620d4d828854a0367b827, type: 3}
   sceneName: Level 8

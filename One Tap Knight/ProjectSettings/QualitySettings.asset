@@ -20,7 +20,7 @@ QualitySettings:
     shadowmaskMode: 1
     blendWeights: 1
     textureQuality: 1
-    anisotropicTextures: 2
+    anisotropicTextures: 0
     antiAliasing: 0
     softParticles: 0
     softVegetation: 1
