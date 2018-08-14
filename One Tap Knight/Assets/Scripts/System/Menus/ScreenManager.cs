@@ -16,9 +16,9 @@ public class ScreenManager : MonoBehaviour {
 	{
 		if(SaveAndLoad.GetFinishedLevel())
 		{
-			OpenScreen((int)Screen.LEVEL_SELECTION);
+			OpenScreen((int)SCREEN.LEVEL_SELECTION);
 		}else{
-			OpenScreen((int)Screen.MAIN);
+			OpenScreen((int)SCREEN.MAIN);
 		}
 	}
 	public void OpenScreen(int newScreen)
@@ -53,6 +53,6 @@ public class ScreenManager : MonoBehaviour {
         return transition.TRANSITION_DURATION;
     }
 }
-public enum Screen{
+public enum SCREEN{
 	MAIN = 0,LEVEL_SELECTION = 1,CREDITS = 2
 }

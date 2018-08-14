@@ -52,7 +52,6 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
-  tizenShowActivityIndicatorOnLoading: -1
   iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
   iosAllowHTTPDownload: 1
@@ -61,9 +60,9 @@ PlayerSettings:
   allowedAutorotateToLandscapeRight: 1
   allowedAutorotateToLandscapeLeft: 1
   useOSAutorotation: 1
-  use32BitDisplayBuffer: 1
+  use32BitDisplayBuffer: 0
   preserveFramebufferAlpha: 0
-  disableDepthAndStencilBuffers: 0
+  disableDepthAndStencilBuffers: 1
   androidBlitType: 0
   defaultIsNativeResolution: 1
   macRetinaSupport: 1
@@ -76,13 +75,13 @@ PlayerSettings:
   hideHomeButton: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   resizableWindow: 1
   useMacAppStoreValidation: 0
   macAppStoreCategory: public.app-category.games
-  gpuSkinning: 0
-  graphicsJobs: 0
+  gpuSkinning: 1
+  graphicsJobs: 1
   xboxPIXTextureCapture: 0
   xboxEnableAvatar: 0
   xboxEnableKinect: 0
@@ -111,6 +110,8 @@ PlayerSettings:
   videoMemoryForVertexBuffers: 0
   psp2PowerMode: 0
   psp2AcquireBGM: 1
+  vulkanEnableSetSRGBWrite: 0
+  vulkanUseSWCommandBuffers: 0
   m_SupportedAspectRatios:
     4:3: 1
     5:4: 1
@@ -138,10 +139,10 @@ PlayerSettings:
     hololens:
       depthFormat: 1
       depthBufferSharingEnabled: 0
-    enable360StereoCapture: 0
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
+    enable360StereoCapture: 0
   protectGraphicsMemory: 0
   useHDRDisplay: 0
   m_ColorGamuts: 00000000
@@ -164,8 +165,8 @@ PlayerSettings:
   ForceSDCardPermission: 0
   CreateWallpaper: 0
   APKExpansionFiles: 0
-  keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 0
+  keepLoadedShadersAlive: 1
+  StripUnusedMeshComponents: 1
   VertexChannelCompressionMask: 214
   iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 8.0
@@ -234,6 +235,7 @@ PlayerSettings:
   appleEnableAutomaticSigning: 0
   iOSRequireARKit: 0
   appleEnableProMotion: 0
+  vulkanEditorSupport: 0
   clonedFromGUID: 00000000000000000000000000000000
   templatePackageId: 
   templateDefaultScene: 
@@ -242,7 +244,8 @@ PlayerSettings:
   androidSplashScreen: {fileID: 0}
   AndroidKeystoreName: 
   AndroidKeyaliasName: 
-  AndroidTVCompatibility: 1
+  AndroidBuildApkPerCpuArchitecture: 0
+  AndroidTVCompatibility: 0
   AndroidIsGame: 1
   AndroidEnableTango: 0
   androidEnableBanner: 1
@@ -264,7 +267,7 @@ PlayerSettings:
   - m_BuildTarget: Standalone
     m_Icons:
     - serializedVersion: 2
-      m_Icon: {fileID: 2800000, guid: 88086e0a319ced94abca264faf0014a8, type: 3}
+      m_Icon: {fileID: 2800000, guid: 36969cd3f32c5674bac65d86df0179b0, type: 3}
       m_Width: 1024
       m_Height: 1024
       m_Kind: 0
@@ -363,38 +366,86 @@ PlayerSettings:
       m_Height: 81
       m_Kind: 2
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 36969cd3f32c5674bac65d86df0179b0, type: 3}
       m_Width: 192
       m_Height: 192
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 144
       m_Height: 144
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 96
       m_Height: 96
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 72
       m_Height: 72
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 48
       m_Height: 48
       m_Kind: 1
       m_SubKind: 
-    - m_Textures: []
+    - m_Textures:
+      - {fileID: 0}
       m_Width: 36
       m_Height: 36
       m_Kind: 1
       m_SubKind: 
-  m_BuildTargetBatching: []
-  m_BuildTargetGraphicsAPIs: []
+    - m_Textures:
+      - {fileID: 2800000, guid: 36969cd3f32c5674bac65d86df0179b0, type: 3}
+      m_Width: 192
+      m_Height: 192
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 144
+      m_Height: 144
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 96
+      m_Height: 96
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 72
+      m_Height: 72
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 48
+      m_Height: 48
+      m_Kind: 0
+      m_SubKind: 
+    - m_Textures:
+      - {fileID: 0}
+      m_Width: 36
+      m_Height: 36
+      m_Kind: 0
+      m_SubKind: 
+  m_BuildTargetBatching:
+  - m_BuildTarget: Android
+    m_StaticBatching: 1
+    m_DynamicBatching: 0
+  m_BuildTargetGraphicsAPIs:
+  - m_BuildTarget: AndroidPlayer
+    m_APIs: 0b00000008000000
+    m_Automatic: 1
   m_BuildTargetVRSettings: []
   m_BuildTargetEnableVuforiaSettings: []
   openGLRequireES31: 0
@@ -411,6 +462,10 @@ PlayerSettings:
     m_EncodingQuality: 1
   - m_BuildTarget: PS4
     m_EncodingQuality: 1
+  m_BuildTargetGroupLightmapSettings:
+  - m_BuildTarget: Android
+    m_TextureStreamingEnabled: 0
+    m_TextureStreamingPriority: 0
   playModeTestRunnerEnabled: 0
   runPlayModeTestAsEditModeTest: 0
   actionOnDotNetUnhandledException: 1
@@ -534,6 +589,8 @@ PlayerSettings:
   switchDataLossConfirmation: 0
   switchSupportedNpadStyles: 3
   switchNativeFsCacheSize: 32
+  switchIsHoldTypeHorizontal: 0
+  switchSupportedNpadCount: 8
   switchSocketConfigEnabled: 0
   switchTcpInitialSendBufferSize: 32
   switchTcpInitialReceiveBufferSize: 64
@@ -696,7 +753,6 @@ PlayerSettings:
   metroApplicationDescription: Test
   wsaImages: {}
   metroTileShortName: 
-  metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
@@ -712,14 +768,6 @@ PlayerSettings:
   metroFTAFileTypes: []
   metroProtocolName: 
   metroCompilationOverrides: 1
-  tizenProductDescription: 
-  tizenProductURL: 
-  tizenSigningProfileName: 
-  tizenGPSPermissions: 0
-  tizenMicrophonePermissions: 0
-  tizenDeploymentTarget: 
-  tizenDeploymentTargetType: -1
-  tizenMinOSVersion: 1
   n3dsUseExtSaveData: 0
   n3dsCompressStaticMem: 1
   n3dsExtSaveDataNumber: 0x12345
@@ -740,6 +788,7 @@ PlayerSettings:
   XboxOneGameOsOverridePath: 
   XboxOnePackagingOverridePath: 
   XboxOneAppManifestOverridePath: 
+  XboxOneVersion: 1.0.0.0
   XboxOnePackageEncryption: 0
   XboxOnePackageUpdateGranularity: 2
   XboxOneDescription: 
