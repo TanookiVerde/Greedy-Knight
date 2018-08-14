@@ -25,7 +25,7 @@ public class BlazeV : MonoBehaviour {
 		{
 			transform.position += new Vector3(0, temp);
 			temp -= accelPerFrame;
-			yield return new WaitForEndOfFrame();
+            yield return new WaitForFixedUpdate();
 		}
 		if(temp < 0)
 			temp = 0;
@@ -39,8 +39,8 @@ public class BlazeV : MonoBehaviour {
 		{
 			transform.position -= new Vector3(0, temp);
 			temp += accelPerFrame;
-			yield return new WaitForEndOfFrame();
-		}
+			yield return new WaitForFixedUpdate();
+        }
 		transform.position = new Vector3(transform.position.x, startY, transform.position.z);
 		GetComponent<SpriteRenderer>().flipY = false;
 	}

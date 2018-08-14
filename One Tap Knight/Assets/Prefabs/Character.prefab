@@ -210,7 +210,7 @@ MonoBehaviour:
   gravity: 52.5
   timeToFinish: 0.5
   jumpLimit: 2
-  jumpForce: 12
+  jumpForce: 11
   groundPosition: {fileID: 4441380565576166}
   groundBoxCastSize: {x: 0.75, y: 0.2}
   groundPoundDelay: 0.2

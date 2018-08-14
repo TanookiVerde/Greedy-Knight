@@ -120,7 +120,7 @@ public class LevelSelection : MonoBehaviour, IScreen {
         SetLevelInfo();
 		dots.ChangeSelectedLevel(currentLevel);
 		yield return levelHUD.GetComponent<LevelInfo>().Unlock();
-		yield return new WaitForEndOfFrame();
+		yield return new WaitForFixedUpdate();
     }
 
     public IEnumerator BeginningAnimation()

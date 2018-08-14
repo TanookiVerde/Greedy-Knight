@@ -29,7 +29,8 @@ public class CharacterAnimation : MonoBehaviour
     }
     public void Land()
     {
-        anmt.SetBool("grounded", true);
+        if(anmt != null)
+            anmt.SetBool("grounded", true);
         jumping = false;
     }
     public void Jump()

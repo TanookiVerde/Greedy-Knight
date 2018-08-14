@@ -10,7 +10,7 @@ public class CameraMovement : MonoBehaviour {
 
 	private bool canFollow = true;
 
-	private void FixedUpdate()
+	private void LateUpdate()
 	{
 		if(target != null && canFollow) Follow();
 	}

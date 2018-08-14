@@ -41,7 +41,7 @@ public class LevelManager : MonoBehaviour {
         {
             if(!IsGamePaused())
                 player.Action();
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
         if (!IsPlayerAlive())
         {

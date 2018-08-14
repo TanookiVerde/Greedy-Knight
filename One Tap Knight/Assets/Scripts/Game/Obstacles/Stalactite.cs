@@ -34,7 +34,7 @@ public class Stalactite : MonoBehaviour {
 		while(!IsGrounded())
 		{
 			transform.position -= new Vector3(0, dropPerFrame);
-			yield return new WaitForEndOfFrame();
+			yield return new WaitForFixedUpdate();
 		}
 		gameObject.layer = LayerMask.NameToLayer("Ground");
 		gameObject.tag = "Untagged";

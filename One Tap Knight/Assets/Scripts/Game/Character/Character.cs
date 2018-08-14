@@ -51,6 +51,10 @@ public class Character : MonoBehaviour
         Character.myTransform = transform;
         rb = GetComponent<Rigidbody2D>();
     }
+    private void Update()
+    {
+        JumpController(IsGrounded());
+    }
     private void OnCollisionEnter2D(Collision2D obj)
     {
         if (obj.gameObject.tag == "Obstacles")
@@ -80,7 +84,6 @@ public class Character : MonoBehaviour
     public void Action()
     {
         Move();
-        JumpController(IsGrounded());
         Gravity();
     }
     public bool FinishedLevel()
