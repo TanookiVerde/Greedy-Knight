@@ -75,8 +75,8 @@ public class GameOverPanel : MonoBehaviour {
     }
     public void RetryLevel()
     {
-        string level = SaveAndLoad.GetLastOpenedLevelName();
-        SceneManager.LoadScene(level);
+        Scene level = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(level.buildIndex);
     }
     public void BackToMenu()
     {

@@ -57,9 +57,9 @@ public class SaveAndLoad : MonoBehaviour {
     {
         int index = SaveAndLoad.GetLastOpenedLevelIndex();
         SaveData save = SaveAndLoad.LoadLevelData();
-        save.levelCompleted[index] = 1;
-        save.allCoins[index] = allCoins ? 1 : 0;
-        save.noCoins[index] = noCoins ? 1 : 0;
+        //save.levelCompleted[index] = 1;
+        //save.allCoins[index] = allCoins ? 1 : 0;
+        //save.noCoins[index] = noCoins ? 1 : 0;
         SaveAndLoad.SaveLevelData(save);
         SaveAndLoad.SetFinishedLevel(true);
         print("SAVED SUCESSFULLY");

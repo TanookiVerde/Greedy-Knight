@@ -81,4 +81,8 @@ public class LevelManager : MonoBehaviour {
     private bool IsGamePaused(){
         return pause.paused;
     }
+    public void Restart()
+    {
+        player.Die();
+    }
 }
