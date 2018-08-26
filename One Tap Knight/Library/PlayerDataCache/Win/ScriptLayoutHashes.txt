@@ -220,3 +220,5 @@ edf29df71eb559568c8a82853e7a2d15 Assembly-CSharp.dll:.StartPanel
 622910bfc6a8a7a6d3fc4e1a633aed31 Assembly-CSharp.dll:.MainMenu
 52d63b4e24f23c69b32339a12e256aef Assembly-CSharp.dll:.Ball
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.StopPlayerAction
+f24177513f3fbe4e50b785c9ca82fd12 Assembly-CSharp.dll:.AudioComponent
+486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.AudioHandler

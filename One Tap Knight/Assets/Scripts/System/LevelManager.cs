@@ -65,6 +65,7 @@ public class LevelManager : MonoBehaviour {
     {
         player = Instantiate(playerPrefab, playerInitialPosition.position, Quaternion.identity).GetComponent<Character>();
         Camera.main.transform.position = new Vector3(player.transform.position.x, Camera.main.transform.position.y, Camera.main.transform.position.z);
+        print(player.transform.GetChild(1).gameObject);
         Camera.main.GetComponent<CameraMovement>().SetTarget(player.transform.GetChild(1).gameObject);
     }
     private void GetPause(){
@@ -83,6 +84,7 @@ public class LevelManager : MonoBehaviour {
     }
     public void Restart()
     {
-        player.Die();
+        if(player != null)
+            player.Die();
     }
 }
