@@ -35,6 +35,7 @@ public class Coin : MonoBehaviour {
     }
 	private void DestroyCoin()
 	{
+		FindObjectOfType<AudioHandler>().PlayEffect(9);
 		transform.DOLocalMove(
 			Character.myTransform.position,
 			timeToDestroy

@@ -37,6 +37,7 @@ public class LevelManager : MonoBehaviour {
         startTextPanel.SetActive(true);
         yield return WaitForPlayerInitialInput();
         startTextPanel.SetActive(false);
+        FindObjectOfType<AudioHandler>().PlayEffect(4);
         while (IsPlayerAlive() && !IsLevelFinished())
         {
             if(!IsGamePaused())

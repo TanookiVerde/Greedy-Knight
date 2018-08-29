@@ -23,6 +23,7 @@ public class Darkness : MonoBehaviour {
 	}
 	void Darken()
 	{
+		FindObjectOfType<AudioHandler>().PlayEffect(5);
 		foreach(TilemapRenderer t in darkenedTiles)
 		{
 			t.material.DOColor(Color.clear, fadeDuration);
@@ -30,6 +31,7 @@ public class Darkness : MonoBehaviour {
 	}
 	void Undarken()
 	{
+		FindObjectOfType<AudioHandler>().PlayEffect(6);
 		foreach(TilemapRenderer t in darkenedTiles)
 		{
 			t.material.DOColor(Color.white, fadeDuration);

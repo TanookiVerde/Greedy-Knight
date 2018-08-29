@@ -31,6 +31,8 @@ public class CharacterAnimation : MonoBehaviour
     {
         if(anmt != null)
             anmt.SetBool("grounded", true);
+        if(jumping == true)
+            FindObjectOfType<AudioHandler>().PlayEffect(7);
         jumping = false;
     }
     public void Jump()
@@ -41,6 +43,7 @@ public class CharacterAnimation : MonoBehaviour
             anmt.SetTrigger("jump");
             anmt.SetBool("grounded", false);
             jumping = true;
+            FindObjectOfType<AudioHandler>().PlayEffect(10);
         }
     }
     public void Move()
@@ -49,6 +52,7 @@ public class CharacterAnimation : MonoBehaviour
     }
     public void Die()
     {
+        FindObjectOfType<AudioHandler>().PlayEffect(8);
         var helmet = Instantiate(helmetPrefab, transform.position, Quaternion.identity);
         helmet.GetComponent<Rigidbody2D>().AddForceAtPosition(Vector2.up * Random.Range(0.5f, 1f),transform.position + Vector3.right);
         for (int i = 0; i < bloodCells; i++)
