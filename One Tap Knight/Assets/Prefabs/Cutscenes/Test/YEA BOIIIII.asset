@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546d2304663eeeb43945a2d10195d743, type: 3}
+  m_Name: YEA BOIIIII
+  m_EditorClassIdentifier: 
+  slides:
+  - {fileID: 11400000, guid: eec9351a9963f6e4babca9f7a08e1154, type: 2}
+  - {fileID: 11400000, guid: 1060dad1377302545b3e3225b77f20f6, type: 2}
+  - {fileID: 11400000, guid: aa3c7da301cf59d45ab10c4f3e313af8, type: 2}
+  sceneName: test
