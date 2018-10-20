@@ -15,10 +15,27 @@ public class CutSceneHandler : MonoBehaviour {
 	public Image slideImage;
 	public TMPro.TMP_Text slideText;
 
+	private IEnumerator current = null;
+	private bool playing = false;
 
 	private void Start () 
 	{
 		InitialSettings();
+		test();
+	}
+	private void Update()
+	{
+		if(playing)
+			Skip();
+	}
+	private void Skip()
+	{
+		if(Input.GetMouseButtonDown(0))
+		{
+			print("skipped");
+			StopCoroutine(current);
+			playing = false;
+		}
 	}
 	public void InitialSettings()
 	{
@@ -26,6 +43,7 @@ public class CutSceneHandler : MonoBehaviour {
 		slideImage.color = Color.clear;
 		slideText.color = Color.clear;
 		slideText.text = "";
+		DontDestroyOnLoad(gameObject);
 	}
 	public void test()
 	{
@@ -40,10 +58,15 @@ public class CutSceneHandler : MonoBehaviour {
 				yield return FadeScreen();
 				for(int i = 0; i < c.slides.Count; i++)
 				{
-					yield return FadeSlide(c.slides[i]);				
+					current = FadeSlide(c.slides[i]);
+					StartCoroutine(current);
+					while(playing)
+						yield return null;	
+					yield return FadeSlideOut(c.slides[i]);	
 				}
 			}
 		}
+		yield return FadeScreen(false);
 	}
 	public IEnumerator FadeScreen(bool value = true)
 	{
@@ -53,6 +76,7 @@ public class CutSceneHandler : MonoBehaviour {
 	}
 	public IEnumerator FadeSlide(Slide slide)
 	{
+		playing = true;
 		slideImage.sprite = slide.sprite;
 		slideText.text = slide.text;
 		slideText.DOColor(Color.white, slidefadeInDuration); 
@@ -61,8 +85,12 @@ public class CutSceneHandler : MonoBehaviour {
 
 		yield return new WaitForSeconds(slideWaitTime);
 		
+		playing = false;
+	}
+	public IEnumerator FadeSlideOut(Slide slide)
+	{
 		slideText.DOColor(Color.clear, slidefadeOutDuration); 
 		slideImage.DOColor(Color.clear, slidefadeOutDuration);
-		yield return new WaitForSeconds(slidefadeOutDuration);
+		yield return new WaitForSeconds(slidefadeOutDuration);	
 	}
 }
