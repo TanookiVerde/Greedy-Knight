@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d37e171737c48c84d8a2fb6e94fec18c
+guid: 208e4ac12fbbbed44a7beb467db88e9b
 TextureImporter:
   fileIDToRecycleName:
     21300000: spritesheet4_0
@@ -11,7 +11,7 @@ TextureImporter:
     21300012: spritesheet4_6
     21300014: spritesheet4_7
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -29,6 +29,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -39,7 +41,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -51,7 +53,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 400
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -86,6 +88,28 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -104,7 +128,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: afd10c4a66c89374a902590a3d6f0d69
+      spriteID: b64f08487dea3fa4ab88307ac4418a31
       vertices: []
       indices: 
       edges: []
@@ -124,7 +148,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee59f989ab0bee841b26cfa452e3bbf2
+      spriteID: 071cebb2484f59c4289d640e59705a50
       vertices: []
       indices: 
       edges: []
@@ -144,7 +168,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e67a6454b6f74b44099c61d3aa64019d
+      spriteID: 6b9c3876192489f42be1bd181395c7dc
       vertices: []
       indices: 
       edges: []
@@ -164,7 +188,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e3e74a21471f6174c99714db1f55ba45
+      spriteID: dc7d51a0216108d4a92a72ea1dbefe86
       vertices: []
       indices: 
       edges: []
@@ -184,7 +208,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f53634c9237661745a0b5462b3ab46b0
+      spriteID: 3f2e332e66e3fcb40974efb6375dd3b7
       vertices: []
       indices: 
       edges: []
@@ -204,7 +228,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 73fda46aa8224c348b0cc7c62b3a7341
+      spriteID: 0a98460b06d8a454e918963d89703ff9
       vertices: []
       indices: 
       edges: []
@@ -224,7 +248,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4064d1dace95e6347a8e3a882d04d009
+      spriteID: 80bc526d10e0bdf4e9e42eed3a590992
       vertices: []
       indices: 
       edges: []
@@ -244,7 +268,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 38cc14441cd9eea448683086ad57dc3d
+      spriteID: e4655280766b6a8478c949767699d68d
       vertices: []
       indices: 
       edges: []
@@ -252,12 +276,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 794dcec71bdf9df4fabb245ae9e6967a
+    spriteID: 40a333b70763470488c9ff8cce6b4055
     vertices: []
     indices: 
     edges: []
     weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

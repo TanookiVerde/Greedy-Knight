@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8b9cbea4ca981af4784c0d076e673364
+guid: 365ad858da5b97045b0988efc9d27dc0
 TextureImporter:
   fileIDToRecycleName:
     21300000: diamantes_0
@@ -9,7 +9,7 @@ TextureImporter:
     21300008: diamantes_4
     21300010: diamantes_5
   externalObjects: {}
-  serializedVersion: 5
+  serializedVersion: 7
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -27,6 +27,8 @@ TextureImporter:
     heightScale: 0.25
     normalMapFilter: 0
   isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -37,7 +39,7 @@ TextureImporter:
     serializedVersion: 2
     filterMode: -1
     aniso: -1
-    mipBias: -1
+    mipBias: -100
     wrapU: 1
     wrapV: 1
     wrapW: 1
@@ -49,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 500
+  spritePixelsToUnits: 350
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -84,6 +86,28 @@ TextureImporter:
     allowsAlphaSplitting: 0
     overridden: 0
     androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -92,9 +116,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 1
-        width: 211
-        height: 170
+        y: 0
+        width: 215.16667
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -102,7 +126,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ec7007888029ae946bd14a8ccd1222ca
+      spriteID: 9286e06202013b24a99fcb748ee6b5ac
       vertices: []
       indices: 
       edges: []
@@ -112,9 +136,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 215
-        y: 1
-        width: 213
-        height: 171
+        y: 0
+        width: 215.16667
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -122,7 +146,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3331bb5103e45304b860211f016299cd
+      spriteID: 5566fe4a89b2acb4cb735ec51adc5ad9
       vertices: []
       indices: 
       edges: []
@@ -131,10 +155,10 @@ TextureImporter:
       name: diamantes_2
       rect:
         serializedVersion: 2
-        x: 429
-        y: 1
-        width: 211
-        height: 170
+        x: 430
+        y: 0
+        width: 215.16667
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -142,7 +166,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 91f4d0f91e4a092418e61ea2b95ca0fa
+      spriteID: 8e6954352d176bf499157fb44859cee2
       vertices: []
       indices: 
       edges: []
@@ -151,10 +175,10 @@ TextureImporter:
       name: diamantes_3
       rect:
         serializedVersion: 2
-        x: 644
-        y: 1
-        width: 213
-        height: 171
+        x: 645
+        y: 0
+        width: 215.16667
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -162,7 +186,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 972165e92d850c64bb170e36fb7791a4
+      spriteID: 595ad8a87db454a46ba684a667a9878c
       vertices: []
       indices: 
       edges: []
@@ -171,10 +195,10 @@ TextureImporter:
       name: diamantes_4
       rect:
         serializedVersion: 2
-        x: 863
+        x: 860
         y: 0
-        width: 211
-        height: 170
+        width: 215.16667
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -182,7 +206,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 59fbe45cdbe5e174a8de9af265d7c08f
+      spriteID: 45d1e971687ad4148bdcbd8825d880a6
       vertices: []
       indices: 
       edges: []
@@ -191,10 +215,10 @@ TextureImporter:
       name: diamantes_5
       rect:
         serializedVersion: 2
-        x: 1078
+        x: 1075
         y: 0
-        width: 213
-        height: 171
+        width: 215.16667
+        height: 172
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -202,7 +226,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd0b318fbd764374db601ae611cf2a98
+      spriteID: e59989b55644fce49a6e84962e2fe05a
       vertices: []
       indices: 
       edges: []
@@ -210,12 +234,14 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0d9a2d2c36a0a674f96b49a416ab1d3d
+    spriteID: 088cb1fe0e25f0e4980b53d15a3fd400
     vertices: []
     indices: 
     edges: []
     weights: []
   spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

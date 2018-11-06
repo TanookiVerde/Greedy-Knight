@@ -2,52 +2,47 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Direction
-{
-    RIGHT, LEFT
-}
-
 public class MovingPlatform : MonoBehaviour
 {
-	[Header("Movement Parameters")]
-    public float speed;
-    public float size;
-    public Direction startDirection;
-    private int bias;
-    
-    private Rigidbody2D myRB;
-    private SpriteRenderer mySR;
-    
-	private void Start ()
-	{
-        bias = startDirection == Direction.RIGHT ? 1 : -1;
+    [Header("Preferences")]
+    public float velocity;
+    public float screwRotationVelocity;
 
-        myRB = GetComponent<Rigidbody2D>();
-        mySR = GetComponent<SpriteRenderer>();
-        InitializeSpriteFlip();
-	}
+    private int directionBias = 1;
+    private new Rigidbody2D rigidbody2D;
+    private Transform screw;
+
+    private void Start()
+    {
+        rigidbody2D = GetComponent<Rigidbody2D>();
+        screw = transform.GetChild(0);
+    }
+    private void Update()
+    {
+        RotateScrew();
+    }
     private void FixedUpdate()
     {
-        if(HasWall())
-        {
-            bias *= -1;
-        }
-        myRB.velocity = new Vector2(speed*bias, 0);
+        Move();
     }
-	private void InitializeSpriteFlip()
-	{
-		mySR.flipX = bias == 1;
-	}
-    private bool HasWall()
+    private void Move()
     {
-        Physics2D.queriesStartInColliders = false;
-        RaycastHit2D ray = Physics2D.Raycast(
-            transform.position,
-            Vector2.right,
-            size * bias,
-            LayerMask.GetMask("Ground", "Obstacles")
-            );
-        Physics2D.queriesStartInColliders = true;
-		return ray.collider != null;
+        rigidbody2D.velocity = new Vector2(velocity * directionBias, 0);
+    }
+    private void RotateScrew()
+    {
+        screw.Rotate(new Vector3(0, 0, screwRotationVelocity*directionBias));
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!collision.gameObject.CompareTag("Player"))
+            directionBias *= -1;
+        else
+            collision.gameObject.GetComponent<KnightController>().ModifyVelocity(0);
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            collision.gameObject.GetComponent<KnightController>().ModifyVelocity(1);
     }
 }

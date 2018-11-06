@@ -1,54 +1,59 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
-[RequireComponent(typeof(Collider2D))]
 public class Stalactite : MonoBehaviour {
+    private State state;
+    public float distanceToShake;
+    public float distanceToFall;
+    public float finalGravityScale;
+    public float finalDownForce;
 
-	public float dropPerFrame = 0.01f;
-    public int frameDuration = 50;
-    public float timeBetweenFrames = 0.05f;
+    private KnightController knight;
+    private Animator animator;
+    private new Rigidbody2D rigidbody2D;
 
-	[Header("Grounded")]
-    [SerializeField] private Transform groundPosition;
-    [SerializeField] private Vector2 groundBoxCastSize;
-    
-	public void StartActions()
-	{
-		StartCoroutine(Shake());		
-	}
-	IEnumerator Shake()
-	{
-		Vector3 startPosition = transform.position;
-		Vector2 circlePosition;
-		for(int i = 0; i < frameDuration; i ++)
-		{
-			circlePosition = Random.insideUnitCircle/20;
-			transform.position = startPosition + (Vector3)circlePosition;
-			yield return new WaitForSeconds(timeBetweenFrames);
-		}
-		StartCoroutine(Fall());
-	}
-	IEnumerator Fall()
-	{
-		while(!IsGrounded())
-		{
-			transform.position -= new Vector3(0, dropPerFrame);
-			yield return new WaitForFixedUpdate();
-		}
-		gameObject.layer = LayerMask.NameToLayer("Ground");
-		gameObject.tag = "Untagged";
-		this.enabled = false;
-	}
-	private bool IsGrounded()
-    {
-        RaycastHit2D boxCast = Physics2D.BoxCast(groundPosition.position,
-                groundBoxCastSize, 0, Vector2.up, 0, LayerMask.GetMask("Ground", "Stop"));
-
-        if (boxCast.collider != null)
+	private void Start () {
+        knight = FindObjectOfType<KnightController>();
+        animator = GetComponent<Animator>();
+        rigidbody2D = GetComponent<Rigidbody2D>();
+    }
+	private void Update () {
+        if(knight != null)
         {
-			return true;
+            float distance = (knight.transform.position - transform.position).x;
+            distance = Mathf.Abs(distance);
+            if (state == State.SHAKING && distance < distanceToFall)
+                Fall();
+            else if(state == State.IDLE && distance < distanceToShake)
+                Shake();
         }
-        return false;
+	}
+    private void Shake()
+    {
+        animator.Play("shake");
+        state = State.SHAKING;
+    }
+    private void Fall()
+    {
+        animator.Play("idle");
+        state = State.FALLING;
+        rigidbody2D.AddForce(Vector2.down * finalDownForce);
+        rigidbody2D.gravityScale = finalGravityScale;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+            collision.gameObject.GetComponent<KnightController>().Die();
+        else if (collision.gameObject.CompareTag("Ground"))
+        {
+            Destroy(rigidbody2D);
+            Destroy(GetComponent<BoxCollider2D>());
+        }
+    }
+    public enum State
+    {
+        IDLE, SHAKING, FALLING
     }
 }

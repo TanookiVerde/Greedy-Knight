@@ -4,7 +4,7 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Obstacles
+  - Ground
   - End
   layers:
   - Default
@@ -16,13 +16,13 @@ TagManager:
   - 
   - 
   - Ground
-  - Obstacles
-  - Goods
-  - Donut
-  - End
-  - Stop
-  - Beauty
-  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
