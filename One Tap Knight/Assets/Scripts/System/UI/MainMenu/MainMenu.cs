@@ -12,11 +12,17 @@ public class MainMenu : MonoBehaviour {
     public new Transform camera;
     public CanvasGroup transition;
 
+    public RectTransform logo;
+    public List<RectTransform> buttons;
+    public RectTransform logoFinalPosition;
+    public TMP_Text touchToStart;
+
     public float movementDuration;
     public float transitionTime;
     public float camInitialPosition;
     public float camFinalPosition;
 
+    private bool opened;
 
     private void Start()
     {
@@ -32,6 +38,22 @@ public class MainMenu : MonoBehaviour {
             yield return new WaitForSeconds(movementDuration - transitionTime);
             transition.DOFade(1, transitionTime);
             yield return new WaitForSeconds(transitionTime);
+        }
+    }
+    public void OpenMenu()
+    {
+        if (!opened)
+        {
+            touchToStart.DOFade(0, 0.25f);
+            logo.DOAnchorPos(logoFinalPosition.anchoredPosition, 0.25f);
+            logo.DOScale(logoFinalPosition.localScale, 0.25f);
+            logo.DORotate(logoFinalPosition.rotation.eulerAngles, 0.25f);
+            for (int i = 0; i < buttons.Count; i++) 
+            {
+                var pos = buttons[i].anchoredPosition.x;
+                buttons[i].DOAnchorPosX(pos - SCREEN_WIDTH, 0.25f + i * 0.15f);
+            }
+            opened = true;
         }
     }
 }

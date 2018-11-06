@@ -10,8 +10,7 @@ public class CameraMovement : MonoBehaviour {
     public float sleepyTime;
     public float duration;
 
-    public float cameraHorizontalOffset;
-    public float cameraVerticalOffset = 1f;
+    private Vector2 offset;
 
     private Transform knight;
     private new Camera camera;
@@ -25,6 +24,7 @@ public class CameraMovement : MonoBehaviour {
         knight = FindObjectOfType<KnightController>().transform;
         camera = FindObjectOfType<Camera>();
         finalSize = camera.fieldOfView;
+        offset = knight.position - transform.position;
     }
     private void FixedUpdate()
     {
@@ -33,7 +33,7 @@ public class CameraMovement : MonoBehaviour {
     }
     private void FollowPlayer()
     {
-        Vector3 targetPosition = new Vector3(knight.position.x - cameraHorizontalOffset, knight.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(knight.position.x, knight.position.y, transform.position.z) - (Vector3) offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
         
         transform.position = smoothedPosition;
