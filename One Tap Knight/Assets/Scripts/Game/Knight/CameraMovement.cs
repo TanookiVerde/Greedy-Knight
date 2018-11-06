@@ -11,11 +11,14 @@ public class CameraMovement : MonoBehaviour {
     public float duration;
 
     public float cameraHorizontalOffset;
+    public float cameraVerticalOffset = 1f;
 
     private Transform knight;
     private new Camera camera;
 
     private bool canFollow = false;
+
+    public float smoothSpeed = 0.125f;
 
     private void Start()
     {
@@ -23,14 +26,17 @@ public class CameraMovement : MonoBehaviour {
         camera = FindObjectOfType<Camera>();
         finalSize = camera.fieldOfView;
     }
-    private void LateUpdate()
+    private void FixedUpdate()
     {
         if(canFollow && knight != null)
             FollowPlayer();
     }
     private void FollowPlayer()
     {
-        transform.position = new Vector3(knight.position.x - cameraHorizontalOffset, transform.position.y, transform.position.z);
+        Vector3 targetPosition = new Vector3(knight.position.x - cameraHorizontalOffset, knight.position.y, transform.position.z);
+        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
+        
+        transform.position = smoothedPosition;
     }
     public IEnumerator StartAnimation()
     {

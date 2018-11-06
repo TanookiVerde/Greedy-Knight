@@ -38,7 +38,9 @@ public class KnightController : MonoBehaviour {
     private void Move()
     {
         if(currentTax != 0 && !isPounding)
-            rigidbody2D.velocity = new Vector2(movingVelocity * currentTax, rigidbody2D.velocity.y);
+        {
+            rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * movingVelocity * currentTax, rigidbody2D.velocity.y);
+        }
     }
     private void Jump()
     {

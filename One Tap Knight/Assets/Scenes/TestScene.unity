@@ -1373,6 +1373,36 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 441039686}
   m_CullTransparentMesh: 0
+--- !u!1 &454898536 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1391111540655186, guid: a150e4a9b6401ca489152bd2ecd2d08d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1882568874}
+--- !u!61 &454898537
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 454898536}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.030722857, y: -0.017555833}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 6, y: 6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.7103286, y: 0.9297769}
+  m_EdgeRadius: 0
 --- !u!1001 &462553152
 Prefab:
   m_ObjectHideFlags: 0
@@ -1661,6 +1691,8 @@ MonoBehaviour:
   sleepyTime: 0.5
   duration: 2
   cameraHorizontalOffset: -4
+  cameraVerticalOffset: -0.5
+  smoothSpeed: 0.125
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -24471,8 +24503,8 @@ Tilemap:
   m_Tiles:
   - first: {x: -3, y: -4, z: 0}
     second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -24480,8 +24512,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 1, y: -3, z: 0}
     second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -24525,8 +24557,8 @@ Tilemap:
       m_ColliderType: 1
   - first: {x: 5, y: -2, z: 0}
     second:
-      m_TileIndex: 0
-      m_TileSpriteIndex: 0
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_ObjectToInstantiate: {fileID: 0}
@@ -24570,16 +24602,16 @@ Tilemap:
       m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
-  - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: 10ef910b8521e234e8ec0df43bbb4d6c, type: 2}
-  - m_RefCount: 8
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 11
     m_Data: {fileID: 11400000, guid: fe6cf7d382968324d9fbe7314f8c7648, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   m_TileSpriteArray:
-  - m_RefCount: 3
-    m_Data: {fileID: 21300000, guid: cabdc05877b9f4645a163f7c1cb121a3, type: 3}
-  - m_RefCount: 8
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 11
     m_Data: {fileID: 21300000, guid: 7ecd451183633274a8bfedba47b52893, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -26555,7 +26587,18 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 50061611181763778, guid: a150e4a9b6401ca489152bd2ecd2d08d,
+        type: 2}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 50061611181763778, guid: a150e4a9b6401ca489152bd2ecd2d08d,
+        type: 2}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: ec3e887c68e49f84482f45b77ae438ff, type: 2}
+    m_RemovedComponents:
+    - {fileID: 58790709780538226, guid: a150e4a9b6401ca489152bd2ecd2d08d, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: a150e4a9b6401ca489152bd2ecd2d08d, type: 2}
   m_IsPrefabAsset: 0
 --- !u!1 &1962936001

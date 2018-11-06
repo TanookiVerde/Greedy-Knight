@@ -22,7 +22,7 @@ public class EndPanel : MonoBehaviour {
     {
         darkBackground.DOFade(1, timeToAppear);
         infoPanel.DOFade(0, 0);
-        GetComponent<RectTransform>().DOAnchorPosX(FINAL_POSITION, timeToAppear);
+        GetComponent<RectTransform>().DOAnchorPosY(FINAL_POSITION, timeToAppear);
         StartCoroutine(ShowInfoPanel());
     }
     private IEnumerator ShowInfoPanel()
