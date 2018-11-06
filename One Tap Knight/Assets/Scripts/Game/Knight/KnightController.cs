@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class KnightController : MonoBehaviour {
     public GameObject deathSpawn;
+    public KnightSound sound;
 
     [Header("Preferences")]
     public float movingVelocity;
@@ -26,6 +27,7 @@ public class KnightController : MonoBehaviour {
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
+        sound = GetComponent<KnightSound>();
     }
     public void MovementLoop()
     {
@@ -46,6 +48,7 @@ public class KnightController : MonoBehaviour {
     {
         if (IsGrounded() || jumpsRemaining > 0)
         {
+            sound.PlaySound(SoundType.JUMP);
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
             rigidbody2D.AddForce(Vector2.up * jumpIntensity);
             jumpsRemaining--;
@@ -65,11 +68,13 @@ public class KnightController : MonoBehaviour {
         rigidbody2D.AddForce(Vector2.up * jumpIntensity * -1);
         while (!IsGrounded())
             yield return new WaitForEndOfFrame();
+        sound.PlaySound(SoundType.FALL);
         yield return new WaitForSeconds(groundPoundStopTime);
         isPounding = false;
     }
     public void Die()
     {
+        sound.PlaySound(SoundType.DIE);
         Instantiate(deathSpawn, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }

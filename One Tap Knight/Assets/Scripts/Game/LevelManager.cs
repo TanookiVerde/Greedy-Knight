@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour {
     }
     private IEnumerator LevelLoop()
     {
+        Transition.transition.InstaShow();
+        Transition.transition.TransiteFrom();
         yield return cameraMovement.StartAnimation();
         cameraMovement.StartFollowing();
         while (!LevelFinished())

@@ -17,6 +17,9 @@ public class MainMenu : MonoBehaviour {
     public RectTransform logoFinalPosition;
     public TMP_Text touchToStart;
 
+    public List<MenuPanel> menus;
+    private int currentPanel;
+
     public float movementDuration;
     public float transitionTime;
     public float camInitialPosition;
@@ -55,5 +58,9 @@ public class MainMenu : MonoBehaviour {
             }
             opened = true;
         }
+    }
+    public void OpenPanel(int i)
+    {
+        menus[i].Open();
     }
 }
