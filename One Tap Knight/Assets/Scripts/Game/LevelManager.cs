@@ -7,6 +7,7 @@ public class LevelManager : MonoBehaviour {
     private KnightController knight;
     private EndPanel endPanel;
     private GameOverPanel gameOverPanel;
+    private Timer timer;
 
     private void Start()
     {
@@ -14,6 +15,7 @@ public class LevelManager : MonoBehaviour {
         endPanel = FindObjectOfType<EndPanel>();
         gameOverPanel = FindObjectOfType<GameOverPanel>();
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
+        timer = FindObjectOfType<Timer>();
         StartCoroutine(LevelLoop());
     }
     private IEnumerator LevelLoop()
@@ -21,6 +23,7 @@ public class LevelManager : MonoBehaviour {
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
         yield return cameraMovement.StartAnimation();
+        timer.StartTimer(120);
         cameraMovement.StartFollowing();
         while (!LevelFinished())
         {

@@ -28,7 +28,6 @@ public class Transition : MonoBehaviour {
     }
     public void TransiteFrom() {
         GetComponent<Image>().DOFade(0, TRANSITION_DURATION*5);
-        print("HEY");
     }
     private IEnumerator TransiteToAnimation(string name)
     {

@@ -231,9 +231,11 @@ MonoBehaviour:
   jumpIntensity: 800
   jumpLimit: 1
   groundPoundStopTime: 0.1
-  lookDownMinTime: 1
+  lookDownMinTime: 1000
   ground: {fileID: 4151549546103500}
   distanceToGround: 0.2
+  groundBoxCastSize: {x: 1, y: 0.5}
+  jumpsRemaining: 0
   isPounding: 0
   finishedLevel: 0
 --- !u!114 &114737900912982680

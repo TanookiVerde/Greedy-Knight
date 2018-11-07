@@ -35,6 +35,7 @@ public class GameOverPanel : MonoBehaviour {
         menuButton.DOAnchorPosY(menuButton.anchoredPosition.y + 200, 0.10f);
         darkBackground.interactable = true;
         darkBackground.blocksRaycasts = true;
+        retryButton.GetComponent<Button>().Select();
     }
     public void Retry()
     {

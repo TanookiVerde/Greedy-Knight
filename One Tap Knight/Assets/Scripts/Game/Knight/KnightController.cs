@@ -40,7 +40,6 @@ public class KnightController : MonoBehaviour {
     }
     public void MovementLoop()
     {
-        print(jumpsRemaining);
         Move();
         if (IsGrounded() || jumpsRemaining > 0)
         {
@@ -107,10 +106,6 @@ public class KnightController : MonoBehaviour {
         sound.PlaySound(SoundType.DIE);
         Instantiate(deathSpawn, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
-    }
-    public void GetDiamond()
-    {
-        print("PLAYER GOT A DIAMOND");
     }
     public void ModifyVelocity(float tax)
     {
