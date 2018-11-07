@@ -9,15 +9,16 @@ public class CameraMovement : MonoBehaviour {
 
     public float sleepyTime;
     public float duration;
+    public float smoothSpeed = 0.125f;
 
     private Vector2 offset;
+    public float distanceLookDown;
 
     private Transform knight;
     private new Camera camera;
 
     private bool canFollow = false;
 
-    public float smoothSpeed = 0.125f;
 
     private void Start()
     {
@@ -58,5 +59,13 @@ public class CameraMovement : MonoBehaviour {
         Sequence s = DOTween.Sequence();
         s.Append(camera.DOFieldOfView(finalSize * 1.1f, 0.5f));
         s.Append(camera.DOFieldOfView(finalSize, 0.5f));
+    }
+    public void LookDown()
+    {
+        offset += Vector2.up * distanceLookDown;
+    }
+    public void ResetLook()
+    {
+        offset -= Vector2.up * distanceLookDown;
     }
 }

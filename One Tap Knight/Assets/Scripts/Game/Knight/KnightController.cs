@@ -12,6 +12,7 @@ public class KnightController : MonoBehaviour {
     public float jumpIntensity;
     public int jumpLimit;
     public float groundPoundStopTime;
+    public float lookDownMinTime;
 
     [Header("Ground Check")]
     public Transform ground;
@@ -33,9 +34,14 @@ public class KnightController : MonoBehaviour {
     {
         Move();
         if (Input.GetKeyDown(KeyCode.W))
+        {
             Jump();
-        if (Input.GetKeyDown(KeyCode.S) && !isPounding)
-            Pound();
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && !isPounding)
+        {
+            StartCoroutine(PoundCoroutine());
+            StartCoroutine(LookDownCoroutine());
+        }
     }
     private void Move()
     {
@@ -56,10 +62,7 @@ public class KnightController : MonoBehaviour {
     }
     private void Pound()
     {
-        if (Input.GetKeyDown(KeyCode.S) && !isPounding)
-        {
-            StartCoroutine(PoundCoroutine());
-        }
+        StartCoroutine(PoundCoroutine());
     }
     private IEnumerator PoundCoroutine()
     {
@@ -71,6 +74,23 @@ public class KnightController : MonoBehaviour {
         sound.PlaySound(SoundType.FALL);
         yield return new WaitForSeconds(groundPoundStopTime);
         isPounding = false;
+    }
+    private IEnumerator LookDownCoroutine()
+    {
+        float time = 0;
+        while (time < lookDownMinTime)
+        {
+            if(!Input.GetKey(KeyCode.S))
+                yield break;
+            time += Time.deltaTime;
+            yield return null;
+        }
+        Camera.main.GetComponent<CameraMovement>().LookDown();
+        while (Input.GetKey(KeyCode.S))
+        {
+            yield return null;
+        }
+        Camera.main.GetComponent<CameraMovement>().ResetLook();
     }
     public void Die()
     {

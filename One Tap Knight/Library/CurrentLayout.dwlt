@@ -106,10 +106,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 681, y: 492}
+  m_MinSize: {x: 753, y: 492}
   m_MaxSize: {x: 18008, y: 14042}
   vertical: 0
-  controlID: 26806
+  controlID: 2315
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -130,10 +130,10 @@ MonoBehaviour:
     y: 0
     width: 1233
     height: 947
-  m_MinSize: {x: 404, y: 492}
+  m_MinSize: {x: 476, y: 492}
   m_MaxSize: {x: 14006, y: 14042}
   vertical: 1
-  controlID: 26843
+  controlID: 2316
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -157,7 +157,7 @@ MonoBehaviour:
   m_MinSize: {x: 404, y: 221}
   m_MaxSize: {x: 8004, y: 4021}
   vertical: 0
-  controlID: 26844
+  controlID: 2317
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -229,10 +229,10 @@ MonoBehaviour:
     y: 593
     width: 1233
     height: 354
-  m_MinSize: {x: 336, y: 271}
+  m_MinSize: {x: 476, y: 271}
   m_MaxSize: {x: 14006, y: 10021}
   vertical: 0
-  controlID: 26866
+  controlID: 2339
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -277,15 +277,15 @@ MonoBehaviour:
     y: 0
     width: 685
     height: 354
-  m_MinSize: {x: 104, y: 121}
+  m_MinSize: {x: 244, y: 221}
   m_MaxSize: {x: 4004, y: 4021}
-  m_ActualView: {fileID: 24}
+  m_ActualView: {fileID: 22}
   m_Panes:
   - {fileID: 22}
   - {fileID: 23}
   - {fileID: 24}
-  m_Selected: 2
-  m_LastSelected: 1
+  m_Selected: 0
+  m_LastSelected: 2
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -309,7 +309,7 @@ MonoBehaviour:
   m_MinSize: {x: 277, y: 271}
   m_MaxSize: {x: 4002, y: 8021}
   vertical: 1
-  controlID: 26807
+  controlID: 2467
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -468,7 +468,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: c8e5f9ffcae7f9ffca21faff6c22faffaa24faff166cfafffa92fafff8eeffffd2f6ffff6af8ffffe4fbffff000000004c3a0000e83a0000ee7c0000d67f000042800000c2800000
+    m_ExpandedIDs: 28e3ffff32f7ffffe4fbffff00000000a63f000090400000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -523,9 +523,9 @@ MonoBehaviour:
   m_isRotationLocked: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 0, y: -0.48, z: -10}
+    m_Target: {x: 2.2446585, y: -6.544852, z: -0.07421875}
     speed: 2
-    m_Value: {x: 0, y: -0.48, z: -10}
+    m_Value: {x: 2.2446585, y: -6.544852, z: -0.07421875}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -557,9 +557,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 22
+    m_Target: 19.975235
     speed: 2
-    m_Value: 22
+    m_Value: 19.975235
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -633,20 +633,20 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Game/Obstacles
+    - Assets/Scripts/Game/Knight
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
-  - Assets/Scripts/Game/Obstacles
+  - Assets/Scripts/Game/Knight
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\pedro\Documents\GitHub\One-Tap-Knight\One Tap Knight
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 68}
-    m_SelectedIDs: 3c2a0000
-    m_LastClickedID: 10812
-    m_ExpandedIDs: 00000000322a0000582a00004c2b0000e22b0000ee2b0000062c00004c2c0000742c0000fc2c0000322d0000242e0000562e0000a82e0000362f000000ca9a3b
+    m_SelectedIDs: 7c2e0000
+    m_LastClickedID: 11900
+    m_ExpandedIDs: 000000003a2a0000602a0000542b0000ea2b0000f62b00000e2c0000542c00007c2c0000042d00003a2d00002c2e0000602e0000b42e0000422f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -674,7 +674,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000322a0000582a00004c2b0000e22b0000ee2b0000062c00004c2c0000742c0000fc2c0000322d0000242e0000562e0000a82e0000362f000000ca9a3b
+    m_ExpandedIDs: 000000003a2a0000602a0000542b0000ea2b0000f62b00000e2c0000542c00007c2c0000042d00003a2d00002c2e0000602e0000b42e0000422f000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -775,7 +775,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 550
     y: 685
-    width: 682
+    width: 681
     height: 333
   m_PersistentViewDataDictionary: {fileID: 0}
   m_PreviewResizer:
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_AnimEditor: {fileID: 0}
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: 48852
+  m_LastSelectedObjectID: 16212
 --- !u!114 &24
 MonoBehaviour:
   m_ObjectHideFlags: 52
