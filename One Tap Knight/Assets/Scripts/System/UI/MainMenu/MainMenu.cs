@@ -30,6 +30,7 @@ public class MainMenu : MonoBehaviour {
     private void Start()
     {
         StartCoroutine(MenuLoop());
+        MemoryCard.Load();
     }
     private IEnumerator MenuLoop()
     {
