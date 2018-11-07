@@ -17,27 +17,39 @@ public class KnightController : MonoBehaviour {
     [Header("Ground Check")]
     public Transform ground;
     public float distanceToGround;
+    public Vector2 groundBoxCastSize;
 
     private new Rigidbody2D rigidbody2D;
     private float currentTax = 1;
-    private int jumpsRemaining;
+    [HideInInspector]
+    public int jumpsRemaining;
 
     public bool isPounding;
     public bool finishedLevel;
 
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireCube(ground.position, groundBoxCastSize);
+    }
     private void Start()
     {
+        jumpsRemaining = jumpLimit;
         rigidbody2D = GetComponent<Rigidbody2D>();
         sound = GetComponent<KnightSound>();
+        Time.timeScale = 1.2f;
     }
     public void MovementLoop()
     {
+        print(jumpsRemaining);
         Move();
-        if (Input.GetKeyDown(KeyCode.W))
+        if (IsGrounded() || jumpsRemaining > 0)
         {
-            Jump();
+            if (Input.GetAxisRaw("Vertical") > 0)
+            {
+                Jump();
+            }                                                   
         }
-        else if (Input.GetKeyDown(KeyCode.S) && !isPounding)
+        if (Input.GetAxisRaw("Vertical") < 0 && !isPounding)
         {
             StartCoroutine(PoundCoroutine());
             StartCoroutine(LookDownCoroutine());
@@ -47,18 +59,16 @@ public class KnightController : MonoBehaviour {
     {
         if(currentTax != 0 && !isPounding)
         {
-            rigidbody2D.velocity = new Vector2(Input.GetAxis("Horizontal") * movingVelocity * currentTax, rigidbody2D.velocity.y);
+            rigidbody2D.velocity = new Vector2(movingVelocity * currentTax, rigidbody2D.velocity.y);
         }
     }
     private void Jump()
     {
-        if (IsGrounded() || jumpsRemaining > 0)
-        {
             sound.PlaySound(SoundType.JUMP);
             rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
             rigidbody2D.AddForce(Vector2.up * jumpIntensity);
             jumpsRemaining--;
-        }
+        
     }
     private void Pound()
     {
@@ -106,12 +116,25 @@ public class KnightController : MonoBehaviour {
     {
         currentTax = tax;
     }
-    public bool IsGrounded()
+    /*public bool IsGrounded()
     {
         var ray = Physics2D.Raycast(ground.position, Vector2.down, distanceToGround, 1 << LayerMask.NameToLayer("Ground"));
         bool b = ray.collider != null;
         if(b) jumpsRemaining = jumpLimit;
         return b;
+    }*/
+    private bool IsGrounded()
+    {
+        if (rigidbody2D.velocity.y > 0) return false;
+        RaycastHit2D boxCast = Physics2D.BoxCast(ground.position,
+                groundBoxCastSize, 0, Vector2.up, 0, LayerMask.GetMask("Ground", "Stop"));
+
+        if(boxCast.collider != null)
+        {
+            jumpsRemaining = jumpLimit;;
+            return true;
+        }
+        return false;
     }
     public void OnTriggerEnter2D(Collider2D collider)
     {
