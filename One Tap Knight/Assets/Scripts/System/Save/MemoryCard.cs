@@ -45,11 +45,11 @@ public class AdventureLog
 
     public AdventureLog()
     {
-        levels.Add(new Level("Level 1", 60));
-        levels.Add(new Level("Level 2", 120));
-        levels.Add(new Level("Level 3", 80));
-        levels.Add(new Level("Level 4", 100));
-        levels.Add(new Level("Level 5", 90));
+        levels.Add(new Level("Level 1"));
+        levels.Add(new Level("Level 2"));
+        levels.Add(new Level("Level 3"));
+        levels.Add(new Level("Level 4"));
+        levels.Add(new Level("Level 5"));
     }
 }
 [System.Serializable]
@@ -58,13 +58,9 @@ public class Level
     public string title;
     public bool completed;
     public bool collectedAllDiamonds;
-    public bool speedRunned;
-    public int currentTime;
-    public int timeRecord;
 
-    public Level(string title, int timeRecord)
+    public Level(string title)
     {
         this.title = title;
-        this.timeRecord = timeRecord;
     }
 }
