@@ -14,10 +14,8 @@ public class LevelButton : MonoBehaviour {
     public void Initialize(Level level, int index)
     {
         levelTitle.text = level.title;
-        timer.text = level.currentTime + "/" + level.timeRecord;
         SetRibbon(0, level.completed);
         SetRibbon(1, level.collectedAllDiamonds);
-        SetRibbon(2, level.speedRunned);
         SetButtonAction(index);
     }
     private void SetRibbon(int i, bool b)
