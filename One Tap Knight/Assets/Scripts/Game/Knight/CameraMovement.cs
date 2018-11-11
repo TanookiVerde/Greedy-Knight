@@ -9,7 +9,8 @@ public class CameraMovement : MonoBehaviour {
 
     public float sleepyTime;
     public float duration;
-    public float smoothSpeed = 0.125f;
+    public float smoothSpeed = 0.225f;
+    public float yOffset;
 
     private Vector2 offset;
     public float distanceLookDown;
@@ -34,7 +35,7 @@ public class CameraMovement : MonoBehaviour {
     }
     private void FollowPlayer()
     {
-        Vector3 targetPosition = new Vector3(knight.position.x, knight.position.y, transform.position.z) - (Vector3) offset;
+        Vector3 targetPosition = new Vector3(knight.position.x, knight.position.y - yOffset, transform.position.z) - (Vector3) offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
         
         transform.position = smoothedPosition;

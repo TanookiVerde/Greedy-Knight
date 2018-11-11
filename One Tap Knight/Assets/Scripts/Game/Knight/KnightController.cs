@@ -41,14 +41,15 @@ public class KnightController : MonoBehaviour {
     public void MovementLoop()
     {
         Move();
-        if (IsGrounded() || jumpsRemaining > 0)
+        bool grounded = IsGrounded();
+        if (grounded || jumpsRemaining > 0)
         {
-            if (Input.GetAxisRaw("Vertical") > 0)
+            if (Input.GetButtonDown("Jump"))
             {
                 Jump();
             }                                                   
         }
-        if (Input.GetAxisRaw("Vertical") < 0 && !isPounding)
+        if (!grounded && Input.GetButtonDown("Pound") && !isPounding)
         {
             StartCoroutine(PoundCoroutine());
             StartCoroutine(LookDownCoroutine());
