@@ -13,6 +13,8 @@ public class Diamond : MonoBehaviour
     {
         Diamond.totalDiamonds++;
         Diamond.collectedDiamonds = 0;
+        if(FindObjectOfType<DiamondCounter>() != null)
+            FindObjectOfType<DiamondCounter>().UpdateDiamondCounter();
     }
     public void ResetDiamonds()
     {

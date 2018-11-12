@@ -23,7 +23,6 @@ public class LevelManager : MonoBehaviour {
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
         yield return cameraMovement.StartAnimation();
-        timer.StartTimer(120);
         cameraMovement.StartFollowing();
         while (!LevelFinished())
         {

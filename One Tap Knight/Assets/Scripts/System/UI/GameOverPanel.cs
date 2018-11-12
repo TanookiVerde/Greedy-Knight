@@ -39,10 +39,10 @@ public class GameOverPanel : MonoBehaviour {
     }
     public void Retry()
     {
-        SceneManager.LoadScene("TestScene");
+        Transition.transition.TransiteTo("TestScene");
     }
     public void ToMenu()
     {
-        SceneManager.LoadScene("TestScene");
+        Transition.transition.TransiteTo("MainMenu");
     }
 }

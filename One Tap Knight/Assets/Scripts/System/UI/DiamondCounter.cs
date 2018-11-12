@@ -10,11 +10,17 @@ public class DiamondCounter : MonoBehaviour {
 
     private void Start()
     {
-        UpdateDiamondCounter();
+        ResetCounter();
     }
     public void UpdateDiamondCounter()
     {
         value.text = Diamond.collectedDiamonds.ToString();
         maxValue.text = Diamond.totalDiamonds.ToString();
+    }
+    private void ResetCounter()
+    {
+        Diamond.totalDiamonds = 0;
+        Diamond.collectedDiamonds = 0;
+        UpdateDiamondCounter();
     }
 }
