@@ -29,6 +29,7 @@ public class MainMenu : MonoBehaviour {
 
     private void Start()
     {
+        Application.targetFrameRate = 60;
         StartCoroutine(MenuLoop());
         MemoryCard.Load();
     }

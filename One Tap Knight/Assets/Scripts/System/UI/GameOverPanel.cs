@@ -22,6 +22,7 @@ public class GameOverPanel : MonoBehaviour {
     }
     private IEnumerator GameOver()
     {
+        Camera.main.GetComponent<AudioSource>().DOPitch(0.9f, 0.5f);
         darkBackground.DOFade(1, 0.5f);
         yield return new WaitForSeconds(0.5f);
         header.DOFade(1, 0.5f);
@@ -39,10 +40,12 @@ public class GameOverPanel : MonoBehaviour {
     }
     public void Retry()
     {
+        Camera.main.GetComponent<AudioSource>().DOFade(0, 0.5f);
         Transition.transition.TransiteTo("TestScene");
     }
     public void ToMenu()
     {
+        Camera.main.GetComponent<AudioSource>().DOFade(0, 0.5f);
         Transition.transition.TransiteTo("MainMenu");
     }
 }
