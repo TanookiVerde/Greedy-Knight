@@ -9,9 +9,12 @@ public class LevelManager : MonoBehaviour {
     private EndPanel endPanel;
     private GameOverPanel gameOverPanel;
     private Timer timer;
+    [SerializeField] private List<GameObject> detailImages;
 
     private void Start()
     {
+        foreach (var img in detailImages)
+            img.SetActive(true);
         knight = FindObjectOfType<KnightController>();
         endPanel = FindObjectOfType<EndPanel>();
         gameOverPanel = FindObjectOfType<GameOverPanel>();

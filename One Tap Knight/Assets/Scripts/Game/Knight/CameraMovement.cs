@@ -31,35 +31,28 @@ public class CameraMovement : MonoBehaviour {
     private void LateUpdate()
     {
         if (canFollow && knight != null)
-        {
-            //transform.position = new Vector3(knight.position.x - offset.x, knight.position.y - offset.y, transform.position.z);
-            transform.position = new Vector3(knight.position.x - offset.x, transform.position.y, transform.position.z);
-        }
+            FollowPlayer();
     }
     private void FixedUpdate()
     {
         if (canFollow && knight != null)
-        {
-            //transform.position = new Vector3(knight.position.x - offset.x, knight.position.y - offset.y, transform.position.z);
-            transform.position = new Vector3(knight.position.x - offset.x, transform.position.y, transform.position.z);
-        }
+            FollowPlayer();
     }
     private void FollowPlayer()
     {
-        Vector3 targetPosition = new Vector3(knight.position.x, knight.position.y - yOffset, transform.position.z) - offset;
-        Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
-        
-        transform.position = smoothedPosition;
+        transform.position = new Vector3(knight.position.x - offset.x, transform.position.y, transform.position.z);
     }
     public IEnumerator StartAnimation()
     {
-        FollowPlayer();
+        /*
         var pos = camera.transform.position;
+        FollowPlayer();
         camera.DOFieldOfView(initialSize, 0);
         camera.transform.position = new Vector3(knight.transform.position.x, knight.transform.position.y, camera.transform.position.z);
         yield return new WaitForSeconds(sleepyTime);
         camera.DOFieldOfView(finalSize, duration);
         camera.transform.DOMove(pos, duration);
+        */
         yield return new WaitForSeconds(duration);
     }
     public void StartFollowing()
