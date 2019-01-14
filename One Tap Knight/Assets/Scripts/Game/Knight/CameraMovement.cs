@@ -12,7 +12,7 @@ public class CameraMovement : MonoBehaviour {
     public float smoothSpeed = 0.225f;
     public float yOffset;
 
-    private Vector2 offset;
+    private Vector3 offset;
     public float distanceLookDown;
 
     private Transform knight;
@@ -28,14 +28,25 @@ public class CameraMovement : MonoBehaviour {
         finalSize = camera.fieldOfView;
         offset = knight.position - transform.position;
     }
+    private void LateUpdate()
+    {
+        if (canFollow && knight != null)
+        {
+            //transform.position = new Vector3(knight.position.x - offset.x, knight.position.y - offset.y, transform.position.z);
+            transform.position = new Vector3(knight.position.x - offset.x, transform.position.y, transform.position.z);
+        }
+    }
     private void FixedUpdate()
     {
-        if(canFollow && knight != null)
-            FollowPlayer();
+        if (canFollow && knight != null)
+        {
+            //transform.position = new Vector3(knight.position.x - offset.x, knight.position.y - offset.y, transform.position.z);
+            transform.position = new Vector3(knight.position.x - offset.x, transform.position.y, transform.position.z);
+        }
     }
     private void FollowPlayer()
     {
-        Vector3 targetPosition = new Vector3(knight.position.x, knight.position.y - yOffset, transform.position.z) - (Vector3) offset;
+        Vector3 targetPosition = new Vector3(knight.position.x, knight.position.y - yOffset, transform.position.z) - offset;
         Vector3 smoothedPosition = Vector3.Lerp(transform.position, targetPosition, smoothSpeed);
         
         transform.position = smoothedPosition;
@@ -63,10 +74,10 @@ public class CameraMovement : MonoBehaviour {
     }
     public void LookDown()
     {
-        offset += Vector2.up * distanceLookDown;
+        offset += Vector3.up * distanceLookDown;
     }
     public void ResetLook()
     {
-        offset -= Vector2.up * distanceLookDown;
+        offset -= Vector3.up * distanceLookDown;
     }
 }

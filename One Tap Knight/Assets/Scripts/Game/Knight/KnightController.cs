@@ -36,7 +36,7 @@ public class KnightController : MonoBehaviour {
         jumpsRemaining = jumpLimit;
         rigidbody2D = GetComponent<Rigidbody2D>();
         sound = GetComponent<KnightSound>();
-        Time.timeScale = 1.2f;
+        Time.timeScale = 1f;
     }
     public void MovementLoop()
     {
@@ -64,11 +64,10 @@ public class KnightController : MonoBehaviour {
     }
     private void Jump()
     {
-            sound.PlaySound(SoundType.JUMP);
-            rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
-            rigidbody2D.AddForce(Vector2.up * jumpIntensity);
-            jumpsRemaining--;
-        
+        sound.PlaySound(SoundType.JUMP);
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+        rigidbody2D.AddForce(Vector2.up * jumpIntensity);
+        jumpsRemaining--;
     }
     private void Pound()
     {
@@ -112,13 +111,6 @@ public class KnightController : MonoBehaviour {
     {
         currentTax = tax;
     }
-    /*public bool IsGrounded()
-    {
-        var ray = Physics2D.Raycast(ground.position, Vector2.down, distanceToGround, 1 << LayerMask.NameToLayer("Ground"));
-        bool b = ray.collider != null;
-        if(b) jumpsRemaining = jumpLimit;
-        return b;
-    }*/
     private bool IsGrounded()
     {
         if (rigidbody2D.velocity.y > 0) return false;
@@ -127,7 +119,7 @@ public class KnightController : MonoBehaviour {
 
         if(boxCast.collider != null)
         {
-            jumpsRemaining = jumpLimit;;
+            jumpsRemaining = jumpLimit;
             return true;
         }
         return false;

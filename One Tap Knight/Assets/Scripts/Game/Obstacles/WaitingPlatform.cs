@@ -37,7 +37,10 @@ public class WaitingPlatform : MonoBehaviour
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
+        {
+            initialized = false;
             collision.gameObject.GetComponent<KnightController>().ModifyVelocity(1);
+        }
 
     }
 }
