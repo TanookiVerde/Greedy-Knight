@@ -36,7 +36,7 @@ public class KnightController : MonoBehaviour {
         jumpsRemaining = jumpLimit;
         rigidbody2D = GetComponent<Rigidbody2D>();
         sound = GetComponent<KnightSound>();
-        Time.timeScale = 1f;
+        Time.timeScale = 1.2f;
     }
     public void MovementLoop()
     {
