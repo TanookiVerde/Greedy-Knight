@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class KnightController : MonoBehaviour {
@@ -36,7 +37,7 @@ public class KnightController : MonoBehaviour {
         jumpsRemaining = jumpLimit;
         rigidbody2D = GetComponent<Rigidbody2D>();
         sound = GetComponent<KnightSound>();
-        Time.timeScale = 1.2f;
+        Time.timeScale = 1f;
     }
     public void MovementLoop()
     {
@@ -67,6 +68,7 @@ public class KnightController : MonoBehaviour {
         sound.PlaySound(SoundType.JUMP);
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
         rigidbody2D.AddForce(Vector2.up * jumpIntensity);
+        GetComponent<Animator>().Play("jump");
         jumpsRemaining--;
     }
     private void Pound()
