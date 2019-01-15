@@ -13,6 +13,7 @@ public class Diamond : MonoBehaviour
     {
         Diamond.totalDiamonds++;
         Diamond.collectedDiamonds = 0;
+        StartCoroutine(AnimationLoop());
         if(FindObjectOfType<DiamondCounter>() != null)
             FindObjectOfType<DiamondCounter>().UpdateDiamondCounter();
     }
@@ -20,6 +21,18 @@ public class Diamond : MonoBehaviour
     {
         Diamond.totalDiamonds = 0;
         Diamond.collectedDiamonds = 0;
+    }
+    private IEnumerator AnimationLoop()
+    {
+        int dir = -1;
+        float time = 0.7f;
+        while (true)
+        {
+            transform.DOMoveY(transform.position.y + dir*0.05f, time);
+            yield return new WaitForSeconds(time);
+            dir *= -1;
+            time = Random.Range(0.3f, 1f);
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

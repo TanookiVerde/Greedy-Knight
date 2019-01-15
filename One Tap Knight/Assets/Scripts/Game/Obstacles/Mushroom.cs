@@ -8,13 +8,8 @@ public class Mushroom : MonoBehaviour {
     public float bounceIntensity;
     public float hatBounceIntensity;
     public float hatBounceDuration;
+    public Transform idealPosition;
 
-	private void Start () {
-		
-	}
-	private void Update () {
-		
-	}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -23,6 +18,7 @@ public class Mushroom : MonoBehaviour {
     private void Bounce(Rigidbody2D player)
     {
         float mod = player.GetComponent<KnightController>().isPounding ? poundModifier : 1;
+        //player.position = idealPosition.position;
         player.GetComponent<KnightSound>().PlaySound(SoundType.JUMP);
         player.GetComponent<KnightController>().isPounding = false;
         player.GetComponent<KnightController>().jumpsRemaining++;

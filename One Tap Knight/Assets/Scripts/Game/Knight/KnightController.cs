@@ -133,6 +133,7 @@ public class KnightController : MonoBehaviour {
         if (collider.gameObject.CompareTag("End"))
         {
             finishedLevel = true;
+            rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
             print("FINISHED");
         }
     }
