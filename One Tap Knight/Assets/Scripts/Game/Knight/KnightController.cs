@@ -58,7 +58,7 @@ public class KnightController : MonoBehaviour {
     }
     private void Move()
     {
-        if(currentTax != 0 && !isPounding)
+        if (currentTax != 0 && !isPounding)
         {
             rigidbody2D.velocity = new Vector2(movingVelocity * currentTax, rigidbody2D.velocity.y);
         }
@@ -103,8 +103,10 @@ public class KnightController : MonoBehaviour {
         }
         Camera.main.GetComponent<CameraMovement>().ResetLook();
     }
-    public void Die()
+    public void Die(bool isSpike = false)
     {
+        if (isSpike && rigidbody2D.velocity.y > 2f)
+            return;
         sound.PlaySound(SoundType.DIE);
         Instantiate(deathSpawn, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
