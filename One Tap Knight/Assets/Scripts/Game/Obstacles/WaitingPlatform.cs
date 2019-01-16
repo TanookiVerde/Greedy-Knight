@@ -29,17 +29,17 @@ public class WaitingPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             initialized = true;
-            collision.gameObject.GetComponent<KnightController>().ModifyVelocity(0);
+            collision.gameObject.GetComponent<KnightController>().FollowX(transform);
         }
         else if (!collision.gameObject.CompareTag("Player"))
-            directionBias *= 0;
+            directionBias *= -1;
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             initialized = false;
-            collision.gameObject.GetComponent<KnightController>().ModifyVelocity(1);
+            collision.gameObject.GetComponent<KnightController>().StopFollowing();
         }
 
     }

@@ -38,11 +38,11 @@ public class MovingPlatform : MonoBehaviour
         if (!collision.gameObject.CompareTag("Player"))
             directionBias *= -1;
         else
-            collision.gameObject.GetComponent<KnightController>().ModifyVelocity(0);
+            collision.gameObject.GetComponent<KnightController>().FollowX(transform);
     }
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
-            collision.gameObject.GetComponent<KnightController>().ModifyVelocity(1);
+            collision.gameObject.GetComponent<KnightController>().StopFollowing();
     }
 }
