@@ -10,9 +10,11 @@ public class LevelManager : MonoBehaviour {
     private GameOverPanel gameOverPanel;
     private Timer timer;
     [SerializeField] private List<GameObject> detailImages;
+    [SerializeField] private CanvasGroup tutorialScreen;
 
     private void Start()
     {
+        tutorialScreen.gameObject.SetActive(true);
         foreach (var img in detailImages)
             img.SetActive(true);
         knight = FindObjectOfType<KnightController>();
@@ -24,12 +26,14 @@ public class LevelManager : MonoBehaviour {
     }
     private IEnumerator LevelLoop()
     {
+        float volume = Camera.main.GetComponent<AudioSource>().volume;
         Camera.main.GetComponent<AudioSource>().DOFade(0, 0);
-        Camera.main.GetComponent<AudioSource>().DOFade(1, 0.5f);
+        Camera.main.GetComponent<AudioSource>().DOFade(volume, 0.5f);
         Camera.main.GetComponent<AudioSource>().Play();
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
         yield return cameraMovement.StartAnimation();
+        tutorialScreen.DOFade(0, 0.25f);
         cameraMovement.StartFollowing();
         while (!LevelFinished())
         {

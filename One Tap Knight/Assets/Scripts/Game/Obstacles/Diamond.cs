@@ -8,9 +8,11 @@ public class Diamond : MonoBehaviour
     public float timeToReachPlayer;
     public static int totalDiamonds;
     public static int collectedDiamonds;
+    private AudioSource audioSource;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         Diamond.totalDiamonds++;
         Diamond.collectedDiamonds = 0;
         StartCoroutine(AnimationLoop());
@@ -41,6 +43,7 @@ public class Diamond : MonoBehaviour
             transform.DOMove(collision.gameObject.transform.position, timeToReachPlayer);
             transform.DOScale(0, timeToReachPlayer);
             Diamond.collectedDiamonds++;
+            audioSource.Play();
             FindObjectOfType<DiamondCounter>().UpdateDiamondCounter();
             Destroy(gameObject, timeToReachPlayer);
         }
