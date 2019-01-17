@@ -6,6 +6,7 @@ using DG.Tweening;
 public class LevelManager : MonoBehaviour {
     private CameraMovement cameraMovement;
     private KnightController knight;
+    private PausePanel pausePanel;
     private EndPanel endPanel;
     private GameOverPanel gameOverPanel;
     private Timer timer;
@@ -19,6 +20,7 @@ public class LevelManager : MonoBehaviour {
             img.SetActive(true);
         knight = FindObjectOfType<KnightController>();
         endPanel = FindObjectOfType<EndPanel>();
+        pausePanel = FindObjectOfType<PausePanel>();
         gameOverPanel = FindObjectOfType<GameOverPanel>();
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
         timer = FindObjectOfType<Timer>();
@@ -37,19 +39,27 @@ public class LevelManager : MonoBehaviour {
         cameraMovement.StartFollowing();
         while (!LevelFinished())
         {
-            if (!IsPlayerAlive())
+            if(!IsGamePaused())
             {
-                yield return new WaitForSeconds(1f);
-                gameOverPanel.Show();
-                yield break;
+                if (!IsPlayerAlive())
+                {
+                    yield return new WaitForSeconds(1f);
+                    gameOverPanel.Show();
+                    yield break;
+                }
+                knight.MovementLoop();
             }
-            knight.MovementLoop();
+            else
+            {
+                knight.Stop();
+            }
             yield return null;
         }
         yield return new WaitForSeconds(1f);
         print("READED FINISHED");
         endPanel.Show();
     }
+    private bool IsGamePaused() { return pausePanel.paused; }
     private bool IsPlayerAlive() { return knight != null; }
     private bool LevelFinished() { return knight.finishedLevel; }
 }
