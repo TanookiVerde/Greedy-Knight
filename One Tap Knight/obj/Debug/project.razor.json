@@ -1,0 +1,14 @@
+{
+  "ProjectFilePath": "c:\\Users\\Pichau.DESKTOP-32G110N.000\\Documents\\One-Tap-Knight\\One Tap Knight\\Assembly-CSharp.csproj",
+  "TargetFramework": "v3.5",
+  "TagHelpers": [],
+  "Configuration": {
+    "ConfigurationName": "UnsupportedRazor",
+    "LanguageVersion": "1.0",
+    "Extensions": [
+      {
+        "ExtensionName": "UnsupportedRazorExtension"
+      }
+    ]
+  }
+}

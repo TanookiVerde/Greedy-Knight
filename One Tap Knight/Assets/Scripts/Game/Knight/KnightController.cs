@@ -26,7 +26,7 @@ public class KnightController : MonoBehaviour
     private bool following = false;
 
     private Animator animator;
-    private new Rigidbody2D rigidbody2D;
+    public new Rigidbody2D rigidbody2D;
     private float currentTax = 1;
     [HideInInspector]
     public int jumpsRemaining;
@@ -45,6 +45,10 @@ public class KnightController : MonoBehaviour
         rigidbody2D = GetComponent<Rigidbody2D>();
         sound = GetComponent<KnightSound>();
         Time.timeScale = 1f;
+    }
+    public void Stop()
+    {
+        rigidbody2D.velocity = Vector2.zero;
     }
     public void MovementLoop()
     {
