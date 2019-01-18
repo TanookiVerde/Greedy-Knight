@@ -11,7 +11,6 @@ public class KnightSound : MonoBehaviour {
 
 	public void PlaySound(SoundType type)
     {
-        print("TOCANDO SOM");
         AudioClip clip = null;
         switch (type)
         {
