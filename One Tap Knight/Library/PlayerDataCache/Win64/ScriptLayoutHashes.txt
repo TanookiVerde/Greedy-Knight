@@ -1,9 +1,11 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/OTK_2/onetapknight.exe
+C:/Users/pedro/Desktop/OTK_3/One Tap Knight.exe
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
 Assets/Scenes/TestScene.unity
+Assets/Scenes/Level 2.unity
+Assets/Scenes/Level 3.unity
 SceneListEnd?
 939639b96827d34a20385b8e5c1959b9 Assembly-CSharp.dll:.Diamond
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
@@ -129,12 +131,13 @@ e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSyste
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
 e48f8213e3e24c863cd53bd9ffb87577 Assembly-CSharp.dll:.EndPanel
-b7696ab9e28e61885a737fc90b6131d0 Assembly-CSharp.dll:.KnightController
+f8ced8f1db51c5183dfac525bc6d1856 Assembly-CSharp.dll:.KnightController
 aa75461bcfcda2e23242d46fb879d21e Assembly-CSharp.dll:.CameraMovement
 464bdc42a5b02496269a38043206f002 Assembly-CSharp.dll:.DeathSpawn
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.MenuPanel
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Spike
+0c680a5698f307c9459086aa578df821 Assembly-CSharp.dll:.PausePanel
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 dc8c5b352c584cf067ae6bc63e7a5e2a Assembly-CSharp.dll:.Stalactite
 837ae46cae41da62999b1ed9b760f53b DOTween.dll:DG.Tweening.Core.DOTweenComponent

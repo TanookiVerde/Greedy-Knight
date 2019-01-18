@@ -36,13 +36,13 @@ public class PausePanel : MonoBehaviour{
     {
         if (active)
         {
-            elements.DOFade(1, duration);
+            elements.DOFade(1, 0);
             elements.interactable = true;
             elements.blocksRaycasts = true;
         }
         else
         {
-            elements.DOFade(0, duration);
+            elements.DOFade(0, 0);
             elements.interactable = false;
             elements.blocksRaycasts = false;
         }
@@ -55,7 +55,8 @@ public class PausePanel : MonoBehaviour{
 	{
 		paused = value;
         FindObjectOfType<KnightController>().Stop();
-		/*if(value)
+        SetActive(value);
+        /*if(value)
 		{
 			Time.timeScale = 0;
 		}
@@ -63,5 +64,5 @@ public class PausePanel : MonoBehaviour{
 		{
 			Time.timeScale = 1;
 		}*/
-	}
+    }
 }
