@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/OTK_3/One Tap Knight.exe
+C:/Users/pedro/Desktop/OTK_DEMO/One Tap Knight.exe
 SceneListBegin?
 Assets/Scenes/MainMenu.unity
 Assets/Scenes/TestScene.unity
