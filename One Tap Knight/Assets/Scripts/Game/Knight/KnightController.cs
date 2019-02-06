@@ -13,6 +13,9 @@ public class KnightController : MonoBehaviour
     public float movingVelocity;
     public float jumpIntensity;
     public int jumpLimit;
+    public float jumpMaxTime = 1f;
+    public float jumpMin;
+    public float jumpIncreaseTax;
     public float groundPoundStopTime;
     public float lookDownMinTime;
 
@@ -77,10 +80,7 @@ public class KnightController : MonoBehaviour
         bool grounded = IsGrounded();
         if (grounded || jumpsRemaining > 0)
         {
-            if (Input.GetButtonDown("Jump"))
-            {
-                Jump();
-            }
+            Jump();
         }
         if (!grounded && Input.GetButtonDown("Pound") && !isPounding)
         {
@@ -112,14 +112,32 @@ public class KnightController : MonoBehaviour
         followXOffset = 0;
         following = false;
     }
-    private void Jump()
+    /*private void Jump()
     {
         sound.PlaySound(SoundType.JUMP);
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
         rigidbody2D.AddForce(Vector2.up * jumpIntensity);
         GetComponent<Animator>().Play("jump");
         jumpsRemaining--;
-    }
+    }*/
+    private void Jump()
+	{
+		if (Input.GetButtonDown("Jump")) {
+			GetComponent<Animator>().Play("jump");
+			StartCoroutine (SpecialJump ());
+		}
+	}
+	private IEnumerator SpecialJump()
+	{
+		float time = jumpMaxTime;
+        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
+        rigidbody2D.AddForce(Vector2.up * jumpMin);
+		while (Input.GetButton("Jump") && time > 0) {
+			yield return new WaitForEndOfFrame ();
+            rigidbody2D.AddForce(Vector2.up * jumpIncreaseTax);
+			time -= Time.deltaTime;
+		}
+	} 
     private void Pound()
     {
         StartCoroutine(PoundCoroutine());

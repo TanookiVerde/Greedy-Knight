@@ -35247,6 +35247,16 @@ Prefab:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114043267165499304, guid: 7b36a2f3a0d1df745ba307f950112eb1,
+        type: 2}
+      propertyPath: jumpMin
+      value: 600
+      objectReference: {fileID: 0}
+    - target: {fileID: 114043267165499304, guid: 7b36a2f3a0d1df745ba307f950112eb1,
+        type: 2}
+      propertyPath: jumpIncreaseTax
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7b36a2f3a0d1df745ba307f950112eb1, type: 2}
   m_IsPrefabAsset: 0
