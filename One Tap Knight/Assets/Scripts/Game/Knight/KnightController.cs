@@ -27,12 +27,14 @@ public class KnightController : MonoBehaviour
 
     private Animator animator;
     public new Rigidbody2D rigidbody2D;
+    private Collider2D col2D;
     private float currentTax = 1;
     [HideInInspector]
     public int jumpsRemaining;
 
     public bool isPounding;
     public bool finishedLevel;
+    private Vector3 velOnPause;
 
     private void OnDrawGizmos()
     {
@@ -43,12 +45,30 @@ public class KnightController : MonoBehaviour
         animator = GetComponent<Animator>();
         jumpsRemaining = jumpLimit;
         rigidbody2D = GetComponent<Rigidbody2D>();
+        col2D = GetComponent<Collider2D>();
         sound = GetComponent<KnightSound>();
         Time.timeScale = 1f;
     }
-    public void Stop()
+    public void Stop(bool value)
     {
-        rigidbody2D.velocity = Vector2.zero;
+        if(value)
+        {
+            velOnPause = rigidbody2D.velocity;
+            print(velOnPause);
+            rigidbody2D.Sleep();
+            col2D.enabled = false;
+            rigidbody2D.constraints = RigidbodyConstraints2D.FreezeAll;
+            animator.enabled = false;
+        }
+        else
+        {
+            print(velOnPause);
+            rigidbody2D.WakeUp();
+            col2D.enabled = true;
+            rigidbody2D.velocity = velOnPause;
+            rigidbody2D.constraints = RigidbodyConstraints2D.None;
+            animator.enabled = true;
+        }
     }
     public void MovementLoop()
     {

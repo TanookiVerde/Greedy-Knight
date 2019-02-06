@@ -42,7 +42,7 @@ public class CameraMovement : MonoBehaviour {
     {
         transform.position = new Vector3(knight.position.x - offset.x, transform.position.y, transform.position.z);
     }
-    public IEnumerator StartAnimation()
+    public IEnumerator StartAnimation(bool fast = false)
     {
         /*
         var pos = camera.transform.position;
@@ -53,7 +53,7 @@ public class CameraMovement : MonoBehaviour {
         camera.DOFieldOfView(finalSize, duration);
         camera.transform.DOMove(pos, duration);
         */
-        yield return new WaitForSeconds(duration);
+        yield return new WaitForSeconds(duration * (fast ? 0.5f : 1f));
     }
     public void StartFollowing()
     {

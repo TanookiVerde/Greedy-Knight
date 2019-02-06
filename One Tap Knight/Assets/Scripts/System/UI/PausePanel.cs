@@ -51,10 +51,14 @@ public class PausePanel : MonoBehaviour{
     {
         SceneManager.LoadSceneAsync(  SceneManager.GetActiveScene().ToString() );
     }
+    public void SetTutorialToggle(bool value)
+    {
+        FindObjectOfType<Toggle>().isOn = value;
+    }
 	public void PauseLevel(bool value)
 	{
 		paused = value;
-        FindObjectOfType<KnightController>().Stop();
+        FindObjectOfType<KnightController>().Stop(value);
         SetActive(value);
         /*if(value)
 		{
