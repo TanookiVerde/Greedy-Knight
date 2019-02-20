@@ -81,6 +81,7 @@ public class KnightController : MonoBehaviour
         if (grounded || jumpsRemaining > 0)
         {
             Jump();
+            jumpsRemaining--;
         }
         if (!grounded && Input.GetButtonDown("Pound") && !isPounding)
         {
