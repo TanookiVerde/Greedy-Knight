@@ -41,7 +41,7 @@ public class GameOverPanel : MonoBehaviour {
     public void Retry()
     {
         Camera.main.GetComponent<AudioSource>().DOFade(0, 0.5f);
-        Transition.transition.TransiteTo("TestScene");
+        Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"));
     }
     public void ToMenu()
     {
