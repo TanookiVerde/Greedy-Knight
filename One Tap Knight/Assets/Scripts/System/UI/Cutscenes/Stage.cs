@@ -45,7 +45,7 @@ public class Stage : MonoBehaviour {
     }
     private IEnumerator ShowText(string text)
     {
-        for(int i = 0; i < text.Length; i++)
+        for(int i = 0; i <= text.Length; i++)
         {
             slideText.text = text.Substring(0, i);
             yield return new WaitForSeconds(0.025f);
