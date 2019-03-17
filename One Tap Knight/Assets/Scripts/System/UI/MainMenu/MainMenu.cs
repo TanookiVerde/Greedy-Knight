@@ -19,7 +19,7 @@ public class MainMenu : MonoBehaviour {
         Application.targetFrameRate = 60;
         foreach(var s in submenus)
         {
-            s.Close();
+            s.FastClose();
         }
         submenus[currentSubmenu].Open();
     }
@@ -35,5 +35,9 @@ public class MainMenu : MonoBehaviour {
         submenus[currentSubmenu].Close();
         currentSubmenu = index;
         submenus[currentSubmenu].Open();
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

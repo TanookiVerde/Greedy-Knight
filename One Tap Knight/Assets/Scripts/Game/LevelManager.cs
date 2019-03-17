@@ -32,10 +32,6 @@ public class LevelManager : MonoBehaviour {
     }
     private IEnumerator LevelLoop()
     {
-        float volume = Camera.main.GetComponent<AudioSource>().volume;
-        Camera.main.GetComponent<AudioSource>().DOFade(0, 0);
-        Camera.main.GetComponent<AudioSource>().DOFade(volume, 0.5f);
-        Camera.main.GetComponent<AudioSource>().Play();
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
         yield return cameraMovement.StartAnimation(!settings.showTutorial);

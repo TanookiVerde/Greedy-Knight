@@ -27,6 +27,14 @@ public class Submenu : MonoBehaviour {
         group.alpha = 0;
         OnClose();
     }
+    public void FastClose()
+    {
+        if (firstSelected != null)
+            firstSelected.Select();
+        group.interactable = false;
+        group.blocksRaycasts = false;
+        group.alpha = 0;
+    }
     protected virtual void OnOpen() { }
     protected virtual void OnClose() { }
 }

@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 114430368181778340}
   - component: {fileID: 58334013873668708}
   - component: {fileID: 82172038432738860}
+  - component: {fileID: 114853908213155310}
   m_Layer: 0
   m_Name: Diamond
   m_TagString: Untagged
@@ -184,6 +185,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeToReachPlayer: 0.1
+--- !u!114 &114853908213155310
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700244959335148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11edae571b621e04d920b11438aba08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!212 &212339152670181608
 SpriteRenderer:
   m_ObjectHideFlags: 1

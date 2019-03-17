@@ -10,13 +10,11 @@ public class MemoryCard : MonoBehaviour {
 	public static AdventureLog Load()
     {
         CreateFileIfDontExist(GetSavePath(), JsonUtility.ToJson(new AdventureLog()));
-        print(File.ReadAllText(GetSavePath()));
         return JsonUtility.FromJson<AdventureLog>(File.ReadAllText(GetSavePath()));
     }
     public static void Save(AdventureLog log)
     {
         CreateFileIfDontExist(GetSavePath(), JsonUtility.ToJson(log));
-        print(JsonUtility.ToJson(log));
         File.WriteAllText(GetSavePath(), JsonUtility.ToJson(log));
     }
     public static string GetSavePath()
@@ -35,7 +33,10 @@ public class MemoryCard : MonoBehaviour {
 [System.Serializable]
 public class AdventureLog
 {
-    public int deaths;
+    public int deaths = 0;
+    public int musicVolume = 7;
+    public int sfxVolume = 7;
+
     public List<Level> levels = new List<Level>();
 
     public AdventureLog()
