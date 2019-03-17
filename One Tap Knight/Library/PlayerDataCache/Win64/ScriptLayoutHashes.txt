@@ -9,6 +9,7 @@ Assets/Scenes/Level 1A.unity
 Assets/Scenes/Level 2A.unity
 Assets/Scenes/Level 3A.unity
 SceneListEnd?
+6cc559e7ee18cc7f94dea389fb232ad9 Assembly-CSharp.dll:.OpeningScene
 939639b96827d34a20385b8e5c1959b9 Assembly-CSharp.dll:.Diamond
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
@@ -60,6 +61,7 @@ e90403eeda069970e0b9de1533de13a6 UnityEngine.UI.dll:UnityEngine.UI.ToggleGroup
 2d58ca16854b99daea8c45e9c0f367b7 UnityEngine.UI.dll:UnityEngine.EventSystems.TouchInputModule
 16da51d1b62ef6d4ee1849350434023b UnityEngine.UI.dll:UnityEngine.UI.VerticalLayoutGroup
 50b0b141074b216c8b53b1bd467f73c9 Unity.TextMeshPro.dll:TMPro.TMP_InputField
+60e26a86ce6c37dd8e4c6286005a56c8 Assembly-CSharp.dll:.SkipCutscene
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
 da2091a04d360891450faf16cdf621f1 UnityEngine.UI.dll:UnityEngine.UI.Button
@@ -198,5 +200,3 @@ ef83a2bfb5af110171f394885bd405d3 Assembly-CSharp.dll:.Bat
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 10e65609091662047649938d1ad62c60 Assembly-CSharp.dll:.Scene
 f2f27f51650e8680335e331a01b229db Assembly-CSharp.dll:.LevelManager
-6cc559e7ee18cc7f94dea389fb232ad9 Assembly-CSharp.dll:.OpeningScene
-60e26a86ce6c37dd8e4c6286005a56c8 Assembly-CSharp.dll:.SkipCutscene

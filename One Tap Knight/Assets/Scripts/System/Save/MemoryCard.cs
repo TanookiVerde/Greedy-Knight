@@ -35,32 +35,27 @@ public class MemoryCard : MonoBehaviour {
 [System.Serializable]
 public class AdventureLog
 {
-    private const int LEVEL_AMOUNT = 5;
-
-    public int selectedSkin;
-    public int selectedTrail;
-    public List<int> skins = new List<int>();
-    public List<int> trails = new List<int>();
+    public int deaths;
     public List<Level> levels = new List<Level>();
 
     public AdventureLog()
     {
-        levels.Add(new Level("Level 1"));
-        levels.Add(new Level("Level 2"));
-        levels.Add(new Level("Level 3"));
-        levels.Add(new Level("Level 4"));
-        levels.Add(new Level("Level 5"));
+        levels.Add(new Level("Floresta dos Cogumelos", 1));
+        levels.Add(new Level("Caverna Espinhosa", 2));
+        levels.Add(new Level("Castelo de Vhalor", 3));
     }
 }
 [System.Serializable]
 public class Level
 {
     public string title;
+    public int number;
     public bool completed;
-    public bool collectedAllDiamonds;
+    public int diamondsCollected;
 
-    public Level(string title)
+    public Level(string title, int number)
     {
         this.title = title;
+        this.number = number;
     }
 }

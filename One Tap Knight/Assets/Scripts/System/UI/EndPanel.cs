@@ -13,7 +13,6 @@ public class EndPanel : MonoBehaviour {
     public CanvasGroup infoPanel;
     
     public TMP_Text diamondCount;
-
     public RectTransform confirmButton;
 
     public void Show()
@@ -24,6 +23,7 @@ public class EndPanel : MonoBehaviour {
         infoPanel.blocksRaycasts = true;
         GetComponent<RectTransform>().DOAnchorPosY(FINAL_POSITION, timeToAppear);
         StartCoroutine(ShowInfoPanel());
+        confirmButton.GetComponent<Selectable>().Select();
     }
     private IEnumerator ShowInfoPanel()
     {

@@ -57,11 +57,25 @@ public class LevelManager : MonoBehaviour {
             yield return null;
         }
         yield return new WaitForSeconds(1f);
-        print("READED FINISHED");
+        SaveProgress();
         endPanel.Show();
     }
     private bool IsGamePaused() { return pausePanel.paused; }
     private bool IsPlayerAlive() { return knight != null; }
     private bool LevelFinished() { return knight.finishedLevel; }
     public void SetTutorial(bool value) { settings.showTutorial = value; }
+    private void SaveProgress()
+    {
+        var log = MemoryCard.Load();
+        int selectedLevel = PlayerPrefs.GetInt("levelNumber");
+        if(Diamond.collectedDiamonds > log.levels[selectedLevel].diamondsCollected)
+        {
+            log.levels[selectedLevel].diamondsCollected = Diamond.collectedDiamonds;
+        }
+        if (!log.levels[selectedLevel].completed)
+        {
+            log.levels[selectedLevel].completed = true;
+        }
+        MemoryCard.Save(log);
+    }
 }
