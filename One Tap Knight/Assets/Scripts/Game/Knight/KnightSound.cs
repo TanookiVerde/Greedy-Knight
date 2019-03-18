@@ -8,8 +8,9 @@ public class KnightSound : MonoBehaviour {
     public AudioClip jumpSound;
     public AudioClip dieSound;
     public AudioClip fallSound;
+    public AudioClip bounceSound;
 
-	public void PlaySound(SoundType type)
+    public void PlaySound(SoundType type)
     {
         AudioClip clip = null;
         switch (type)
@@ -23,6 +24,9 @@ public class KnightSound : MonoBehaviour {
             case SoundType.DIE:
                 clip = dieSound;
                 break;
+            case SoundType.BOUNCE:
+                clip = bounceSound;
+                break;
         }
         source.clip = clip;
         source.Play();
@@ -30,5 +34,5 @@ public class KnightSound : MonoBehaviour {
 }
 public enum SoundType
 {
-    JUMP, FALL, DIE
+    JUMP, FALL, DIE, BOUNCE
 }

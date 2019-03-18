@@ -113,20 +113,13 @@ public class KnightController : MonoBehaviour
         followXOffset = 0;
         following = false;
     }
-    /*private void Jump()
-    {
-        sound.PlaySound(SoundType.JUMP);
-        rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
-        rigidbody2D.AddForce(Vector2.up * jumpIntensity);
-        GetComponent<Animator>().Play("jump");
-        jumpsRemaining--;
-    }*/
     private void Jump()
 	{
 		if (Input.GetButtonDown("Jump")) {
 			GetComponent<Animator>().Play("jump");
 			StartCoroutine (SpecialJump ());
-		}
+            sound.PlaySound(SoundType.JUMP);
+        }
 	}
 	private IEnumerator SpecialJump()
 	{
@@ -175,7 +168,6 @@ public class KnightController : MonoBehaviour
     {
         if (isSpike && rigidbody2D.velocity.y > 2f)
             return;
-        sound.PlaySound(SoundType.DIE);
         Instantiate(deathSpawn, transform.position, Quaternion.identity);
         Destroy(this.gameObject);
     }

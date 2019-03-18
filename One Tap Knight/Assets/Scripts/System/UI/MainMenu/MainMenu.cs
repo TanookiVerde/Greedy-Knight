@@ -12,6 +12,8 @@ public class MainMenu : MonoBehaviour {
     public List<Submenu> submenus;
     public int currentSubmenu;
 
+    public AudioClip buttonClick;
+
     private void Start()
     {
         Transition.transition.InstaShow();
@@ -32,6 +34,8 @@ public class MainMenu : MonoBehaviour {
     }
     public void OpenSubmenu(int index)
     {
+        GetComponent<AudioSource>().clip = buttonClick;
+        GetComponent<AudioSource>().Play();
         submenus[currentSubmenu].Close();
         currentSubmenu = index;
         submenus[currentSubmenu].Open();

@@ -1665,7 +1665,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &244338771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19675,6 +19675,48 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1238037493
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 36.953617
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.89406943
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0.004772111
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4401451056803500, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 77959a7d77b3bf04395b468734ce9f84, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1240277658
 GameObject:
   m_ObjectHideFlags: 0
@@ -35848,6 +35890,16 @@ Prefab:
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114126354578043984, guid: 87d40c3ea0c3c8b4aa0a912dda8c5d62,
+        type: 2}
+      propertyPath: jumpSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a23f2641735e1414bba6519d09d1f41e, type: 3}
+    - target: {fileID: 114126354578043984, guid: 87d40c3ea0c3c8b4aa0a912dda8c5d62,
+        type: 2}
+      propertyPath: bounceSound
+      value: 
+      objectReference: {fileID: 8300000, guid: a6c0e863bd13d284ea058dcf4b255b34, type: 3}
     m_RemovedComponents:
     - {fileID: 61465892598953830, guid: 87d40c3ea0c3c8b4aa0a912dda8c5d62, type: 2}
   m_SourcePrefab: {fileID: 100100000, guid: 87d40c3ea0c3c8b4aa0a912dda8c5d62, type: 2}

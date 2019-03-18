@@ -19,7 +19,7 @@ public class Mushroom : MonoBehaviour {
     {
         float mod = player.GetComponent<KnightController>().isPounding ? poundModifier : 1;
         //player.position = idealPosition.position;
-        player.GetComponent<KnightSound>().PlaySound(SoundType.JUMP);
+        player.GetComponent<KnightSound>().PlaySound(SoundType.BOUNCE);
         player.GetComponent<KnightController>().isPounding = false;
         player.GetComponent<KnightController>().jumpsRemaining++;
         transform.GetChild(0).DOPunchScale(new Vector3(0, hatBounceIntensity, 0), hatBounceDuration);
