@@ -125,6 +125,7 @@ public class KnightController : MonoBehaviour
 	{
 		if (Input.GetButtonDown("Jump")) {
 			GetComponent<Animator>().Play("jump");
+            sound.PlaySound(SoundType.JUMP);
 			StartCoroutine (SpecialJump ());
 		}
 	}
