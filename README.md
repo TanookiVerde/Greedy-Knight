@@ -23,7 +23,7 @@ O jogo é dividido em fases, três no total. Cada uma se passa em uma parte dife
 * [S ou Seta para baixo] Ground Pound
 
 ## Equipe
-O jogo foi feito por três membros da GDP, grupo de desenvolvimento de jogos da UFRJ.
+O jogo foi feito por cinco membros da GDP, grupo de desenvolvimento de jogos da UFRJ.
 
 * Vinicius Cardoso - Artista 2D
 * Hiromi Kameyama - Artista 2D
