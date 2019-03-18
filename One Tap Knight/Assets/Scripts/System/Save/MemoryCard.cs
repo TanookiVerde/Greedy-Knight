@@ -33,6 +33,7 @@ public class MemoryCard : MonoBehaviour {
 [System.Serializable]
 public class AdventureLog
 {
+    public bool initialized = false;
     public int deaths = 0;
     public int musicVolume = 7;
     public int sfxVolume = 7;

@@ -14,10 +14,12 @@ public class Stage : MonoBehaviour {
 
     public void Start()
     {
-        StartCoroutine(PlayStory(stories[0]));
+        int index = PlayerPrefs.GetInt("cutscene",0);
+        StartCoroutine(PlayStory(stories[index]));
     }
     private IEnumerator PlayStory(Story story)
     {
+        PlayerPrefs.SetInt("cutscene", 0);
         slideImage.DOFade(0, 0);
         slideText.DOFade(0, 0);
         slideText.text = "";

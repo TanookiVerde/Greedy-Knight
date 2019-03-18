@@ -12,6 +12,7 @@ public class LevelManager : MonoBehaviour {
     private Timer timer;
     [SerializeField] private List<GameObject> detailImages;
     [SerializeField] private CanvasGroup tutorialScreen;
+    public bool showFinalCutscene;
 
     public SettingsSO settings;
 
@@ -54,7 +55,15 @@ public class LevelManager : MonoBehaviour {
         }
         yield return new WaitForSeconds(1f);
         SaveProgress();
-        endPanel.Show();
+        if (showFinalCutscene)
+        {
+            PlayerPrefs.SetInt("cutscene", 1);
+            Transition.transition.TransiteTo("Cutscene");
+        }
+        else
+        {
+            endPanel.Show();
+        }
     }
     private bool IsGamePaused() { return pausePanel.paused; }
     private bool IsPlayerAlive() { return knight != null; }

@@ -17,7 +17,7 @@ public class LevelButton : MonoBehaviour {
         this.level = level;
         levelImage.sprite = image;
         title.text = level.title;
-        diamondsCount.text = level.completed ? level.diamondsCollected + "/36" : "-/36";
+        diamondsCount.text = level.completed ? level.diamondsCollected + "/36" : "?/36";
     }
     public void OpenLevel()
     {
