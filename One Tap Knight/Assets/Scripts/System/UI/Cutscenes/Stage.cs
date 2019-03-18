@@ -12,6 +12,8 @@ public class Stage : MonoBehaviour {
     [SerializeField] private Image slideImage;
     [SerializeField] private TMP_Text slideText;
 
+    public AudioSource source;
+
     public void Start()
     {
         int index = PlayerPrefs.GetInt("cutscene",0);
@@ -25,6 +27,7 @@ public class Stage : MonoBehaviour {
         slideText.text = "";
         yield return new WaitForSeconds(2f);
         slideText.DOFade(1, 0.5f);
+        source.Play();
         for (int i = 0; i < story.scenes.Count; i++)
         {
             slideImage.DOFade(1, 0.5f);
@@ -42,6 +45,7 @@ public class Stage : MonoBehaviour {
             slideImage.DOFade(0, 0.5f);
             yield return new WaitForSeconds(0.5f);
         }
+        source.DOFade(0, 0.5f);
         slideText.DOFade(0, 0.5f);
         Transition.transition.TransiteTo("MainMenu");
     }

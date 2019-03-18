@@ -13,13 +13,15 @@ public class MainMenu : MonoBehaviour {
     public int currentSubmenu;
 
     public AudioClip buttonClick;
+    public TMP_Text deaths;
 
     private void Start()
     {
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
         Application.targetFrameRate = 60;
-        foreach(var s in submenus)
+        deaths.text = "MORTES :" + MemoryCard.Load().deaths;
+        foreach (var s in submenus)
         {
             s.FastClose();
         }
@@ -29,13 +31,12 @@ public class MainMenu : MonoBehaviour {
     {
         if (Input.GetKeyDown(KeyCode.Escape) && currentSubmenu != 0)
         {
+            FindObjectOfType<SoundPlayer>().PlaySound();
             OpenSubmenu(0);
         }
     }
     public void OpenSubmenu(int index)
     {
-        GetComponent<AudioSource>().clip = buttonClick;
-        GetComponent<AudioSource>().Play();
         submenus[currentSubmenu].Close();
         currentSubmenu = index;
         submenus[currentSubmenu].Open();

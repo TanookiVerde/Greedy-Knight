@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/GREEDY-KNIGHT-B4/Greedy Knight.exe
+C:/Users/pedro/Desktop/GreedyKnight-B5/Greedy Knight.exe
 SceneListBegin?
 Assets/Scenes/Opening.unity
 Assets/Scenes/Cutscene.unity
@@ -26,7 +26,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 f6637497451c9a030c421de4a1ad5cdb Unity.TextMeshPro.dll:TMPro.TMP_ScrollbarEventHandler
-86ab8dd5772d63ae7098a81c29a0c8a6 Assembly-CSharp.dll:.KnightSound
+425f7be899deb8bf1f534a2fc9c5a5cf Assembly-CSharp.dll:.KnightSound
 b14b4630cc47b6e9ea8a644551a6a8cc Unity.TextMeshPro.dll:TMPro.TMP_Text
 53cefe5d98cadefbab750835e70b89c0 UnityEngine.UI.dll:UnityEngine.UI.AspectRatioFitter
 486cd95c82d8305219c352c06b776e1f UnityEngine.UI.dll:UnityEngine.EventSystems.BaseInput
@@ -108,6 +108,7 @@ c7dd12c15208b0447e101f80038706df UnityEngine.Timeline.dll:UnityEngine.Timeline.A
 0ddb2c46096a1e59e0dce07886ce4769 UnityEngine.Timeline.dll:UnityEngine.Timeline.PlayableTrack
 64f3a13c1277a7f1324321d93d0ec13b UnityEngine.Timeline.dll:UnityEngine.Timeline.TimelineAsset
 66b3109aa5921cf800bec17926c6adba Unity.TextMeshPro.dll:TMPro.TMP_SubMeshUI
+19ef3f4617619dd84917c15e1fa0e57b Assembly-CSharp.dll:.MyInputModule
 201273fb4f889724fb090164b7d6c657 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkAnimator
 486cd95c82d8305219c352c06b776e1f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkBehaviour
 0f27c39183b9eb95eba0a228bea28273 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkDiscovery
@@ -166,6 +167,7 @@ da21fc3f8056b1f91c3dd09c7bf4f90a UnityEngine.Networking.dll:UnityEngine.Networki
 529a95e9e8e7686c4816e08fbb37183f UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransform
 fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformChild
 7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
+21ef119ec964367fa0d9554ea5a9e1d1 Assembly-CSharp.dll:.MyEventSystem
 72a8523b432c0a5317826b7a9e0a0e79 Unity.TextMeshPro.dll:TMPro.PackageResourceImporterWindow
 e53cc67d84060d628c7f03fc725766d8 Unity.TextMeshPro.dll:TMPro.TMP_FontAsset
 392c5b921098bd4c139d9146d0efa6d7 Unity.TextMeshPro.dll:TMPro.TMP_Settings
@@ -194,8 +196,8 @@ aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 e7737580a292c93d882a4e32787bda8c Assembly-CSharp.dll:.Story
 21c4b5fc530a74fa6b732eb8cd86a1ef Assembly-CSharp.dll:.WaitingPlatform
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
-2c5b7472d2eb046146acce2bd98120d8 Assembly-CSharp.dll:.MainMenu
-a41bd41bb1e42d8abd20297557bfd666 Assembly-CSharp.dll:.Stage
+4e3b5b4e6d0c39022d9ad23a9b456d08 Assembly-CSharp.dll:.MainMenu
+54c3d80309e833fa2d5138f75b1a3d69 Assembly-CSharp.dll:.Stage
 ef83a2bfb5af110171f394885bd405d3 Assembly-CSharp.dll:.Bat
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
 9318334b30e9f195f573b2ce00154b95 Unity.TextMeshPro.dll:TMPro.TMP_ColorGradient
@@ -203,3 +205,4 @@ ef83a2bfb5af110171f394885bd405d3 Assembly-CSharp.dll:.Bat
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 10e65609091662047649938d1ad62c60 Assembly-CSharp.dll:.Scene
 6050fcea34c21d2e28f6e5cc88d0ae7f Assembly-CSharp.dll:.LevelManager
+ac27bac6cd3bb3cb8d42302fe4a436d6 Assembly-CSharp.dll:.SoundPlayer
