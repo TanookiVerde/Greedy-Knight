@@ -6,7 +6,9 @@ Greedy Knight é um jogo para computador fortemente inspirado em Geometry Dash e
 O jogo é dividido em fases, três no total. Cada uma se passa em uma parte diferente do reino e possui assets únicos.
 
 ## Imagens
-![s](https://i.imgur.com/owQ3r4x.jpg)
+![s](https://i.imgur.com/RQmwQIv.png)
+![s](https://i.imgur.com/XxfPBab.png)
+![s](https://i.imgur.com/yRwWE0m.png)
 
 ## Como jogar
 ### Menu
