@@ -9,7 +9,6 @@ public class Mushroom : MonoBehaviour {
     public float hatBounceIntensity;
     public float hatBounceDuration;
     public Transform idealPosition;
-    public AudioClip bounceClip;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,8 +20,6 @@ public class Mushroom : MonoBehaviour {
         float mod = player.GetComponent<KnightController>().isPounding ? poundModifier : 1;
         //player.position = idealPosition.position;
         player.GetComponent<KnightSound>().PlaySound(SoundType.JUMP);
-        GetComponent<AudioSource>().clip = bounceClip;
-        GetComponent<AudioSource>().Play();
         player.GetComponent<KnightController>().isPounding = false;
         player.GetComponent<KnightController>().jumpsRemaining++;
         transform.GetChild(0).DOPunchScale(new Vector3(0, hatBounceIntensity, 0), hatBounceDuration);
