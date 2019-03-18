@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/OTK_B2/One Tap Knight.exe
+C:/Users/pedro/Desktop/GREEDY-KNIGHT-B4/Greedy Knight.exe
 SceneListBegin?
 Assets/Scenes/Opening.unity
 Assets/Scenes/Cutscene.unity
@@ -142,7 +142,7 @@ aa75461bcfcda2e23242d46fb879d21e Assembly-CSharp.dll:.CameraMovement
 464bdc42a5b02496269a38043206f002 Assembly-CSharp.dll:.DeathSpawn
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Spike
-0c680a5698f307c9459086aa578df821 Assembly-CSharp.dll:.PausePanel
+5b38ea2a6e0d831a5cfa4a24b0a4cf50 Assembly-CSharp.dll:.PausePanel
 4f169b183601b2fe5bc407805fa88c95 Assembly-CSharp.dll:.MusicVolume
 f476840abb41d9f02b62e59e0803873c Assembly-CSharp.dll:.OptionsSubmenu
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator

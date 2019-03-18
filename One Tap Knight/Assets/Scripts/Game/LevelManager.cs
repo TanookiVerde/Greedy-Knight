@@ -18,14 +18,11 @@ public class LevelManager : MonoBehaviour {
 
     private void Start()
     {
-        if(tutorialScreen != null && settings.showTutorial)
-            tutorialScreen.gameObject.SetActive(true);
         foreach (var img in detailImages)
             img.SetActive(true);
         knight = FindObjectOfType<KnightController>();
         endPanel = FindObjectOfType<EndPanel>();
         pausePanel = FindObjectOfType<PausePanel>();
-        pausePanel.SetTutorialToggle(settings.showTutorial);
         gameOverPanel = FindObjectOfType<GameOverPanel>();
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
         timer = FindObjectOfType<Timer>();
@@ -33,11 +30,13 @@ public class LevelManager : MonoBehaviour {
     }
     private IEnumerator LevelLoop()
     {
+        bool showTutorial = PlayerPrefs.GetInt("tutorial", 1) == 1 ? true : false;
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
-        yield return cameraMovement.StartAnimation(!settings.showTutorial);
-        if(tutorialScreen != null && settings.showTutorial)
-            tutorialScreen.DOFade(0, 0.25f);
+        if (showTutorial)
+            yield return ShowTutorial();
+        else
+            yield return cameraMovement.StartAnimation(showTutorial);
         cameraMovement.StartFollowing();
         while (!LevelFinished())
         {
@@ -68,7 +67,6 @@ public class LevelManager : MonoBehaviour {
     private bool IsGamePaused() { return pausePanel.paused; }
     private bool IsPlayerAlive() { return knight != null; }
     private bool LevelFinished() { return knight.finishedLevel; }
-    public void SetTutorial(bool value) { settings.showTutorial = value; }
     private void SaveProgress()
     {
         var log = MemoryCard.Load();
@@ -82,5 +80,12 @@ public class LevelManager : MonoBehaviour {
             log.levels[selectedLevel].completed = true;
         }
         MemoryCard.Save(log);
+    }
+    private IEnumerator ShowTutorial()
+    {
+        tutorialScreen.DOFade(1, 0);
+        yield return new WaitForSeconds(1f);
+        tutorialScreen.DOFade(0, 1f);
+        yield return new WaitForSeconds(1f);
     }
 }

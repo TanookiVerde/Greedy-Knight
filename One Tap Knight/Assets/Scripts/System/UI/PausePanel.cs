@@ -7,66 +7,42 @@ using UnityEngine.SceneManagement;
 
 public class PausePanel : MonoBehaviour{
 
-    [SerializeField] private CanvasGroup elements;
-    [SerializeField] private float duration;
+    [SerializeField] private CanvasGroup group;
+    [SerializeField] private Selectable firstSelected;
+    [SerializeField] private Toggle tutorialToggle;
 
 	[HideInInspector] public bool paused;
 
     private void Start()
     {
         paused = false;
-        SetActiveInstant(false);
+        SetActive(false, 0);
     }
-    public void SetActive(bool active)
+    private void Update()
     {
-        if (active)
-        {
-            elements.DOFade(1, duration);
-            elements.interactable = true;
-            elements.blocksRaycasts = true;
-        }
-        else
-        {
-            elements.DOFade(0, duration);
-            elements.interactable = false;
-            elements.blocksRaycasts = false;
-        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+            PauseLevel(!paused);
     }
-    public void SetActiveInstant(bool active)
+    public void SetActive(bool active, float duration = 0.25f)
     {
-        if (active)
-        {
-            elements.DOFade(1, 0);
-            elements.interactable = true;
-            elements.blocksRaycasts = true;
-        }
-        else
-        {
-            elements.DOFade(0, 0);
-            elements.interactable = false;
-            elements.blocksRaycasts = false;
-        }
+        group.DOFade(active ? 1 : 0, duration);
+        group.interactable = active;
+        group.blocksRaycasts = active;
+        tutorialToggle.isOn = PlayerPrefs.GetInt("tutorial", 1) == 1 ? true : false;
     }
     public void RestartLevel()
     {
-        SceneManager.LoadSceneAsync(  SceneManager.GetActiveScene().ToString() );
-    }
-    public void SetTutorialToggle(bool value)
-    {
-        FindObjectOfType<Toggle>().isOn = value;
+        Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"));
     }
 	public void PauseLevel(bool value)
 	{
 		paused = value;
-        FindObjectOfType<KnightController>().Stop(value);
         SetActive(value);
-        /*if(value)
-		{
-			Time.timeScale = 0;
-		}
-		else
-		{
-			Time.timeScale = 1;
-		}*/
+        FindObjectOfType<KnightController>().Stop(value);
+        firstSelected.Select();
+    }
+    public void SaveToggle()
+    {
+        PlayerPrefs.SetInt("tutorial", tutorialToggle.isOn ? 1 : 0);
     }
 }

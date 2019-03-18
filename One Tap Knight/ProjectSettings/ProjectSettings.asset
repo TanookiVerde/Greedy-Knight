@@ -13,7 +13,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: GDP
-  productName: One Tap Knight
+  productName: Greedy Knight
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
@@ -256,7 +256,7 @@ PlayerSettings:
     height: 180
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
-  resolutionDialogBanner: {fileID: 2800000, guid: d78ba990cf7cfae49af69f3b55f3d7c5,
+  resolutionDialogBanner: {fileID: 2800000, guid: 703ad1918fdb9a140ba691ce936f6a3d,
     type: 3}
   m_BuildTargetIcons:
   - m_BuildTarget: 

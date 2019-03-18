@@ -44,15 +44,6 @@ public class CameraMovement : MonoBehaviour {
     }
     public IEnumerator StartAnimation(bool fast = false)
     {
-        /*
-        var pos = camera.transform.position;
-        FollowPlayer();
-        camera.DOFieldOfView(initialSize, 0);
-        camera.transform.position = new Vector3(knight.transform.position.x, knight.transform.position.y, camera.transform.position.z);
-        yield return new WaitForSeconds(sleepyTime);
-        camera.DOFieldOfView(finalSize, duration);
-        camera.transform.DOMove(pos, duration);
-        */
         yield return new WaitForSeconds(duration * (fast ? 0.5f : 1f));
     }
     public void StartFollowing()
