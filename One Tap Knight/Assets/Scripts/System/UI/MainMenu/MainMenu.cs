@@ -45,4 +45,8 @@ public class MainMenu : MonoBehaviour {
     {
         Application.Quit();
     }
+    public void UpdateMusicVolume()
+    {
+        source.volume = MemoryCard.Load().musicVolume/10f;
+    }
 }

@@ -29,6 +29,7 @@ public class OptionsSubmenu : Submenu{
     public void SaveSoFar()
     {
         OnClose();
+        FindObjectOfType<MainMenu>().UpdateMusicVolume();
     }
     public void ResetSave()
     {

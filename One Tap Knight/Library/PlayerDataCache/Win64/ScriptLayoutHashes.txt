@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/Greedy Knight 1.0/Greedy Knight.exe
+C:/Users/pedro/Desktop/Greedy Knight 1.1/Greedy Knight.exe
 SceneListBegin?
 Assets/Scenes/Opening.unity
 Assets/Scenes/Cutscene.unity

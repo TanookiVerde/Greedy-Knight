@@ -9,6 +9,7 @@ public class Diamond : MonoBehaviour
     public static int totalDiamonds;
     public static int collectedDiamonds;
     private AudioSource audioSource;
+    public bool hide;
 
     private void Start()
     {
@@ -38,8 +39,9 @@ public class Diamond : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && !hide)
         {
+            hide = true;
             transform.DOMove(collision.gameObject.transform.position, timeToReachPlayer);
             transform.DOScale(0, timeToReachPlayer);
             Diamond.collectedDiamonds++;
