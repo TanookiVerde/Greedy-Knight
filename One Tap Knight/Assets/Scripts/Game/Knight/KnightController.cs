@@ -86,7 +86,6 @@ public class KnightController : MonoBehaviour
         if (!grounded && Input.GetButtonDown("Pound") && !isPounding)
         {
             StartCoroutine(PoundCoroutine());
-            StartCoroutine(LookDownCoroutine());
         }
     }
     private void Move()
@@ -127,7 +126,8 @@ public class KnightController : MonoBehaviour
         rigidbody2D.velocity = new Vector2(rigidbody2D.velocity.x, 0);
         rigidbody2D.AddForce(Vector2.up * jumpMin);
 		while (Input.GetButton("Jump") && time > 0) {
-			yield return new WaitForEndOfFrame ();
+            //yield return new WaitForEndOfFrame ();
+            yield return new WaitForFixedUpdate();
             rigidbody2D.AddForce(Vector2.up * jumpIncreaseTax);
 			time -= Time.deltaTime;
 		}
@@ -146,23 +146,6 @@ public class KnightController : MonoBehaviour
         sound.PlaySound(SoundType.FALL);
         yield return new WaitForSeconds(groundPoundStopTime);
         isPounding = false;
-    }
-    private IEnumerator LookDownCoroutine()
-    {
-        float time = 0;
-        while (time < lookDownMinTime)
-        {
-            if (!Input.GetKey(KeyCode.S))
-                yield break;
-            time += Time.deltaTime;
-            yield return null;
-        }
-        Camera.main.GetComponent<CameraMovement>().LookDown();
-        while (Input.GetKey(KeyCode.S))
-        {
-            yield return null;
-        }
-        Camera.main.GetComponent<CameraMovement>().ResetLook();
     }
     public void Die(bool isSpike = false)
     {

@@ -10,7 +10,6 @@ public class OptionsSubmenu : Submenu{
     protected override void OnOpen()
     {
         var log = MemoryCard.Load();
-        print(log.musicVolume);
         musicSlider.wholeNumbers = true;
         musicSlider.maxValue = 10;
         musicSlider.minValue = 0;

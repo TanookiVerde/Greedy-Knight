@@ -11,9 +11,9 @@ public class MainMenu : MonoBehaviour {
 
     public List<Submenu> submenus;
     public int currentSubmenu;
-
-    public AudioClip buttonClick;
+    
     public TMP_Text deaths;
+    public AudioSource source;
 
     private void Start()
     {

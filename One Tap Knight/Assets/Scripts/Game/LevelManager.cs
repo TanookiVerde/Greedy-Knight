@@ -1,46 +1,32 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 
 public class LevelManager : MonoBehaviour {
+    public SOGame gameData;
+    public List<GameObject> levels;
+    public int levelIndex;
+
     private CameraMovement cameraMovement;
     private KnightController knight;
-    private PausePanel pausePanel;
-    private EndPanel endPanel;
-    private GameOverPanel gameOverPanel;
-    private Timer timer;
-    [SerializeField] private List<GameObject> detailImages;
-    [SerializeField] private CanvasGroup tutorialScreen;
-    public bool showFinalCutscene;
-
-    public SettingsSO settings;
-
+    [SerializeField] CanvasGroup waitingPanel;
+    
     private void Start()
     {
-        print(PlayerPrefs.GetInt("tutorial", 1));
-        foreach (var img in detailImages)
-            img.SetActive(true);
+        levelIndex = PlayerPrefs.GetInt("levelNumber", 0);
+        OpenLevelMap(levelIndex);
         knight = FindObjectOfType<KnightController>();
-        endPanel = FindObjectOfType<EndPanel>();
-        pausePanel = FindObjectOfType<PausePanel>();
-        gameOverPanel = FindObjectOfType<GameOverPanel>();
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
-        timer = FindObjectOfType<Timer>();
-        GameObject.Find("Toggle").GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("tutorial", 1) == 1 ? true:false;
         StartCoroutine(LevelLoop());
     }
     private IEnumerator LevelLoop()
     {
-        bool showTutorial = PlayerPrefs.GetInt("tutorial") == 1 ? true : false;
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
-        print(showTutorial);
-        if (showTutorial)
-            yield return ShowTutorial();
-        else
-            yield return cameraMovement.StartAnimation(showTutorial);
+        yield return null;
+        FindObjectOfType<MusicManager>().PlayMusic(levelIndex);
+        yield return WaitForInput();
         cameraMovement.StartFollowing();
         while (!LevelFinished())
         {
@@ -48,8 +34,11 @@ public class LevelManager : MonoBehaviour {
             {
                 if (!IsPlayerAlive())
                 {
+                    var log = MemoryCard.Load();
+                    log.deaths++;
+                    MemoryCard.Save(log);
                     yield return new WaitForSeconds(1f);
-                    gameOverPanel.Show();
+                    Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"));
                     yield break;
                 }
                 knight.MovementLoop();
@@ -58,18 +47,20 @@ public class LevelManager : MonoBehaviour {
         }
         yield return new WaitForSeconds(1f);
         SaveProgress();
-        if (showFinalCutscene)
+        if (gameData.levels[levelIndex].playFinalCutscene)
         {
+            FindObjectOfType<MusicManager>().source.DOFade(0, 0.5f);
+            Destroy(FindObjectOfType<MusicManager>().gameObject);
             PlayerPrefs.SetInt("cutscene", 1);
             Transition.transition.TransiteTo("Cutscene");
         }
         else
         {
-            endPanel.Show();
+            cameraMovement.EndAnimation();
+            FindObjectOfType<EndPanel>().Show();
         }
     }
-    
-    private bool IsGamePaused() { return pausePanel.paused; }
+    private bool IsGamePaused() { return FindObjectOfType<PausePanel>().paused; }
     private bool IsPlayerAlive() { return knight != null; }
     private bool LevelFinished() { return knight.finishedLevel; }
     private void SaveProgress()
@@ -86,11 +77,21 @@ public class LevelManager : MonoBehaviour {
         }
         MemoryCard.Save(log);
     }
-    private IEnumerator ShowTutorial()
+    private void OpenLevelMap(int levelIndex)
     {
-        tutorialScreen.DOFade(1, 0);
-        yield return new WaitForSeconds(1f);
-        tutorialScreen.DOFade(0, 1f);
-        yield return new WaitForSeconds(1f);
+        foreach(var level in levels)
+        {
+            level.SetActive(false);
+        }
+        levels[levelIndex].SetActive(true);
+    }
+    private IEnumerator WaitForInput()
+    {
+        waitingPanel.DOFade(1, 0);
+        while (!Input.GetKeyDown(KeyCode.W) && !Input.GetKeyDown(KeyCode.S))
+        {
+            yield return null;
+        }
+        waitingPanel.DOFade(0, 0.2f);
     }
 }

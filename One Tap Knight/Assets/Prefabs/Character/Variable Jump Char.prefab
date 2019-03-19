@@ -38,9 +38,10 @@ GameObject:
   - component: {fileID: 114254581003375122}
   - component: {fileID: 114126354578043984}
   - component: {fileID: 50760160023266126}
-  - component: {fileID: 61465892598953830}
   - component: {fileID: 82090383861982024}
   - component: {fileID: 95295710886761376}
+  - component: {fileID: 61207663213082006}
+  - component: {fileID: 114348707718885908}
   m_Layer: 0
   m_Name: Variable Jump Char
   m_TagString: Player
@@ -55,7 +56,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1167016841838110}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.416, z: 0}
+  m_LocalPosition: {x: -0.054, y: -0.416, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4937026246740844}
@@ -95,7 +96,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!61 &61465892598953830
+--- !u!61 &61207663213082006
 BoxCollider2D:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,7 +108,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.083112955, y: 0.023343712}
+  m_Offset: {x: -0.062278092, y: 0.09598653}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -118,7 +119,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.6395626, y: 0.7306538}
+  m_Size: {x: 0.6110039, y: 0.73002696}
   m_EdgeRadius: 0
 --- !u!82 &82090383861982024
 AudioSource:
@@ -248,6 +249,7 @@ MonoBehaviour:
   jumpSound: {fileID: 8300000, guid: 7594811e754383148a36317e89c48eec, type: 3}
   dieSound: {fileID: 8300000, guid: 6c4b6d936e0db524e8d265794b8691e0, type: 3}
   fallSound: {fileID: 8300000, guid: e6c22a22bac1c9446aa3599b77178e6b, type: 3}
+  bounceSound: {fileID: 0}
 --- !u!114 &114254581003375122
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -271,11 +273,23 @@ MonoBehaviour:
   lookDownMinTime: 1000
   ground: {fileID: 4730079454552676}
   distanceToGround: 0.1
-  groundBoxCastSize: {x: 0.5, y: 0.22}
+  groundBoxCastSize: {x: 0.73, y: 0.35}
   rigidbody2D: {fileID: 0}
   jumpsRemaining: 0
   isPounding: 0
   finishedLevel: 0
+--- !u!114 &114348707718885908
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1224522864860008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11edae571b621e04d920b11438aba08e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!212 &212055200581206582
 SpriteRenderer:
   m_ObjectHideFlags: 1

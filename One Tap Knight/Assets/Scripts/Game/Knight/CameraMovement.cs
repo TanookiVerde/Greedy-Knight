@@ -56,12 +56,11 @@ public class CameraMovement : MonoBehaviour {
         s.Append(camera.DOFieldOfView(finalSize * 1.1f, 0.5f));
         s.Append(camera.DOFieldOfView(finalSize, 0.5f));
     }
-    public void LookDown()
+    public void EndAnimation()
     {
-        offset += Vector3.up * distanceLookDown;
-    }
-    public void ResetLook()
-    {
-        offset -= Vector3.up * distanceLookDown;
+        canFollow = false;
+        var target = knight.position + new Vector3(0.5f, 0, -2f);
+        transform.DOMove(target, 1.5f);
+        //camera.DOFieldOfView(30f, 1.5f);
     }
 }

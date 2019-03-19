@@ -1,16 +1,16 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/GreedyKnight-B5/Greedy Knight.exe
+C:/Users/pedro/Desktop/Greedy Knight 1.0/Greedy Knight.exe
 SceneListBegin?
 Assets/Scenes/Opening.unity
 Assets/Scenes/Cutscene.unity
 Assets/Scenes/MainMenu.unity
-Assets/Scenes/Level 1.unity
-Assets/Scenes/Level 2.unity
-Assets/Scenes/Level 3.unity
+Assets/Scenes/Loading.unity
+Assets/Scenes/Level.unity
 SceneListEnd?
 37645d0b7dbf2e9bcd521c7762986bbd Assembly-CSharp.dll:.OpeningScene
 939639b96827d34a20385b8e5c1959b9 Assembly-CSharp.dll:.Diamond
+0d46580f29c7586efd43720506a39434 Assembly-CSharp.dll:.SOGame
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown
 486cd95c82d8305219c352c06b776e1f UnityEngine.Timeline.dll:UnityEngine.Timeline.ActivationPlayableAsset
@@ -125,27 +125,29 @@ fc061f3ae8a876c0687e86378d4a447c UnityEngine.Networking.dll:UnityEngine.Networki
 7ca56e063bd071986fff4f513cc4f477 UnityEngine.Networking.dll:UnityEngine.Networking.NetworkTransformVisualizer
 0a006f3734181ba8b26758f0866152c0 UnityEngine.SpatialTracking.dll:UnityEngine.SpatialTracking.TrackedPoseDriver
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Transition
+805cda743ebc74d5e687bf66caf631ae Assembly-CSharp.dll:.Loading
 72381f5ee0c7479b295b22808ff34f56 Assembly-CSharp.dll:.CameraLoop
 382b8ef512fa8d6108723a01b57af65b UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsEventTracker
 d22c788799ee45d8676254eccf20e8b8 UnityEngine.Analytics.dll:UnityEngine.Analytics.AnalyticsTracker
 d0cb05ce11e67b9efd6faafb28327abe Assembly-CSharp.dll:.GameOverPanel
 e0af514d6db3b4ac00dd0859d0dd8a0b Assembly-CSharp.dll:.Slime
+ac27bac6cd3bb3cb8d42302fe4a436d6 Assembly-CSharp.dll:.SoundPlayer
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
 e1ea12ca952c81d81a9a21fdf34446ed UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInputModule
 98d69a140ec0084cde3b6a5e09aea295 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingCollider
 dfd33ff9ae3ce8d7ca1f22b475ec2387 UnityEngine.HoloLens.dll:UnityEngine.XR.WSA.SpatialMappingRenderer
 96f3ea9f23b6f08e60710ebb4af49174 Unity.TextMeshPro.dll:TMPro.TMP_SpriteAsset
-e48f8213e3e24c863cd53bd9ffb87577 Assembly-CSharp.dll:.EndPanel
+319208ec01acdeb56cf09b4434052a0f Assembly-CSharp.dll:.EndPanel
 b8d1a443f5c6635e757a4be4126b9201 Assembly-CSharp.dll:.KnightController
-2d89a18ce011ac31a5540bdcf98709b4 Assembly-CSharp.dll:.SettingsSO
 aa75461bcfcda2e23242d46fb879d21e Assembly-CSharp.dll:.CameraMovement
 464bdc42a5b02496269a38043206f002 Assembly-CSharp.dll:.DeathSpawn
 f16835701e71dd5d6fb1fed4b7aff1d8 Unity.TextMeshPro.dll:TMPro.TMP_Asset
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.Spike
-5b38ea2a6e0d831a5cfa4a24b0a4cf50 Assembly-CSharp.dll:.PausePanel
+9f8813688086e951092d7c6ab3e29392 Assembly-CSharp.dll:.PausePanel
 4f169b183601b2fe5bc407805fa88c95 Assembly-CSharp.dll:.MusicVolume
 f476840abb41d9f02b62e59e0803873c Assembly-CSharp.dll:.OptionsSubmenu
+ba41a6a4b451df55d98039e14835a5a4 Assembly-CSharp.dll:.SOLevel
 486cd95c82d8305219c352c06b776e1f Unity.TextMeshPro.dll:TMPro.TMP_SpriteAnimator
 dc8c5b352c584cf067ae6bc63e7a5e2a Assembly-CSharp.dll:.Stalactite
 837ae46cae41da62999b1ed9b760f53b DOTween.dll:DG.Tweening.Core.DOTweenComponent
@@ -183,6 +185,7 @@ e033f131358cea5a0eabf9561e781deb UnityEngine.TestRunner.dll:UnityEngine.TestTool
 70f7dc248db3379548a88e8d4fa049f8 UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioRoom
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSoundfieldExtension
 28a95668dd28649297d595834fe8417e UnityEngine.GoogleAudioSpatializer.dll:UnityEngine.Experimental.Audio.Google.GvrAudioSourceExtension
+61216b8018bdb293ccdbe119efe85caf Assembly-CSharp.dll:.MusicManager
 07f9ceb66c074637c77994b69ee8df41 Assembly-CSharp.dll:.LevelButton
 d75dc834c5dec688db75a55a1724c90f UnityEngine.HoloLens.dll:UnityEngine.Audio.AudioSpatializerMicrosoft
 486cd95c82d8305219c352c06b776e1f UnityEngine.HoloLens.dll:UnityEngine.EventSystems.HoloLensInput
@@ -196,7 +199,7 @@ aac9c55ae7ba4b95b852a7d9c191acd1 Unity.TextMeshPro.dll:TMPro.TextMeshProUGUI
 e7737580a292c93d882a4e32787bda8c Assembly-CSharp.dll:.Story
 21c4b5fc530a74fa6b732eb8cd86a1ef Assembly-CSharp.dll:.WaitingPlatform
 e04611b8715e6833d2bd7010fc6be10b Unity.TextMeshPro.dll:TMPro.TMP_StyleSheet
-4e3b5b4e6d0c39022d9ad23a9b456d08 Assembly-CSharp.dll:.MainMenu
+6343222d1848db4ed11ee013f9f4a427 Assembly-CSharp.dll:.MainMenu
 54c3d80309e833fa2d5138f75b1a3d69 Assembly-CSharp.dll:.Stage
 ef83a2bfb5af110171f394885bd405d3 Assembly-CSharp.dll:.Bat
 2f9af06a78208a67db480e9bfed4a076 Unity.TextMeshPro.dll:TMPro.TextMeshPro
@@ -204,5 +207,4 @@ ef83a2bfb5af110171f394885bd405d3 Assembly-CSharp.dll:.Bat
 486cd95c82d8305219c352c06b776e1f Assembly-CSharp.dll:.MemoryCard
 93307bd34e39d73fd24e00ec39c25a91 Unity.TextMeshPro.dll:TMPro.TMP_SubMesh
 10e65609091662047649938d1ad62c60 Assembly-CSharp.dll:.Scene
-6050fcea34c21d2e28f6e5cc88d0ae7f Assembly-CSharp.dll:.LevelManager
-ac27bac6cd3bb3cb8d42302fe4a436d6 Assembly-CSharp.dll:.SoundPlayer
+116db973d41e4c0204b0016edec5d21c Assembly-CSharp.dll:.LevelManager

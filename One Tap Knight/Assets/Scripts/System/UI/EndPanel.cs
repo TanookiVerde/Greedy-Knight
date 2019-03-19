@@ -6,29 +6,26 @@ using DG.Tweening;
 using TMPro;
 
 public class EndPanel : MonoBehaviour {
-    private const float FINAL_POSITION = 30;
+    private const float FINAL_POSITION = -330;
 
     public float timeToAppear;
-    public CanvasGroup darkBackground;
     public CanvasGroup infoPanel;
     
     public TMP_Text diamondCount;
-    public RectTransform confirmButton;
+    public List<RectTransform> buttons;
 
     public void Show()
     {
-        darkBackground.DOFade(1, timeToAppear);
-        infoPanel.DOFade(0, 0);
         infoPanel.interactable = true;
-        infoPanel.blocksRaycasts = true;
-        GetComponent<RectTransform>().DOAnchorPosY(FINAL_POSITION, timeToAppear);
+        GetComponent<RectTransform>().DOAnchorPosX(FINAL_POSITION, timeToAppear);
         StartCoroutine(ShowInfoPanel());
-        confirmButton.GetComponent<Selectable>().Select();
+        buttons[0].GetComponent<Selectable>().Select();
     }
     private IEnumerator ShowInfoPanel()
     {
         diamondCount.transform.parent.DOScale(0, 0);
-        confirmButton.DOAnchorPosX(confirmButton.anchoredPosition.x + 720, 0);
+        buttons[0].DOAnchorPosX(buttons[0].anchoredPosition.x + 720, 0);
+        buttons[1].DOAnchorPosX(buttons[1].anchoredPosition.x + 720, 0);
 
         yield return new WaitForSeconds(0.5f);
         infoPanel.DOFade(1, timeToAppear);
@@ -36,11 +33,18 @@ public class EndPanel : MonoBehaviour {
         diamondCount.text = Diamond.collectedDiamonds + "/" + Diamond.totalDiamonds;
         diamondCount.transform.parent.DOScale(1, 0.1f);
         yield return new WaitForSeconds(0.25f);
-        confirmButton.DOAnchorPosX(confirmButton.anchoredPosition.x - 720, 0.2f);
+        buttons[0].DOAnchorPosX(buttons[0].anchoredPosition.x - 720, 0.2f);
+        yield return new WaitForSeconds(0.25f);
+        buttons[1].DOAnchorPosX(buttons[1].anchoredPosition.x - 720, 0.2f);
     }
     public void BackToMenu()
     {
-        Camera.main.GetComponent<AudioSource>().DOFade(0, 0.5f);
+        Camera.main.GetComponent<AudioSource>().DOFade(0, 0.25f);
+        Destroy(FindObjectOfType<MusicManager>().gameObject, 0.25f);
         Transition.transition.TransiteTo("MainMenu");
+    }
+    public void Reset()
+    {
+        Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"));
     }
 }

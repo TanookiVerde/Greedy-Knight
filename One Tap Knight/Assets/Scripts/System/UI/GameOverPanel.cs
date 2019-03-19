@@ -42,10 +42,12 @@ public class GameOverPanel : MonoBehaviour {
     }
     public void Retry()
     {
-        Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"), false);
+    
+        Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"));
     }
     public void ToMenu()
     {
-        Transition.transition.TransiteTo("MainMenu", true, true);
+        Camera.main.GetComponent<AudioSource>().DOFade(0, 0.5f);
+        Transition.transition.TransiteTo("MainMenu");
     }
 }

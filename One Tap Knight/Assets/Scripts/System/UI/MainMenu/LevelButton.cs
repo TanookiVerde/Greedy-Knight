@@ -21,8 +21,9 @@ public class LevelButton : MonoBehaviour {
     }
     public void OpenLevel()
     {
-        Transition.transition.TransiteTo("Level " + level.number);
-        PlayerPrefs.SetString("levelName", "Level " + level.number);
+        Transition.transition.TransiteTo("Loading");
+        FindObjectOfType<MainMenu>().source.DOFade(0, 0.25f);
+        PlayerPrefs.SetString("levelName", "Level");
         PlayerPrefs.SetInt("levelNumber", level.number - 1);
     }
 }

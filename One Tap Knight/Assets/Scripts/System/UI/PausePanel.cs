@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
-using UnityEngine.SceneManagement;
 
 public class PausePanel : MonoBehaviour{
+    private const float SHOW_POS = -240f;
+    private const float HIDE_POS = 300f;
 
     [SerializeField] private CanvasGroup group;
     [SerializeField] private Selectable firstSelected;
-    [SerializeField] private Toggle tutorialToggle;
 
 	[HideInInspector] public bool paused;
 
@@ -25,16 +25,21 @@ public class PausePanel : MonoBehaviour{
     }
     public void SetActive(bool active, float duration = 0.25f)
     {
-        group.DOFade(active ? 1 : 0, duration);
+        RectTransform rect = GetComponent<RectTransform>();
+        rect.DOAnchorPosX(active ? SHOW_POS : HIDE_POS, duration);
         group.interactable = active;
-        group.blocksRaycasts = active;
-        tutorialToggle.isOn = PlayerPrefs.GetInt("tutorial", 1) == 1 ? true : false;
     }
     public void RestartLevel()
     {
         Transition.transition.TransiteTo(PlayerPrefs.GetString("levelName"));
     }
-	public void PauseLevel(bool value)
+    public void BackToMenu()
+    {
+        Transition.transition.TransiteTo("MainMenu");
+        FindObjectOfType<MusicManager>().source.DOFade(0, 0.25f);
+        Destroy(FindObjectOfType<MusicManager>().gameObject, 0.25f);
+    }
+    public void PauseLevel(bool value)
 	{
 		paused = value;
         SetActive(value);
