@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - End
+  - music
   layers:
   - Default
   - TransparentFX

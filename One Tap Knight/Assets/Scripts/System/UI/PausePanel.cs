@@ -41,8 +41,4 @@ public class PausePanel : MonoBehaviour{
         FindObjectOfType<KnightController>().Stop(value);
         firstSelected.Select();
     }
-    public void SaveToggle()
-    {
-        PlayerPrefs.SetInt("tutorial", tutorialToggle.isOn ? 1 : 0);
-    }
 }

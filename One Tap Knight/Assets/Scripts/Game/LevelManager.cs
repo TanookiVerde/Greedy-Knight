@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using DG.Tweening;
 
 public class LevelManager : MonoBehaviour {
@@ -18,6 +19,7 @@ public class LevelManager : MonoBehaviour {
 
     private void Start()
     {
+        print(PlayerPrefs.GetInt("tutorial", 1));
         foreach (var img in detailImages)
             img.SetActive(true);
         knight = FindObjectOfType<KnightController>();
@@ -26,13 +28,15 @@ public class LevelManager : MonoBehaviour {
         gameOverPanel = FindObjectOfType<GameOverPanel>();
         cameraMovement = Camera.main.GetComponent<CameraMovement>();
         timer = FindObjectOfType<Timer>();
+        GameObject.Find("Toggle").GetComponent<Toggle>().isOn = PlayerPrefs.GetInt("tutorial", 1) == 1 ? true:false;
         StartCoroutine(LevelLoop());
     }
     private IEnumerator LevelLoop()
     {
-        bool showTutorial = PlayerPrefs.GetInt("tutorial", 1) == 1 ? true : false;
+        bool showTutorial = PlayerPrefs.GetInt("tutorial") == 1 ? true : false;
         Transition.transition.InstaShow();
         Transition.transition.TransiteFrom();
+        print(showTutorial);
         if (showTutorial)
             yield return ShowTutorial();
         else
@@ -64,6 +68,7 @@ public class LevelManager : MonoBehaviour {
             endPanel.Show();
         }
     }
+    
     private bool IsGamePaused() { return pausePanel.paused; }
     private bool IsPlayerAlive() { return knight != null; }
     private bool LevelFinished() { return knight.finishedLevel; }

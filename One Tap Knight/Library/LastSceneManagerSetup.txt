@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/Cutscene.unity
+- path: Assets/Scenes/Level 1B.unity
   isLoaded: 1
   isActive: 1

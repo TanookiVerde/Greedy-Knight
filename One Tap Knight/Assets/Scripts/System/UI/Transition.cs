@@ -23,15 +23,24 @@ public class Transition : MonoBehaviour {
     {
         GetComponent<Image>().DOFade(0, 0);
     }
-    public void TransiteTo(string sceneName) {
-        StartCoroutine(TransiteToAnimation(sceneName));
+    public void TransiteTo(string sceneName, bool fadeOutSound = true, bool destroySound = false) {
+        StartCoroutine(TransiteToAnimation(sceneName, fadeOutSound, destroySound));
     }
     public void TransiteFrom() {
         GetComponent<Image>().DOFade(0, TRANSITION_DURATION*5);
     }
-    private IEnumerator TransiteToAnimation(string name)
+    private IEnumerator TransiteToAnimation(string name, bool fadeOutSound = true, bool destroySound = false)
     {
         GetComponent<Image>().DOFade(1, TRANSITION_DURATION);
+        if(fadeOutSound)
+        {
+            if(!destroySound)
+                StartCoroutine(GameObject.Find("SoundManager").GetComponent<MusicVolume>().FadeOut(TRANSITION_MIN_TIME));
+            else
+            {
+                StartCoroutine(GameObject.Find("SoundManager").GetComponent<MusicVolume>().FadeOutDestroy(TRANSITION_MIN_TIME));
+            }
+        }
         yield return new WaitForSeconds(TRANSITION_MIN_TIME);
         SceneManager.LoadSceneAsync(name);
     }
