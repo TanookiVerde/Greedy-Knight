@@ -1,6 +1,6 @@
 WindowsStandalone
 PlayerPath?
-C:/Users/pedro/Desktop/Greedy Knight 1.1/Greedy Knight.exe
+C:/Users/pedro/Desktop/Greedy Knight 1.3/Greedy Knight.exe
 SceneListBegin?
 Assets/Scenes/Opening.unity
 Assets/Scenes/Cutscene.unity
@@ -8,8 +8,8 @@ Assets/Scenes/MainMenu.unity
 Assets/Scenes/Loading.unity
 Assets/Scenes/Level.unity
 SceneListEnd?
-37645d0b7dbf2e9bcd521c7762986bbd Assembly-CSharp.dll:.OpeningScene
-939639b96827d34a20385b8e5c1959b9 Assembly-CSharp.dll:.Diamond
+5c1f5e67e18b6d85735b4147b41429df Assembly-CSharp.dll:.OpeningScene
+52da374b39595b7903075b36f09f2c90 Assembly-CSharp.dll:.Diamond
 0d46580f29c7586efd43720506a39434 Assembly-CSharp.dll:.SOGame
 c422dd62785a6d0afa870fbd111886ce Unity.TextMeshPro.dll:TMPro.TMP_SelectionCaret
 7b803eb2910e9b4cd5e521ae07b9f7d6 Unity.TextMeshPro.dll:TMPro.TMP_Dropdown

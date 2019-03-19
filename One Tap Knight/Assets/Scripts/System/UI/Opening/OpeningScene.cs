@@ -5,7 +5,7 @@ using DG.Tweening;
 using UnityEngine.UI;
 
 public class OpeningScene : MonoBehaviour {
-    [SerializeField] private TMPro.TMP_Text alert;
+    [SerializeField] private CanvasGroup alert;
     [SerializeField] private Image gdpNormalLogo;
     [SerializeField] private Image gdpCustomizedLogo;
 

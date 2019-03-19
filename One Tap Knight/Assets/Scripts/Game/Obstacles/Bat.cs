@@ -10,15 +10,18 @@ public class Bat : MonoBehaviour {
 
     private int directionBias = 1;
     private new Rigidbody2D rigidbody2D;
+    private KnightController knight;
 
     private void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
         GetComponent<SpriteRenderer>().flipX = directionBias == 1;
+        knight = FindObjectOfType<KnightController>();
     }
     private void FixedUpdate()
     {
-        Move();
+        if(knight != null && (knight.transform.position - transform.position).magnitude < viewDistance)
+            Move();
     }
     private void Move()
     {
